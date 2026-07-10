@@ -84,4 +84,16 @@ public abstract class Criatura {
         return this.vivo;
     }
 
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Idade: " + this.idade);
+        System.out.println("Nível: " + this.nivel);
+        System.out.println("Experiência: " + this.experiencia);
+        System.out.println("Energia: " + this.energia);
+        System.out.println("Saciedade: " + this.saciedade);
+        System.out.println("Felicidade: " + this.felicidade);
+        System.out.println("Saúde: " + this.saude);
+        System.out.println("Vivo: " + (this.seVivo() ? "Sim" : "Não"));
+    }
+
 }
