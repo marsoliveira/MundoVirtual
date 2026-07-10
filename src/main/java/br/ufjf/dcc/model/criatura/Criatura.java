@@ -1,5 +1,10 @@
 package br.ufjf.dcc.model.criatura;
 
+import br.ufjf.dcc.model.enums.EstadoEnergia;
+import br.ufjf.dcc.model.enums.EstadoFelicidade;
+import br.ufjf.dcc.model.enums.EstadoSaciedade;
+import br.ufjf.dcc.model.enums.EstadoSaude;
+
 public abstract class Criatura {
 
     protected String nome;
@@ -94,6 +99,58 @@ public abstract class Criatura {
         System.out.println("Felicidade: " + this.felicidade);
         System.out.println("Saúde: " + this.saude);
         System.out.println("Vivo: " + (this.seVivo() ? "Sim" : "Não"));
+    }
+
+    public EstadoSaude getEstadoSaude() {
+
+        if (this.saude == 0) {
+            return EstadoSaude.MORTA;
+        }
+
+        if (this.saude < 40) {
+            return EstadoSaude.DOENTE;
+        }
+
+        if ((this.saude >= 40) && (this.saude <= 70)) {
+            return EstadoSaude.ATENCAO;
+        }
+
+        return EstadoSaude.SAUDAVEL;
+    }
+
+    public EstadoEnergia getEstadoEnergia() {
+
+        if (this.energia < 50) {
+            return EstadoEnergia.CANSADA;
+        }
+
+        return EstadoEnergia.DISPOSTA;
+    }
+
+    public EstadoSaciedade getEstadoSaciedade() {
+
+        if (this.saciedade < 50) {
+            return EstadoSaciedade.FAMINTA;
+        }
+
+        return EstadoSaciedade.SATISFEITA;
+    }
+
+    public EstadoFelicidade getEstadoFelicidade() {
+
+        if (this.felicidade < 50) {
+            return EstadoFelicidade.TRISTE;
+        }
+
+        return EstadoFelicidade.FELIZ;
+    }
+
+    public void exibirEstadoAtual() {
+        System.out.println("Estado atual de " + nome + ":");
+        System.out.println("Saúde: " + getEstadoSaude().getDescricao());
+        System.out.println("Energia: " + getEstadoEnergia().getDescricao());
+        System.out.println("Saciedade: " + getEstadoSaciedade().getDescricao());
+        System.out.println("Felicidade: " + getEstadoFelicidade().getDescricao());
     }
 
 }
