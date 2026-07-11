@@ -13,72 +13,70 @@ public class Aquari extends Criatura implements Aquatico {
     @Override
     public void treinar() {
         if (this.sePodeTreinar()) {
-            this.experiencia += 25;
+            this.ganharExperiencia(25);
             this.energia -= 15;
             this.saciedade -= 10;
-			this.ultimaAtividade = Atividade.TREINAR;
+            this.ultimaAtividade = Atividade.TREINAR;
         }
     }
 
-	@Override
-	public void explorar() {
+    @Override
+    public void explorar() {
         if (this.sePodeExplorar()) {
-            this.experiencia += 15;
+            this.ganharExperiencia(15);
             this.energia -= 10;
             this.saciedade -= 10;
             this.felicidade += 5;
-			this.ultimaAtividade = Atividade.EXPLORAR;
+            this.ultimaAtividade = Atividade.EXPLORAR;
         }
     }
 
-	@Override
-	public void brincar() {
+    @Override
+    public void brincar() {
         if (this.sePodeBrincar()) {
-			this.felicidade += 20;
+            this.felicidade += 20;
             this.energia -= 10;
             this.saciedade -= 5;
-			this.ultimaAtividade = Atividade.BRINCAR;
+            this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
 
-	@Override
-	public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-		return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+    @Override
+    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
+        return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
     }
 
-	@Override
-	public void descansar() {
+    @Override
+    public void descansar() {
         if (this.sePodeDescansar()) {
             this.energia += 25;
-			this.ultimaAtividade = Atividade.DESCANSAR;
+            this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
 
-	@Override
-	public void participarDesafio() {
+    @Override
+    public void participarDesafio() {
         if (this.sePodeParticiparDesafio()) {
-            this.experiencia += 45;
+            this.ganharExperiencia(45);
             this.energia -= 20;
             this.saciedade -= 20;
             this.felicidade += 10;
-			this.desafiosParticipados.add(nivel);
-			this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
+            this.desafiosParticipados.add(nivel);
+            this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }
 
-	@Override
-	public void evoluir() {
-        if (this.sePodeEvoluir()) {
-            this.energia += 1;
-            this.felicidade += 1;
-			this.ultimaAtividade = Atividade.EVOLUIR;
-        }
+    @Override
+    protected void evoluir() {
+        this.energia += 1;
+        this.felicidade += 1;
+        this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
-	@Override
-	public void mergulhar() {
-		this.felicidade += 10;
-		System.out.println(this.nome + " mergulhou e sua felicidade agora é " + this.felicidade);
-	}
+    @Override
+    public void mergulhar() {
+        this.felicidade += 10;
+        System.out.println(this.nome + " mergulhou e sua felicidade agora é " + this.felicidade);
+    }
 
 }

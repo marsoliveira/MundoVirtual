@@ -205,10 +205,6 @@ public abstract class Criatura {
         return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
-    protected boolean sePodeEvoluir() {
-        return this.experiencia >= 100;
-    }
-
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
         return this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
     }
@@ -232,6 +228,17 @@ public abstract class Criatura {
         this.ultimaAtividade = Atividade.ALIMENTAR;
 
         System.out.println(this.nome + " se alimentou.");
+    }
+
+    protected void ganharExperiencia(int exp) {
+        this.experiencia += exp;
+
+        while (this.experiencia >= 100) {
+            this.experiencia -= 100;
+            this.nivel++;
+
+            this.evoluir();
+        }
     }
 
     protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);

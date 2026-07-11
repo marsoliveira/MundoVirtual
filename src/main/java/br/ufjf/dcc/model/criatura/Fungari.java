@@ -12,7 +12,7 @@ public class Fungari extends Criatura {
     @Override
     public void treinar() {
         if (this.sePodeTreinar()) {
-            this.experiencia += 20;
+            this.ganharExperiencia(20);
             this.energia -= 10;
             this.saciedade -= 10;
             this.ultimaAtividade = Atividade.TREINAR;
@@ -22,7 +22,7 @@ public class Fungari extends Criatura {
     @Override
     public void explorar() {
         if (this.sePodeExplorar()) {
-            this.experiencia += 10;
+            this.ganharExperiencia(10);
             this.energia -= 5;
             this.saciedade -= 5;
             this.felicidade += 5;
@@ -56,21 +56,19 @@ public class Fungari extends Criatura {
     @Override
     public void participarDesafio() {
         if (this.sePodeParticiparDesafio()) {
-            this.experiencia += 40;
+            this.ganharExperiencia(40);
             this.energia -= 15;
             this.saciedade -= 15;
             this.felicidade += 5;
-			this.desafiosParticipados.add(nivel);
+            this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }
 
-	@Override
-    public void evoluir() {
-        if (this.sePodeEvoluir()) {
-            this.saciedade += 2;
-            this.ultimaAtividade = Atividade.EVOLUIR;
-        }
+    @Override
+    protected void evoluir() {
+        this.saciedade += 2;
+        this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
 }
