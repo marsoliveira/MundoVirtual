@@ -15,7 +15,7 @@ public class Aquari extends Criatura implements Aquatico {
         if (this.sePodeTreinar()) {
             this.experiencia += 25;
             this.energia -= 15;
-            this.saciedade -= -10;
+            this.saciedade -= 10;
 			this.ultimaAtividade = Atividade.TREINAR;
         }
     }
