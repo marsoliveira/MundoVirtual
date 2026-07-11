@@ -48,7 +48,7 @@ public abstract class Criatura {
         return this.nome;
     }
 
-	public void setEspecie(String especie) {
+    public void setEspecie(String especie) {
         this.especie = especie;
     }
 
@@ -122,7 +122,7 @@ public abstract class Criatura {
 
     public void exibirInformacoes() {
         System.out.println("Nome: " + this.nome);
-		System.out.println("Espécie: " + this.especie);
+        System.out.println("Espécie: " + this.especie);
         System.out.println("Idade: " + this.idade);
         System.out.println("Nível: " + this.nivel);
         System.out.println("Experiência: " + this.experiencia);
@@ -197,12 +197,6 @@ public abstract class Criatura {
         return this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
     }
 
-    protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
-
-    protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
-    }
-
     protected boolean sePodeDescansar() {
         return this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
     }
@@ -215,11 +209,9 @@ public abstract class Criatura {
         return this.experiencia >= 100;
     }
 
-    public abstract void treinar();
-
-    public abstract void explorar();
-
-    public abstract void brincar();
+    protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
+        return this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
+    }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
 
@@ -241,6 +233,14 @@ public abstract class Criatura {
 
         System.out.println(this.nome + " se alimentou.");
     }
+
+    protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
+
+    public abstract void treinar();
+
+    public abstract void explorar();
+
+    public abstract void brincar();
 
     public abstract void descansar();
 
