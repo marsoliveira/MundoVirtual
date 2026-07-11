@@ -177,7 +177,7 @@ public abstract class Criatura {
         return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50;
     }
 
-	public boolean sePodeEvoluir() {
+    protected boolean sePodeEvoluir() {
         return this.experiencia >= 100;
     }
 
