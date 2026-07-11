@@ -236,16 +236,16 @@ public abstract class Criatura {
 
     protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
 
-    public abstract void treinar();
+    protected abstract void treinar();
 
-    public abstract void explorar();
+    protected abstract void explorar();
 
-    public abstract void brincar();
+    protected abstract void brincar();
 
-    public abstract void descansar();
+    protected abstract void descansar();
 
-    public abstract void participarDesafio();
+    protected abstract void participarDesafio();
 
-    public abstract void evoluir();
+    protected abstract void evoluir();
 
 }
