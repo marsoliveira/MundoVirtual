@@ -35,8 +35,8 @@ public abstract class Criatura {
         this.energia = energia;
         this.saciedade = saciedade;
         this.felicidade = felicidade;
-        this.saude = (energia + saciedade + felicidade) / 3;
         this.vivo = true;
+		this.atualizarSaude();
         this.desafiosParticipados = new HashSet<>();
     }
 
@@ -104,16 +104,8 @@ public abstract class Criatura {
         return this.felicidade;
     }
 
-    public void setSaude(int saude) {
-        this.saude = saude;
-    }
-
     public int getSaude() {
         return this.saude;
-    }
-
-    public void setVivo(boolean vivo) {
-        this.vivo = vivo;
     }
 
     public boolean seVivo() {
@@ -185,28 +177,40 @@ public abstract class Criatura {
         System.out.println("Felicidade: " + getEstadoFelicidade().getDescricao());
     }
 
+    protected void atualizarSaude() {
+
+        if (this.energia <= 0 || this.saciedade <= 0 || this.felicidade <= 0) {
+            this.saude = 0;
+            this.vivo = false;
+
+            return;
+        }
+
+        this.saude = (this.energia + this.saciedade + this.felicidade) / 3;
+    }
+
     protected boolean sePodeTreinar() {
-        return this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
+        return this.seVivo() && this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
     }
 
     protected boolean sePodeExplorar() {
-        return this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
+        return this.seVivo() && this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
     }
 
     protected boolean sePodeBrincar() {
-        return this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
+        return this.seVivo() && this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
     }
 
     protected boolean sePodeDescansar() {
-        return this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
+        return this.seVivo() && this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
     protected boolean sePodeParticiparDesafio() {
-        return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
+        return this.seVivo() && this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
+        return this.seVivo() && this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
@@ -223,7 +227,7 @@ public abstract class Criatura {
 
         estoque.consumir(tipoAlimento);
 
-		this.ganharSaciedade(tipoAlimento.getSaciedade());
+        this.ganharSaciedade(tipoAlimento.getSaciedade());
 
         this.ultimaAtividade = Atividade.ALIMENTAR;
 
@@ -244,26 +248,32 @@ public abstract class Criatura {
 
     protected void consumirEnergia(int valorBase) {
         this.energia -= calcularConsumoAtributo(valorBase);
+		this.atualizarSaude();
     }
 
     protected void ganharEnergia(int quantidade) {
         this.energia += quantidade;
+		this.atualizarSaude();
     }
 
     protected void consumirSaciedade(int valorBase) {
         this.saciedade -= calcularConsumoAtributo(valorBase);
+		this.atualizarSaude();
     }
 
     protected void ganharSaciedade(int quantidade) {
         this.saciedade += quantidade;
+		this.atualizarSaude();
     }
 
     protected void ganharFelicidade(int valorBase) {
         this.felicidade += calcularGanhoAtributo(valorBase);
+		this.atualizarSaude();
     }
 
     protected void consumirFelicidade(int quantidade) {
         this.felicidade -= quantidade;
+		this.atualizarSaude();
     }
 
     protected void ganharExperiencia(int valorBase) {
