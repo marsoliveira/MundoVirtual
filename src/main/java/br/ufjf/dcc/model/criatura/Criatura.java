@@ -174,27 +174,27 @@ public abstract class Criatura {
         System.out.println("Felicidade: " + getEstadoFelicidade().getDescricao());
     }
 
-    public boolean sePodeTreinar() {
+    protected boolean sePodeTreinar() {
         return this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
     }
 
-    public boolean sePodeExplorar() {
+    protected boolean sePodeExplorar() {
         return this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
     }
 
-    public boolean sePodeBrincar() {
+    protected boolean sePodeBrincar() {
         return this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
     }
 
-    public boolean sePodeAlimentar() {
+    protected boolean sePodeAlimentar() {
         return this.saude > 0 && this.saciedade < 90;
     }
 
-    public boolean sePodeDescansar() {
+    protected boolean sePodeDescansar() {
         return this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
-    public boolean sePodeParticiparDesafio() {
+    protected boolean sePodeParticiparDesafio() {
         return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
