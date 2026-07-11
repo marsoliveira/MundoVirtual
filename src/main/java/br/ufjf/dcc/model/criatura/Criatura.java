@@ -153,4 +153,46 @@ public abstract class Criatura {
         System.out.println("Felicidade: " + getEstadoFelicidade().getDescricao());
     }
 
+    public boolean sePodeTreinar() {
+        return this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
+    }
+
+    public boolean sePodeExplorar() {
+        return this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
+    }
+
+    public boolean sePodeBrincar() {
+        return this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
+    }
+
+    public boolean sePodeAlimentar() {
+        return this.saude > 0 && this.saciedade < 90;
+    }
+
+    public boolean sePodeDescansar() {
+        return this.saude > 0 && this.energia < 90;
+    }
+
+    public boolean sePodeParticiparDesafio() {
+        return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50;
+    }
+
+	public boolean sePodeEvoluir() {
+        return this.experiencia >= 100;
+    }
+
+    public abstract void treinar();
+
+    public abstract void explorar();
+
+    public abstract void brincar();
+
+    public abstract void alimentar();
+
+    public abstract void descansar();
+
+    public abstract void participarDesafio();
+
+    public abstract void evoluir();
+
 }
