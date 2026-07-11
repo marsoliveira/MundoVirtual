@@ -48,6 +48,14 @@ public abstract class Criatura {
         return this.nome;
     }
 
+	public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public String getEspecie() {
+        return this.especie;
+    }
+
     public void setIdade(int idade) {
         this.idade = idade;
     }
