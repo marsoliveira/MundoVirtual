@@ -14,8 +14,8 @@ public class Mecanis extends Criatura implements Mecanico {
     public void treinar() {
         if (this.sePodeTreinar()) {
             this.ganharExperiencia(40);
-            this.energia -= 15;
-            this.saciedade -= 20;
+            this.consumirEnergia(15);
+            this.consumirSaciedade(20);
             this.ultimaAtividade = Atividade.TREINAR;
         }
     }
@@ -24,9 +24,9 @@ public class Mecanis extends Criatura implements Mecanico {
     public void explorar() {
         if (this.sePodeExplorar()) {
             this.ganharExperiencia(25);
-            this.energia -= 10;
-            this.saciedade -= 15;
-            this.felicidade -= 5;
+            this.consumirEnergia(10);
+            this.consumirSaciedade(15);
+            this.consumirFelicidade(5);
             this.ultimaAtividade = Atividade.EXPLORAR;
         }
     }
@@ -34,9 +34,9 @@ public class Mecanis extends Criatura implements Mecanico {
     @Override
     public void brincar() {
         if (this.sePodeBrincar()) {
-            this.felicidade += 10;
-            this.energia -= 5;
-            this.saciedade -= 10;
+            this.ganharFelicidade(10);
+            this.consumirEnergia(5);
+            this.consumirSaciedade(10);
             this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
@@ -49,7 +49,7 @@ public class Mecanis extends Criatura implements Mecanico {
     @Override
     public void descansar() {
         if (this.sePodeDescansar()) {
-            this.energia += 15;
+            this.ganharEnergia(15);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
@@ -58,9 +58,9 @@ public class Mecanis extends Criatura implements Mecanico {
     public void participarDesafio() {
         if (this.sePodeParticiparDesafio()) {
             this.ganharExperiencia(50);
-            this.energia -= 20;
-            this.saciedade -= 25;
-            this.felicidade -= 10;
+            this.consumirEnergia(20);
+            this.consumirSaciedade(25);
+            this.consumirFelicidade(10);
             this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
@@ -68,7 +68,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     protected void evoluir() {
-        this.energia += 3;
+        this.ganharEnergia(3);
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 

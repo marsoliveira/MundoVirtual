@@ -14,8 +14,8 @@ public class Aquari extends Criatura implements Aquatico {
     public void treinar() {
         if (this.sePodeTreinar()) {
             this.ganharExperiencia(25);
-            this.energia -= 15;
-            this.saciedade -= 10;
+            this.consumirEnergia(15);
+            this.consumirSaciedade(10);
             this.ultimaAtividade = Atividade.TREINAR;
         }
     }
@@ -24,9 +24,9 @@ public class Aquari extends Criatura implements Aquatico {
     public void explorar() {
         if (this.sePodeExplorar()) {
             this.ganharExperiencia(15);
-            this.energia -= 10;
-            this.saciedade -= 10;
-            this.felicidade += 5;
+            this.consumirEnergia(10);
+            this.consumirSaciedade(10);
+            this.ganharFelicidade(5);
             this.ultimaAtividade = Atividade.EXPLORAR;
         }
     }
@@ -34,9 +34,9 @@ public class Aquari extends Criatura implements Aquatico {
     @Override
     public void brincar() {
         if (this.sePodeBrincar()) {
-            this.felicidade += 20;
-            this.energia -= 10;
-            this.saciedade -= 5;
+            this.ganharFelicidade(20);
+            this.consumirEnergia(10);
+            this.consumirSaciedade(5);
             this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
@@ -49,7 +49,7 @@ public class Aquari extends Criatura implements Aquatico {
     @Override
     public void descansar() {
         if (this.sePodeDescansar()) {
-            this.energia += 25;
+            this.ganharEnergia(25);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
@@ -58,9 +58,9 @@ public class Aquari extends Criatura implements Aquatico {
     public void participarDesafio() {
         if (this.sePodeParticiparDesafio()) {
             this.ganharExperiencia(45);
-            this.energia -= 20;
-            this.saciedade -= 20;
-            this.felicidade += 10;
+            this.consumirEnergia(20);
+            this.consumirSaciedade(20);
+            this.ganharFelicidade(10);
             this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
@@ -68,8 +68,9 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     protected void evoluir() {
-        this.energia += 1;
-        this.felicidade += 1;
+        this.ganharEnergia(1);
+        //this.ganharFelicidade(1);
+		this.felicidade += 1;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 

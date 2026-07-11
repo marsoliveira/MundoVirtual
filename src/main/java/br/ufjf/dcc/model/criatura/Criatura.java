@@ -223,15 +223,51 @@ public abstract class Criatura {
 
         estoque.consumir(tipoAlimento);
 
-        this.saciedade += tipoAlimento.getSaciedade();
+		this.ganharSaciedade(tipoAlimento.getSaciedade());
 
         this.ultimaAtividade = Atividade.ALIMENTAR;
 
         System.out.println(this.nome + " se alimentou.");
     }
 
-    protected void ganharExperiencia(int exp) {
-        this.experiencia += exp;
+    protected int calcularModificadorNivel() {
+        return Math.min(this.nivel / 10, 9);
+    }
+
+    protected int calcularConsumoAtributo(int valorBase) {
+        return valorBase + calcularModificadorNivel();
+    }
+
+    protected int calcularGanhoAtributo(int valorBase) {
+        return valorBase - calcularModificadorNivel();
+    }
+
+    protected void consumirEnergia(int valorBase) {
+        this.energia -= calcularConsumoAtributo(valorBase);
+    }
+
+    protected void ganharEnergia(int quantidade) {
+        this.energia += quantidade;
+    }
+
+    protected void consumirSaciedade(int valorBase) {
+        this.saciedade -= calcularConsumoAtributo(valorBase);
+    }
+
+    protected void ganharSaciedade(int quantidade) {
+        this.saciedade += quantidade;
+    }
+
+    protected void ganharFelicidade(int valorBase) {
+        this.felicidade += calcularGanhoAtributo(valorBase);
+    }
+
+    protected void consumirFelicidade(int quantidade) {
+        this.felicidade -= quantidade;
+    }
+
+    protected void ganharExperiencia(int valorBase) {
+        this.experiencia += calcularGanhoAtributo(valorBase);
 
         while (this.experiencia >= 100) {
             this.experiencia -= 100;
