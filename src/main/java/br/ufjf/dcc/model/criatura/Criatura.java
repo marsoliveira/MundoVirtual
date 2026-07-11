@@ -122,6 +122,7 @@ public abstract class Criatura {
 
     public void exibirInformacoes() {
         System.out.println("Nome: " + this.nome);
+		System.out.println("Espécie: " + this.especie);
         System.out.println("Idade: " + this.idade);
         System.out.println("Nível: " + this.nivel);
         System.out.println("Experiência: " + this.experiencia);
