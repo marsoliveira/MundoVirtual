@@ -6,6 +6,6 @@ public enum Atividade {
     BRINCAR,
     ALIMENTAR,
     DESCANSAR,
-    DESAFIO,
+    PARTICIPAR_DESAFIO,
 	EVOLUIR
 }
