@@ -34,24 +34,22 @@ public class Aquari extends Criatura implements Aquatico {
 	@Override
 	public void brincar() {
         if (this.sePodeBrincar()) {
+			this.felicidade += 20;
             this.energia -= 10;
             this.saciedade -= 5;
-            this.felicidade += 20;
 			this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
 
 	@Override
 	public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-		return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS;
+		return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
     }
 
 	@Override
 	public void descansar() {
         if (this.sePodeDescansar()) {
-            this.energia -= 10;
-            this.saciedade -= 5;
-            this.felicidade += 20;
+            this.energia += 25;
 			this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
