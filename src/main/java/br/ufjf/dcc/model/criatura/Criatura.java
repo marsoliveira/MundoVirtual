@@ -3,11 +3,13 @@ package br.ufjf.dcc.model.criatura;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.ufjf.dcc.model.alimento.Estoque;
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.EstadoEnergia;
 import br.ufjf.dcc.model.enums.EstadoFelicidade;
 import br.ufjf.dcc.model.enums.EstadoSaciedade;
 import br.ufjf.dcc.model.enums.EstadoSaude;
+import br.ufjf.dcc.model.enums.TipoAlimento;
 
 public abstract class Criatura {
 
@@ -186,8 +188,10 @@ public abstract class Criatura {
         return this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
     }
 
-    protected boolean sePodeAlimentar() {
-        return this.saude > 0 && this.saciedade < 90;
+    protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
+
+    protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
+        return this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
     }
 
     protected boolean sePodeDescansar() {
@@ -208,7 +212,26 @@ public abstract class Criatura {
 
     public abstract void brincar();
 
-    public abstract void alimentar();
+    public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
+
+        if (!sePodeAlimentar(tipoAlimento)) {
+            System.out.println("A criatura não pode comer esse alimento.");
+            return;
+        }
+
+        if (!estoque.possui(tipoAlimento)) {
+            System.out.println("Não há esse alimento no estoque.");
+            return;
+        }
+
+        estoque.consumir(tipoAlimento);
+
+        this.saciedade += tipoAlimento.getSaciedade();
+
+        this.ultimaAtividade = Atividade.ALIMENTAR;
+
+        System.out.println(this.nome + " se alimentou.");
+    }
 
     public abstract void descansar();
 
