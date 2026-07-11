@@ -23,8 +23,8 @@ public abstract class Criatura {
     protected int felicidade;
     protected int saude;
     protected boolean vivo;
-    private Atividade ultimaAtividade;
-    private Set<Integer> desafiosParticipados;
+    protected Atividade ultimaAtividade;
+    protected Set<Integer> desafiosParticipados;
 
     public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         this.nome = nome;
