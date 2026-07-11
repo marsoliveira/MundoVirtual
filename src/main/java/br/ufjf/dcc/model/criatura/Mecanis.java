@@ -61,6 +61,7 @@ public class Mecanis extends Criatura implements Mecanico {
             this.energia -= 20;
             this.saciedade -= 25;
             this.felicidade -= 10;
+			this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }

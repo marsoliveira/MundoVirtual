@@ -61,6 +61,7 @@ public class Aquari extends Criatura implements Aquatico {
             this.energia -= 20;
             this.saciedade -= 20;
             this.felicidade += 10;
+			this.desafiosParticipados.add(nivel);
 			this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }

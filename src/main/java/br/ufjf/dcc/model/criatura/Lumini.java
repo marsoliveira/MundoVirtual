@@ -61,6 +61,7 @@ public class Lumini extends Criatura implements Luminescente {
             this.energia -= 35;
             this.saciedade -= 15;
             this.felicidade += 15;
+			this.desafiosParticipados.add(nivel);
 			this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }

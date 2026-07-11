@@ -61,6 +61,7 @@ public class Draconis extends Criatura implements Voador {
             this.energia -= 30;
             this.saciedade -= 20;
             this.felicidade += 10;
+			this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }

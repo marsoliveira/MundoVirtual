@@ -60,6 +60,7 @@ public class Fungari extends Criatura {
             this.energia -= 15;
             this.saciedade -= 15;
             this.felicidade += 5;
+			this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
     }
