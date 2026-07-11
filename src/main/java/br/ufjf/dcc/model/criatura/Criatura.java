@@ -1,5 +1,9 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.EstadoEnergia;
 import br.ufjf.dcc.model.enums.EstadoFelicidade;
 import br.ufjf.dcc.model.enums.EstadoSaciedade;
@@ -8,6 +12,7 @@ import br.ufjf.dcc.model.enums.EstadoSaude;
 public abstract class Criatura {
 
     protected String nome;
+    protected String especie;
     protected int idade;
     protected int nivel;
     protected int experiencia;
@@ -16,6 +21,22 @@ public abstract class Criatura {
     protected int felicidade;
     protected int saude;
     protected boolean vivo;
+    private Atividade ultimaAtividade;
+    private Set<Integer> desafiosParticipados;
+
+    public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
+        this.nome = nome;
+        this.especie = especie;
+        this.idade = idade;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+        this.energia = energia;
+        this.saciedade = saciedade;
+        this.felicidade = felicidade;
+        this.saude = (energia + saciedade + felicidade) / 3;
+        this.vivo = true;
+        this.desafiosParticipados = new HashSet<>();
+    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -170,11 +191,11 @@ public abstract class Criatura {
     }
 
     public boolean sePodeDescansar() {
-        return this.saude > 0 && this.energia < 90;
+        return this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
     public boolean sePodeParticiparDesafio() {
-        return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50;
+        return this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean sePodeEvoluir() {
