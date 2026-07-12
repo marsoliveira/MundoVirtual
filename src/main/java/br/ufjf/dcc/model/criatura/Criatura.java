@@ -64,40 +64,20 @@ public abstract class Criatura {
         return this.idade;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
-
     public int getNivel() {
         return this.nivel;
-    }
-
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
     }
 
     public int getExperiencia() {
         return this.experiencia;
     }
 
-    public void setEnergia(int energia) {
-        this.energia = energia;
-    }
-
     public int getEnergia() {
         return this.energia;
     }
 
-    public void setSaciedade(int saciedade) {
-        this.saciedade = saciedade;
-    }
-
     public int getSaciedade() {
         return this.saciedade;
-    }
-
-    public void setFelicidade(int felicidade) {
-        this.felicidade = felicidade;
     }
 
     public int getFelicidade() {
@@ -108,7 +88,7 @@ public abstract class Criatura {
         return this.saude;
     }
 
-    public boolean seVivo() {
+    public boolean seViva() {
         return this.vivo;
     }
 
@@ -122,7 +102,7 @@ public abstract class Criatura {
         System.out.println("Saciedade: " + this.saciedade);
         System.out.println("Felicidade: " + this.felicidade);
         System.out.println("Saúde: " + this.saude);
-        System.out.println("Vivo: " + (this.seVivo() ? "Sim" : "Não"));
+        System.out.println("Vivo: " + (this.seViva() ? "Sim" : "Não"));
     }
 
     public EstadoSaude getEstadoSaude() {
@@ -190,27 +170,27 @@ public abstract class Criatura {
     }
 
     protected boolean sePodeTreinar() {
-        return this.seVivo() && this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
+        return this.seViva() && this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
     }
 
     protected boolean sePodeExplorar() {
-        return this.seVivo() && this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
+        return this.seViva() && this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
     }
 
     protected boolean sePodeBrincar() {
-        return this.seVivo() && this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
+        return this.seViva() && this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
     }
 
     protected boolean sePodeDescansar() {
-        return this.seVivo() && this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
+        return this.seViva() && this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
     protected boolean sePodeParticiparDesafio() {
-        return this.seVivo() && this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
+        return this.seViva() && this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.seVivo() && this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
+        return this.seViva() && this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {

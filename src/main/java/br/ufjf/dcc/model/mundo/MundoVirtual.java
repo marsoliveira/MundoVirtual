@@ -32,7 +32,7 @@ public class MundoVirtual {
 
             for (Criatura criatura : criaturas) {
 
-                if (criatura.seVivo()) {
+                if (criatura.seViva()) {
                     criatura.aplicarDesgasteNatural();
                 }
             }
