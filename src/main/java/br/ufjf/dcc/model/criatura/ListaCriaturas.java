@@ -79,6 +79,20 @@ public class ListaCriaturas {
         return criaturaMaiorNivel;
     }
 
+	public Criatura getCriaturaMenorNivel() {
+        int menorNivel = 0;
+        Criatura criaturaMenorNivel = null;
+
+        for (Criatura criatura : criaturas) {
+            if (criatura.getNivel() < menorNivel) {
+                menorNivel = criatura.getNivel();
+                criaturaMenorNivel = criatura;
+            }
+        }
+
+        return criaturaMenorNivel;
+    }
+
     public int getQteCriaturasVivas() {
         int qteCriaturasVivas = 0;
 
