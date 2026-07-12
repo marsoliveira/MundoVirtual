@@ -1,6 +1,7 @@
 package br.ufjf.dcc.model.alimento;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -9,6 +10,10 @@ import br.ufjf.dcc.util.csv.LeitorCSV;
 public class Estoque {
 
     private List<Alimento> alimentos;
+
+    public Estoque() {
+        this.alimentos = new ArrayList<>();
+    }
 
     public Estoque(String caminho) throws IOException {
         this.alimentos = LeitorCSV.carregar(caminho, new ConversorAlimentoCSV());
@@ -53,7 +58,7 @@ public class Estoque {
         }
     }
 
-	public int getQteDisponivelAlimento(TipoAlimento tipo) {
+    public int getQteDisponivelAlimento(TipoAlimento tipo) {
 
         Alimento alimento = buscarAlimento(tipo);
 
