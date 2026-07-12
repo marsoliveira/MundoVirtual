@@ -273,8 +273,8 @@ public abstract class Criatura {
 
     public void aplicarDesgasteNatural() {
         this.energia -= desgasteEnergia();
-        this.saciedade = desgasteSaciedade();
-        this.felicidade = desgasteFelicidade();
+        this.saciedade -= desgasteSaciedade();
+        this.felicidade -= desgasteFelicidade();
 
         this.atualizarSaude();
     }
