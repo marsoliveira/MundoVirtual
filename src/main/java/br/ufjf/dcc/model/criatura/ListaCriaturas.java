@@ -1,7 +1,10 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.ufjf.dcc.util.json.LeitorJSON;
 
 public class ListaCriaturas {
 
@@ -9,6 +12,10 @@ public class ListaCriaturas {
 
     public ListaCriaturas() {
         this.criaturas = new ArrayList<>();
+    }
+
+    public ListaCriaturas(String caminho) throws IOException {
+        this.criaturas = LeitorJSON.carregar(caminho, new ConversorCriaturaJSON());
     }
 
     public List<Criatura> getCriaturas() {
@@ -79,7 +86,7 @@ public class ListaCriaturas {
         return criaturaMaiorNivel;
     }
 
-	public Criatura getCriaturaMenorNivel() {
+    public Criatura getCriaturaMenorNivel() {
         int menorNivel = 0;
         Criatura criaturaMenorNivel = null;
 
