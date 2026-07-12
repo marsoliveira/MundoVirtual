@@ -14,7 +14,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     public void treinar() {
-        if (this.sePodeTreinar()) {
+        if (this.podeTreinar()) {
             this.ganharExperiencia(25);
             this.consumirEnergia(15);
             this.consumirSaciedade(10);
@@ -24,7 +24,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     public void explorar() {
-        if (this.sePodeExplorar()) {
+        if (this.podeExplorar()) {
             this.ganharExperiencia(15);
             this.consumirEnergia(10);
             this.consumirSaciedade(10);
@@ -35,7 +35,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     public void brincar() {
-        if (this.sePodeBrincar()) {
+        if (this.podeBrincar()) {
             this.ganharFelicidade(20);
             this.consumirEnergia(10);
             this.consumirSaciedade(5);
@@ -50,7 +50,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     public void descansar() {
-        if (this.sePodeDescansar()) {
+        if (this.podeDescansar()) {
             this.ganharEnergia(25);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
@@ -58,7 +58,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     public void participarDesafio() {
-        if (this.sePodeParticiparDesafio()) {
+        if (this.podeParticiparDesafio()) {
             this.ganharExperiencia(45);
             this.consumirEnergia(20);
             this.consumirSaciedade(20);

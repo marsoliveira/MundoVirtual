@@ -14,7 +14,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     public void treinar() {
-        if (this.sePodeTreinar()) {
+        if (this.podeTreinar()) {
             this.ganharExperiencia(40);
             this.consumirEnergia(15);
             this.consumirSaciedade(20);
@@ -24,7 +24,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     public void explorar() {
-        if (this.sePodeExplorar()) {
+        if (this.podeExplorar()) {
             this.ganharExperiencia(25);
             this.consumirEnergia(10);
             this.consumirSaciedade(15);
@@ -35,7 +35,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     public void brincar() {
-        if (this.sePodeBrincar()) {
+        if (this.podeBrincar()) {
             this.ganharFelicidade(10);
             this.consumirEnergia(5);
             this.consumirSaciedade(10);
@@ -50,7 +50,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     public void descansar() {
-        if (this.sePodeDescansar()) {
+        if (this.podeDescansar()) {
             this.ganharEnergia(15);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
@@ -58,7 +58,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     public void participarDesafio() {
-        if (this.sePodeParticiparDesafio()) {
+        if (this.podeParticiparDesafio()) {
             this.ganharExperiencia(50);
             this.consumirEnergia(20);
             this.consumirSaciedade(25);

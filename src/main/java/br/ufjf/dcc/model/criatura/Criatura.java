@@ -34,38 +34,34 @@ public abstract class Criatura {
     private static final int ESTADO_SACIEDADE_FAMINTA = 50;
     private static final int ESTADO_FELICIDADE_TRISTE = 50;
 
-    private static final int SAUDE_TREINAR = 40;
-    private static final int ENERGIA_TREINAR = 20;
-    private static final int SACIEDADE_TREINAR = 20;
+    private static final int SAUDE_MIN_TREINAR = 40;
+    private static final int ENERGIA_MIN_TREINAR = 20;
+    private static final int SACIEDADE_MIN_TREINAR = 20;
 
-    private static final int SAUDE_EXPLORAR = 20;
-    private static final int ENERGIA_EXPLORAR = 15;
-    private static final int SACIEDADE_EXPLORAR = 15;
+    private static final int SAUDE_MIN_EXPLORAR = 20;
+    private static final int ENERGIA_MIN_EXPLORAR = 15;
+    private static final int SACIEDADE_MIN_EXPLORAR = 15;
 
-    private static final int SAUDE_BRINCAR = 20;
-    private static final int ENERGIA_BRINCAR = 50;
-    private static final int SACIEDADE_BRINCAR = 50;
+    private static final int SAUDE_MIN_BRINCAR = 20;
+    private static final int ENERGIA_MIN_BRINCAR = 50;
+    private static final int SACIEDADE_MIN_BRINCAR = 50;
 
-    private static final int SAUDE_DESCANSAR = 0;
-    private static final int ENERGIA_DESCANSAR = 90;
+    private static final int SAUDE_MIN_DESCANSAR = 0;
+    private static final int ENERGIA_MAX_DESCANSAR = 90;
 
-    private static final int SAUDE_DESAFIAR = 40;
-    private static final int ENERGIA_DESAFIAR = 50;
-    private static final int SACIEDADE_DESAFIAR = 50;
+    private static final int SAUDE_MIN_DESAFIAR = 40;
+    private static final int ENERGIA_MIN_DESAFIAR = 50;
+    private static final int SACIEDADE_MIN_DESAFIAR = 50;
     private static final int NIVEL_MIN_DESAFIAR = 5;
     private static final int NIVEL_DESAFIAR = 15;
 
-    private static final int SAUDE_ALIMENTAR = 0;
-    private static final int SACIEDADE_ALIMENTAR = 90;
+    private static final int SAUDE_MIN_ALIMENTAR = 0;
+    private static final int SACIEDADE_MAX_ALIMENTAR = 90;
 
     private static final int MODIFICADOR = 10;
     private static final int LIM_MODIFICADOR = 9;
 
-    private static final int MAX_EXPERIENCIA = 9;
-
-    private static final int ENERGIA_MORTA = 0;
-    private static final int SACIEDADE_MORTA = 0;
-    private static final int FELICIDADE_MORTA = 0;
+    private static final int MAX_EXPERIENCIA = 100;
 
     public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         this.nome = nome;
@@ -200,7 +196,7 @@ public abstract class Criatura {
 
     private void atualizarSaude() {
 
-        if (this.energia <= ENERGIA_MORTA || this.saciedade <= SACIEDADE_MORTA || this.felicidade <= FELICIDADE_MORTA) {
+        if (this.energia <= 0 || this.saciedade <= 0 || this.felicidade <= 0) {
             this.saude = ESTADO_SAUDE_MORTA;
             this.vivo = false;
 
@@ -210,37 +206,37 @@ public abstract class Criatura {
         this.saude = (this.energia + this.saciedade + this.felicidade) / 3;
     }
 
-    protected boolean sePodeTreinar() {
-        return this.estaViva() && this.saude > SAUDE_TREINAR && this.energia >= ENERGIA_TREINAR && this.saciedade >= SACIEDADE_TREINAR;
+    protected boolean podeTreinar() {
+        return this.estaViva() && this.saude > SAUDE_MIN_TREINAR && this.energia >= ENERGIA_MIN_TREINAR && this.saciedade >= SACIEDADE_MIN_TREINAR;
     }
 
-    protected boolean sePodeExplorar() {
-        return this.estaViva() && this.saude > SAUDE_EXPLORAR && this.energia >= ENERGIA_EXPLORAR && this.saciedade >= SACIEDADE_EXPLORAR;
+    protected boolean podeExplorar() {
+        return this.estaViva() && this.saude > SAUDE_MIN_EXPLORAR && this.energia >= ENERGIA_MIN_EXPLORAR && this.saciedade >= SACIEDADE_MIN_EXPLORAR;
     }
 
-    protected boolean sePodeBrincar() {
-        return this.estaViva() && this.saude > SAUDE_BRINCAR && this.energia >= ENERGIA_BRINCAR && this.saciedade >= SACIEDADE_BRINCAR;
+    protected boolean podeBrincar() {
+        return this.estaViva() && this.saude > SAUDE_MIN_BRINCAR && this.energia >= ENERGIA_MIN_BRINCAR && this.saciedade >= SACIEDADE_MIN_BRINCAR;
     }
 
-    protected boolean sePodeDescansar() {
-        return this.estaViva() && this.saude > SAUDE_DESCANSAR && this.energia < ENERGIA_DESCANSAR && this.ultimaAtividade != Atividade.DESCANSAR;
+    protected boolean podeDescansar() {
+        return this.estaViva() && this.saude > SAUDE_MIN_DESCANSAR && this.energia < ENERGIA_MAX_DESCANSAR && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
-    protected boolean sePodeParticiparDesafio() {
-        return this.estaViva() && this.saude > SAUDE_DESAFIAR && this.nivel >= NIVEL_MIN_DESAFIAR && this.nivel % NIVEL_DESAFIAR == 0 && this.energia >= ENERGIA_DESAFIAR && this.saciedade >= SACIEDADE_DESAFIAR && !this.desafiosParticipados.contains(nivel);
+    protected boolean podeParticiparDesafio() {
+        return this.estaViva() && this.saude > SAUDE_MIN_DESAFIAR && this.nivel >= NIVEL_MIN_DESAFIAR && this.nivel % NIVEL_DESAFIAR == 0 && this.energia >= ENERGIA_MIN_DESAFIAR && this.saciedade >= SACIEDADE_MIN_DESAFIAR && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean aceitaAlimento(TipoAlimento tipoAlimento) {
         return this.getAlimentosCompativeis().contains(tipoAlimento);
     }
 
-    protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.estaViva() && this.saude > SAUDE_ALIMENTAR && this.saciedade < SACIEDADE_ALIMENTAR && aceitaAlimento(tipoAlimento);
+    protected boolean podeAlimentar(TipoAlimento tipoAlimento) {
+        return this.estaViva() && this.saude > SAUDE_MIN_ALIMENTAR && this.saciedade < SACIEDADE_MAX_ALIMENTAR && aceitaAlimento(tipoAlimento);
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
 
-        if (!sePodeAlimentar(tipoAlimento)) {
+        if (!podeAlimentar(tipoAlimento)) {
             System.out.println("A criatura não pode comer esse alimento.");
             return;
         }

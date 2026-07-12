@@ -14,7 +14,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     public void treinar() {
-        if (this.sePodeTreinar()) {
+        if (this.podeTreinar()) {
             this.ganharExperiencia(35);
             this.consumirEnergia(25);
             this.consumirSaciedade(15);
@@ -24,7 +24,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     public void explorar() {
-        if (this.sePodeExplorar()) {
+        if (this.podeExplorar()) {
             this.ganharExperiencia(20);
             this.consumirEnergia(15);
             this.consumirSaciedade(10);
@@ -35,7 +35,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     public void brincar() {
-        if (this.sePodeBrincar()) {
+        if (this.podeBrincar()) {
             this.ganharFelicidade(20);
             this.consumirEnergia(10);
             this.consumirSaciedade(5);
@@ -50,7 +50,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     public void descansar() {
-        if (this.sePodeDescansar()) {
+        if (this.podeDescansar()) {
             this.ganharEnergia(30);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
@@ -58,7 +58,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     public void participarDesafio() {
-        if (this.sePodeParticiparDesafio()) {
+        if (this.podeParticiparDesafio()) {
             this.ganharExperiencia(60);
             this.consumirEnergia(30);
             this.consumirSaciedade(20);
