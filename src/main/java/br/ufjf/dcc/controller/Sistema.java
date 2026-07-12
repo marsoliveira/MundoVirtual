@@ -131,7 +131,82 @@ public class Sistema {
 
     private void criarCriatura() {
 
-        System.out.println("Implementar criação do pet.");
+        leitor.nextLine();
+
+        System.out.println("Nome: ");
+        String nome = leitor.nextLine();
+
+        System.out.println("Escolha a espécie: ");
+		System.out.println("1 - Aquari");
+		System.out.println("2 - Draconis");
+		System.out.println("3 - Draconis Celestial");
+		System.out.println("4 - Fungari");
+		System.out.println("5 - Lumini");
+		System.out.println("6 - Mecanis");
+
+        int opcao = leitor.nextInt();
+
+        String especie;
+
+        switch (opcao) {
+
+            case 1 -> especie = "Aquari";
+
+            case 2 -> especie = "Draconis";
+
+            case 3 -> especie = "DraconisCelestial";
+
+			case 4 -> especie = "Fungari";
+
+			case 5 -> especie = "Lumini";
+
+			case 6 -> especie = "Mecanis";
+
+            default -> {
+                System.out.println("Espécie inválida.");
+                return;
+            }
+        }
+
+        System.out.println("Idade: ");
+        int idade = leitor.nextInt();
+
+        System.out.println("Nível: ");
+        int nivel = leitor.nextInt();
+
+        System.out.println("Experiência: ");
+        int experiencia = leitor.nextInt();
+
+        System.out.println("Energia: ");
+        int energia = leitor.nextInt();
+
+        System.out.println("Saciedade: ");
+        int saciedade = leitor.nextInt();
+
+        System.out.println("Felicidade: ");
+        int felicidade = leitor.nextInt();
+
+        try {
+
+            Criatura criatura = InsereCriaturas.criar(
+                    especie,
+                    nome,
+                    idade,
+                    nivel,
+                    experiencia,
+                    energia,
+                    saciedade,
+                    felicidade
+            );
+
+            listaCriaturas.criarCriatura(criatura);
+
+            System.out.println("Criatura criada com sucesso.");
+
+        } catch (IllegalArgumentException e) {
+
+            System.out.println(e.getMessage());
+        }
     }
 
     private void exibirCriaturas() {
