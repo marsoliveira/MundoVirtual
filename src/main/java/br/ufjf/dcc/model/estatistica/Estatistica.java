@@ -7,15 +7,15 @@ import br.ufjf.dcc.model.alimento.Estoque;
 import br.ufjf.dcc.model.criatura.Criatura;
 import br.ufjf.dcc.model.criatura.ListaCriaturas;
 import br.ufjf.dcc.model.enums.TipoAlimento;
-import br.ufjf.dcc.model.mundo.MundoVirtual;
+import br.ufjf.dcc.model.tempo.PassagemTempo;
 
 public class Estatistica {
 
     private ListaCriaturas listaCriaturas;
-    private MundoVirtual mundoVirtual;
+    private PassagemTempo mundoVirtual;
     private Estoque estoque;
 
-    public Estatistica(ListaCriaturas listaCriaturas, MundoVirtual mundoVirtual, Estoque estoque) {
+    public Estatistica(ListaCriaturas listaCriaturas, PassagemTempo mundoVirtual, Estoque estoque) {
         this.listaCriaturas = listaCriaturas;
         this.mundoVirtual = mundoVirtual;
         this.estoque = estoque;

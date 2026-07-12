@@ -1,15 +1,15 @@
-package br.ufjf.dcc.model.mundo;
+package br.ufjf.dcc.model.tempo;
 
 import java.util.List;
 
 import br.ufjf.dcc.model.criatura.Criatura;
 
-public class MundoVirtual {
+public class PassagemTempo {
 
     private int turno;
     private int unidadesTempo;
 
-    public MundoVirtual() {
+    public PassagemTempo() {
         this.turno = 0;
         this.unidadesTempo = 0;
     }
