@@ -73,11 +73,18 @@ public class ListaCriaturas {
     }
 
     public Criatura getCriaturaMaiorNivel() {
-        int maiorNivel = 0;
-        Criatura criaturaMaiorNivel = null;
+
+        if (criaturas.isEmpty()) {
+            return null;
+        }
+
+        Criatura criaturaMaiorNivel = criaturas.get(0);
+        int maiorNivel = criaturaMaiorNivel.getNivel();
 
         for (Criatura criatura : criaturas) {
+
             if (criatura.getNivel() > maiorNivel) {
+
                 maiorNivel = criatura.getNivel();
                 criaturaMaiorNivel = criatura;
             }
@@ -87,11 +94,18 @@ public class ListaCriaturas {
     }
 
     public Criatura getCriaturaMenorNivel() {
-        int menorNivel = 0;
-        Criatura criaturaMenorNivel = null;
+
+        if (criaturas.isEmpty()) {
+            return null;
+        }
+
+        Criatura criaturaMenorNivel = criaturas.get(0);
+        int menorNivel = criaturaMenorNivel.getNivel();
 
         for (Criatura criatura : criaturas) {
+
             if (criatura.getNivel() < menorNivel) {
+
                 menorNivel = criatura.getNivel();
                 criaturaMenorNivel = criatura;
             }

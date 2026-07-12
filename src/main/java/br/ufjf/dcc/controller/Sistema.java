@@ -350,8 +350,8 @@ public class Sistema {
     }
 
     private void imprimirEstatisticas() {
-
-        System.out.println("Implementar estatísticas.");
+        Estatistica estatisticas = new Estatistica(listaCriaturas, tempo, estoque);
+        estatisticas.imprimirEstatisticas();
     }
 
     private void exportarEstatisticas() {
