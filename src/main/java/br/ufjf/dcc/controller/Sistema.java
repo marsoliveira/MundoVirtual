@@ -279,6 +279,8 @@ public class Sistema {
 
         criatura.alimentar(alimentoEscolhido, estoque);
 
+		reposicao.executar();
+
         avancarTempo();
     }
 
