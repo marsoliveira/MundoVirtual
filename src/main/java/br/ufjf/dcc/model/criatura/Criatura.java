@@ -157,7 +157,7 @@ public abstract class Criatura {
         System.out.println("Felicidade: " + getEstadoFelicidade().getDescricao());
     }
 
-    protected void atualizarSaude() {
+    private void atualizarSaude() {
 
         if (this.energia <= 0 || this.saciedade <= 0 || this.felicidade <= 0) {
             this.saude = 0;
@@ -281,15 +281,15 @@ public abstract class Criatura {
 
     public abstract Set<TipoAlimento> getAlimentosCompativeis();
 
-    protected abstract void treinar();
+    public abstract void treinar();
 
-    protected abstract void explorar();
+    public abstract void explorar();
 
-    protected abstract void brincar();
+    public abstract void brincar();
 
-    protected abstract void descansar();
+    public abstract void descansar();
 
-    protected abstract void participarDesafio();
+    public abstract void participarDesafio();
 
     protected abstract void evoluir();
 
