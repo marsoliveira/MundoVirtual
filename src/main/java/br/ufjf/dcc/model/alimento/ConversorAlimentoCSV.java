@@ -19,6 +19,6 @@ public class ConversorAlimentoCSV implements ConversorCSV<Alimento> {
 
     @Override
     public String serializar(Alimento alimento) {
-        return alimento.getTipo().getDescricao() + "\t" + alimento.getQuantidade();
+        return alimento.getTipo().getDescricao() + "," + alimento.getQuantidade();
     }
 }
