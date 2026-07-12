@@ -254,7 +254,30 @@ public class Sistema {
             return;
         }
 
-        System.out.println("Implementar alimentação.");
+        List<TipoAlimento> alimentos = new ArrayList<>(criatura.getAlimentosCompativeis());
+
+        System.out.println("Alimentos disponíveis:");
+
+        for (int i = 0; i < alimentos.size(); i++) {
+
+            TipoAlimento alimento = alimentos.get(i);
+
+            System.out.println((i + 1) + " - " + alimento.getDescricao() + " (" + estoque.getQteDisponivelAlimento(alimento) + " unidades)");
+        }
+
+        System.out.print("Escolha um alimento: ");
+
+        int opcao = leitor.nextInt();
+
+        if (opcao < 1 || opcao > alimentos.size()) {
+
+            System.out.println("Alimento inválido.");
+            return;
+        }
+
+        TipoAlimento alimentoEscolhido = alimentos.get(opcao - 1);
+
+        criatura.alimentar(alimentoEscolhido, estoque);
 
         avancarTempo();
     }
