@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import br.ufjf.dcc.model.enums.TipoAlimento;
-import br.ufjf.dcc.util.LeitorCSV;
+import br.ufjf.dcc.util.csv.LeitorCSV;
 
 public class Estoque {
 
