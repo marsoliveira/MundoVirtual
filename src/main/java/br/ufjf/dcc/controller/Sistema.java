@@ -16,6 +16,7 @@ import br.ufjf.dcc.model.estatistica.ConversorEstatisticaCSV;
 import br.ufjf.dcc.model.estatistica.Estatistica;
 import br.ufjf.dcc.model.tempo.PassagemTempo;
 import br.ufjf.dcc.util.csv.EscritorCSV;
+import br.ufjf.dcc.util.json.EscritorJSON;
 import br.ufjf.dcc.util.json.LeitorJSON;
 
 public class Sistema {
@@ -438,8 +439,22 @@ public class Sistema {
     }
 
     private void exportarCriaturas() {
+        System.out.print("Digite o caminho do arquivo JSON: ");
 
-        System.out.println("Implementar exportação JSON.");
+        leitor.nextLine();
+
+        String caminho = leitor.nextLine();
+
+        try {
+
+            EscritorJSON.salvar(caminho, listaCriaturas.getCriaturas(), new ConversorCriaturaJSON());
+
+            System.out.println("Criaturas exportadas com sucesso.");
+
+        } catch (IOException e) {
+
+            System.out.println("Erro ao exportar criaturas.");
+        }
     }
 
     private void encerrarSistema() {
