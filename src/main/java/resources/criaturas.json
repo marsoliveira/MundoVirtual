@@ -1,28 +1,212 @@
 [
-  { "nome":"Ignis","especie":"Draconis","idade":5,"nivel":4,"experiencia":80,"energia":90,"saciedade":85,"felicidade":75 },
-  { "nome":"Pyra","especie":"Draconis","idade":8,"nivel":18,"experiencia":35,"energia":72,"saciedade":61,"felicidade":82 },
-  { "nome":"Brasa","especie":"Draconis","idade":12,"nivel":42,"experiencia":10,"energia":68,"saciedade":77,"felicidade":58 },
-
-  { "nome":"Lux","especie":"Lumini","idade":2,"nivel":6,"experiencia":45,"energia":82,"saciedade":60,"felicidade":96 },
-  { "nome":"Aurora","especie":"Lumini","idade":7,"nivel":24,"experiencia":18,"energia":76,"saciedade":70,"felicidade":88 },
-  { "nome":"Halo","especie":"Lumini","idade":10,"nivel":61,"experiencia":55,"energia":71,"saciedade":65,"felicidade":92 },
-  { "nome":"Halo","especie":"Lumini","idade":10,"nivel":61,"experiencia":55,"energia":71,"saciedade":65,"felicidade":92 },
-
-  { "nome":"Shiit","especie":"Fungari","idade":3,"nivel":5,"experiencia":92,"energia":88,"saciedade":95,"felicidade":63 },
-  { "nome":"Musgo","especie":"Fungari","idade":11,"nivel":27,"experiencia":30,"energia":74,"saciedade":83,"felicidade":69 },
-  { "nome":"Trufa","especie":"Fungari","idade":18,"nivel":55,"experiencia":40,"energia":79,"saciedade":81,"felicidade":60 },
-
-  { "nome":"Maris","especie":"Aquari","idade":4,"nivel":9,"experiencia":22,"energia":86,"saciedade":71,"felicidade":76 },
-  { "nome":"Coral","especie":"Aquari","idade":9,"nivel":31,"experiencia":74,"energia":77,"saciedade":64,"felicidade":81 },
-  { "nome":"Nereu","especie":"Aquari","idade":14,"nivel":70,"experiencia":15,"energia":69,"saciedade":68,"felicidade":90 },
-
-  { "nome":"Titan","especie":"Mecanis","idade":6,"nivel":8,"experiencia":60,"energia":93,"saciedade":70,"felicidade":55 },
-  { "nome":"Atlas","especie":"Mecanis","idade":13,"nivel":36,"experiencia":28,"energia":85,"saciedade":63,"felicidade":61 },
-  { "nome":"Forge","especie":"Mecanis","idade":20,"nivel":82,"experiencia":90,"energia":95,"saciedade":75,"felicidade":58 },
-  { "nome":"Forge","especie":"Mecanis","idade":20,"nivel":82,"experiencia":90,"energia":95,"saciedade":75,"felicidade":58 },
-
-  { "nome":"Solaris","especie":"DraconisCelestial","idade":15,"nivel":25,"experiencia":81,"energia":84,"saciedade":80,"felicidade":95 },
-  { "nome":"Aster","especie":"DraconisCelestial","idade":18,"nivel":49,"experiencia":17,"energia":90,"saciedade":77,"felicidade":91 },
-  { "nome":"Orion","especie":"DraconisCelestial","idade":25,"nivel":90,"experiencia":44,"energia":92,"saciedade":82,"felicidade":99 },
-  { "nome":"Solaris","especie":"DraconisCelestial","idade":15,"nivel":25,"experiencia":81,"energia":84,"saciedade":80,"felicidade":95 }
+	{
+		"nome": "Ignis",
+		"especie": "Draconis",
+		"idade": 5,
+		"nivel": 4,
+		"experiencia": 80,
+		"energia": 90,
+		"saciedade": 85,
+		"felicidade": 75
+	},
+	{
+		"nome": "Pyra",
+		"especie": "Draconis",
+		"idade": 8,
+		"nivel": 18,
+		"experiencia": 35,
+		"energia": 72,
+		"saciedade": 61,
+		"felicidade": 82
+	},
+	{
+		"nome": "Brasa",
+		"especie": "Draconis",
+		"idade": 12,
+		"nivel": 42,
+		"experiencia": 10,
+		"energia": 68,
+		"saciedade": 77,
+		"felicidade": 58
+	},
+	{
+		"nome": "Lux",
+		"especie": "Lumini",
+		"idade": 2,
+		"nivel": 6,
+		"experiencia": 45,
+		"energia": 82,
+		"saciedade": 60,
+		"felicidade": 96
+	},
+	{
+		"nome": "Aurora",
+		"especie": "Lumini",
+		"idade": 7,
+		"nivel": 24,
+		"experiencia": 18,
+		"energia": 76,
+		"saciedade": 70,
+		"felicidade": 88
+	},
+	{
+		"nome": "Halo",
+		"especie": "Lumini",
+		"idade": 10,
+		"nivel": 61,
+		"experiencia": 55,
+		"energia": 71,
+		"saciedade": 65,
+		"felicidade": 92
+	},
+	{
+		"nome": "Halo",
+		"especie": "Lumini",
+		"idade": 10,
+		"nivel": 61,
+		"experiencia": 55,
+		"energia": 71,
+		"saciedade": 65,
+		"felicidade": 92
+	},
+	{
+		"nome": "Shiit",
+		"especie": "Fungari",
+		"idade": 3,
+		"nivel": 5,
+		"experiencia": 92,
+		"energia": 88,
+		"saciedade": 95,
+		"felicidade": 63
+	},
+	{
+		"nome": "Musgo",
+		"especie": "Fungari",
+		"idade": 11,
+		"nivel": 27,
+		"experiencia": 30,
+		"energia": 74,
+		"saciedade": 83,
+		"felicidade": 69
+	},
+	{
+		"nome": "Trufa",
+		"especie": "Fungari",
+		"idade": 18,
+		"nivel": 55,
+		"experiencia": 40,
+		"energia": 79,
+		"saciedade": 81,
+		"felicidade": 60
+	},
+	{
+		"nome": "Maris",
+		"especie": "Aquari",
+		"idade": 4,
+		"nivel": 9,
+		"experiencia": 22,
+		"energia": 86,
+		"saciedade": 71,
+		"felicidade": 76
+	},
+	{
+		"nome": "Coral",
+		"especie": "Aquari",
+		"idade": 9,
+		"nivel": 31,
+		"experiencia": 74,
+		"energia": 77,
+		"saciedade": 64,
+		"felicidade": 81
+	},
+	{
+		"nome": "Nereu",
+		"especie": "Aquari",
+		"idade": 14,
+		"nivel": 70,
+		"experiencia": 15,
+		"energia": 69,
+		"saciedade": 68,
+		"felicidade": 90
+	},
+	{
+		"nome": "Titan",
+		"especie": "Mecanis",
+		"idade": 6,
+		"nivel": 8,
+		"experiencia": 60,
+		"energia": 93,
+		"saciedade": 70,
+		"felicidade": 55
+	},
+	{
+		"nome": "Atlas",
+		"especie": "Mecanis",
+		"idade": 13,
+		"nivel": 36,
+		"experiencia": 28,
+		"energia": 85,
+		"saciedade": 63,
+		"felicidade": 61
+	},
+	{
+		"nome": "Forge",
+		"especie": "Mecanis",
+		"idade": 20,
+		"nivel": 82,
+		"experiencia": 90,
+		"energia": 95,
+		"saciedade": 75,
+		"felicidade": 58
+	},
+	{
+		"nome": "Forge",
+		"especie": "Mecanis",
+		"idade": 20,
+		"nivel": 82,
+		"experiencia": 90,
+		"energia": 95,
+		"saciedade": 75,
+		"felicidade": 58
+	},
+	{
+		"nome": "Solaris",
+		"especie": "DraconisCelestial",
+		"idade": 15,
+		"nivel": 25,
+		"experiencia": 81,
+		"energia": 84,
+		"saciedade": 80,
+		"felicidade": 95
+	},
+	{
+		"nome": "Aster",
+		"especie": "DraconisCelestial",
+		"idade": 18,
+		"nivel": 49,
+		"experiencia": 17,
+		"energia": 90,
+		"saciedade": 77,
+		"felicidade": 91
+	},
+	{
+		"nome": "Orion",
+		"especie": "DraconisCelestial",
+		"idade": 25,
+		"nivel": 90,
+		"experiencia": 44,
+		"energia": 92,
+		"saciedade": 82,
+		"felicidade": 99
+	},
+	{
+		"nome": "Solaris",
+		"especie": "DraconisCelestial",
+		"idade": 15,
+		"nivel": 25,
+		"experiencia": 81,
+		"energia": 84,
+		"saciedade": 80,
+		"felicidade": 95
+	}
 ]
