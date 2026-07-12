@@ -70,8 +70,7 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     protected void evoluir() {
-        this.ganharEnergia(1);
-        //this.ganharFelicidade(1);
+        this.energia += 1;
         this.felicidade += 1;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }

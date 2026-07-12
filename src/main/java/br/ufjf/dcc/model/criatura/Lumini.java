@@ -70,7 +70,6 @@ public class Lumini extends Criatura implements Luminescente {
 
     @Override
     protected void evoluir() {
-        //this.ganharFelicidade(2);
         this.felicidade += 2;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }

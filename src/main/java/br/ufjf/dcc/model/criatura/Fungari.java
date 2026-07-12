@@ -69,7 +69,7 @@ public class Fungari extends Criatura {
 
     @Override
     protected void evoluir() {
-        this.ganharSaciedade(2);
+        this.saciedade += 2;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 

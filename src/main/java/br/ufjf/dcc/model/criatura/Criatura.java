@@ -276,8 +276,8 @@ public abstract class Criatura {
         this.atualizarSaude();
     }
 
-    protected void ganharEnergia(int quantidade) {
-        this.energia = limitarAtributo(this.energia + quantidade);
+    protected void ganharEnergia(int valorBase) {
+        this.energia = limitarAtributo(this.energia + calcularGanhoAtributo(valorBase));
         this.atualizarSaude();
     }
 
@@ -286,13 +286,13 @@ public abstract class Criatura {
         this.atualizarSaude();
     }
 
-    protected void ganharSaciedade(int quantidade) {
-        this.saciedade = limitarAtributo(this.saciedade + quantidade);
+    protected void ganharSaciedade(int valorBase) {
+        this.saciedade = limitarAtributo(this.saciedade + calcularGanhoAtributo(valorBase));
         this.atualizarSaude();
     }
 
-    protected void consumirFelicidade(int quantidade) {
-        this.felicidade = limitarAtributo(this.felicidade - quantidade);
+    protected void consumirFelicidade(int valorBase) {
+        this.felicidade = limitarAtributo(this.felicidade - calcularConsumoAtributo(valorBase));
         this.atualizarSaude();
     }
 

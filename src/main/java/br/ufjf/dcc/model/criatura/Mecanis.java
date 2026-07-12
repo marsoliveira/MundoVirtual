@@ -70,7 +70,7 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     protected void evoluir() {
-        this.ganharEnergia(3);
+        this.energia += 3;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 

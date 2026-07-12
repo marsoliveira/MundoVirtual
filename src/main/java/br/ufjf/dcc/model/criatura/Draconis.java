@@ -70,7 +70,7 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     protected void evoluir() {
-        this.ganharEnergia(2);
+        this.energia += 2;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
