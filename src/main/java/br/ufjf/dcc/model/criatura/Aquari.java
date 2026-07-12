@@ -70,7 +70,7 @@ public class Aquari extends Criatura implements Aquatico {
     protected void evoluir() {
         this.ganharEnergia(1);
         //this.ganharFelicidade(1);
-		this.felicidade += 1;
+        this.felicidade += 1;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
@@ -78,6 +78,21 @@ public class Aquari extends Criatura implements Aquatico {
     public void mergulhar() {
         this.felicidade += 10;
         System.out.println(this.nome + " mergulhou e sua felicidade agora é " + this.felicidade);
+    }
+
+    @Override
+    protected int desgasteEnergia() {
+        return 4;
+    }
+
+    @Override
+    protected int desgasteSaciedade() {
+        return 3;
+    }
+
+    @Override
+    protected int desgasteFelicidade() {
+        return 2;
     }
 
 }

@@ -79,4 +79,19 @@ public class Lumini extends Criatura implements Luminescente {
         System.out.println(this.nome + " emitiu luz e sua felicidade agora é " + this.felicidade);
     }
 
+    @Override
+    protected int desgasteEnergia() {
+        return 8;
+    }
+
+    @Override
+    protected int desgasteSaciedade() {
+        return 2;
+    }
+
+    @Override
+    protected int desgasteFelicidade() {
+        return 3;
+    }
+
 }

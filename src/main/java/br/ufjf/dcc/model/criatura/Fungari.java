@@ -71,4 +71,19 @@ public class Fungari extends Criatura {
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
+	@Override
+    protected int desgasteEnergia() {
+        return 3;
+    }
+
+    @Override
+    protected int desgasteSaciedade() {
+        return 2;
+    }
+
+    @Override
+    protected int desgasteFelicidade() {
+        return 2;
+    }
+
 }

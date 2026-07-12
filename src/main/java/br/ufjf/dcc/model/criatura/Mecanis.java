@@ -78,4 +78,19 @@ public class Mecanis extends Criatura implements Mecanico {
         System.out.println(this.nome + " realizou manutenção e sua saúde agora é " + this.saude);
     }
 
+    @Override
+    protected int desgasteEnergia() {
+        return 2;
+    }
+
+    @Override
+    protected int desgasteSaciedade() {
+        return 5;
+    }
+
+    @Override
+    protected int desgasteFelicidade() {
+        return 1;
+    }
+
 }

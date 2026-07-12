@@ -36,7 +36,7 @@ public abstract class Criatura {
         this.saciedade = saciedade;
         this.felicidade = felicidade;
         this.vivo = true;
-		this.atualizarSaude();
+        this.atualizarSaude();
         this.desafiosParticipados = new HashSet<>();
     }
 
@@ -248,32 +248,32 @@ public abstract class Criatura {
 
     protected void consumirEnergia(int valorBase) {
         this.energia -= calcularConsumoAtributo(valorBase);
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void ganharEnergia(int quantidade) {
         this.energia += quantidade;
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void consumirSaciedade(int valorBase) {
         this.saciedade -= calcularConsumoAtributo(valorBase);
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void ganharSaciedade(int quantidade) {
         this.saciedade += quantidade;
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void ganharFelicidade(int valorBase) {
         this.felicidade += calcularGanhoAtributo(valorBase);
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void consumirFelicidade(int quantidade) {
         this.felicidade -= quantidade;
-		this.atualizarSaude();
+        this.atualizarSaude();
     }
 
     protected void ganharExperiencia(int valorBase) {
@@ -285,6 +285,14 @@ public abstract class Criatura {
 
             this.evoluir();
         }
+    }
+
+    public void aplicarDesgasteNatural() {
+        this.energia -= desgasteEnergia();
+        this.saciedade = desgasteSaciedade();
+        this.felicidade = desgasteFelicidade();
+
+        this.atualizarSaude();
     }
 
     protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
@@ -300,5 +308,11 @@ public abstract class Criatura {
     protected abstract void participarDesafio();
 
     protected abstract void evoluir();
+
+    protected abstract int desgasteEnergia();
+
+    protected abstract int desgasteSaciedade();
+
+    protected abstract int desgasteFelicidade();
 
 }
