@@ -1,7 +1,7 @@
 package br.ufjf.dcc.model.alimento;
 
 import br.ufjf.dcc.model.enums.TipoAlimento;
-import br.ufjf.dcc.util.ConversorCSV;
+import br.ufjf.dcc.util.csv.ConversorCSV;
 
 public class ConversorAlimentoCSV implements ConversorCSV<Alimento> {
 

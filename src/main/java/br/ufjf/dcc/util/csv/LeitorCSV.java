@@ -1,4 +1,4 @@
-package br.ufjf.dcc.util;
+package br.ufjf.dcc.util.csv;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
