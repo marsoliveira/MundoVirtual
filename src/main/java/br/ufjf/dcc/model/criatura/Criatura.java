@@ -189,6 +189,10 @@ public abstract class Criatura {
         return this.seViva() && this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
     }
 
+    protected boolean aceitaAlimento(TipoAlimento tipoAlimento) {
+        return this.getAlimentosCompativeis().contains(tipoAlimento);
+    }
+
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
         return this.seViva() && this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
     }
@@ -275,7 +279,7 @@ public abstract class Criatura {
         this.atualizarSaude();
     }
 
-    protected abstract boolean aceitaAlimento(TipoAlimento tipoAlimento);
+    public abstract Set<TipoAlimento> getAlimentosCompativeis();
 
     protected abstract void treinar();
 

@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.interfaces.Aquatico;
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -42,8 +44,8 @@ public class Aquari extends Criatura implements Aquatico {
     }
 
     @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.NECTAR_LUMINOSO, TipoAlimento.CRISTAIS_ENERGETICOS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

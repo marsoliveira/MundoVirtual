@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.interfaces.Autodidata;
 import br.ufjf.dcc.model.enums.TipoAlimento;
 
@@ -10,9 +12,9 @@ public class DraconisCelestial extends Draconis implements Autodidata {
         this.especie = "Draconis Celestial";
     }
 
-    @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.FOTONS || tipoAlimento == TipoAlimento.CARNE || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+	@Override
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.FOTONS, TipoAlimento.CARNE, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

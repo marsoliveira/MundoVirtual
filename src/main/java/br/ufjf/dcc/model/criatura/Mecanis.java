@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.interfaces.Mecanico;
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -41,9 +43,9 @@ public class Mecanis extends Criatura implements Mecanico {
         }
     }
 
-    @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.COGUMELOS || tipoAlimento == TipoAlimento.CRISTAIS_ENERGETICOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+	@Override
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.COGUMELOS, TipoAlimento.CRISTAIS_ENERGETICOS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

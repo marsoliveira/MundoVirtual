@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.interfaces.Luminescente;
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -41,9 +43,9 @@ public class Lumini extends Criatura implements Luminescente {
         }
     }
 
-    @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.NECTAR_LUMINOSO || tipoAlimento == TipoAlimento.FOTONS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+	@Override
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.NECTAR_LUMINOSO, TipoAlimento.FOTONS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

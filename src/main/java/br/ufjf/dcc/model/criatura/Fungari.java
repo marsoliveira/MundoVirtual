@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.TipoAlimento;
 
@@ -40,9 +42,9 @@ public class Fungari extends Criatura {
         }
     }
 
-    @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.FRUTA || tipoAlimento == TipoAlimento.COGUMELOS || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+	@Override
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.FRUTA, TipoAlimento.COGUMELOS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

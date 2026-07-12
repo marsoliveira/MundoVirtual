@@ -1,5 +1,7 @@
 package br.ufjf.dcc.model.criatura;
 
+import java.util.Set;
+
 import br.ufjf.dcc.interfaces.Voador;
 import br.ufjf.dcc.model.enums.Atividade;
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -41,9 +43,9 @@ public class Draconis extends Criatura implements Voador {
         }
     }
 
-    @Override
-    public boolean aceitaAlimento(TipoAlimento tipoAlimento) {
-        return tipoAlimento == TipoAlimento.FRUTA || tipoAlimento == TipoAlimento.CARNE || tipoAlimento == TipoAlimento.BANQUETE_REAL;
+	@Override
+    public Set<TipoAlimento> getAlimentosCompativeis() {
+        return Set.of(TipoAlimento.FRUTA, TipoAlimento.CARNE, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override
