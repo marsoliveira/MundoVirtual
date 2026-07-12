@@ -26,6 +26,47 @@ public abstract class Criatura {
     protected Atividade ultimaAtividade;
     protected Set<Integer> desafiosParticipados;
 
+    private static final int ESTADO_SAUDE_MORTA = 0;
+    private static final int ESTADO_SAUDE_DOENTE = 40;
+    private static final int ESTADO_SAUDE_ATENCAO = 70;
+
+    private static final int ESTADO_ENERGIA_CANSADA = 50;
+    private static final int ESTADO_SACIEDADE_FAMINTA = 50;
+    private static final int ESTADO_FELICIDADE_TRISTE = 50;
+
+    private static final int SAUDE_TREINAR = 40;
+    private static final int ENERGIA_TREINAR = 20;
+    private static final int SACIEDADE_TREINAR = 20;
+
+    private static final int SAUDE_EXPLORAR = 20;
+    private static final int ENERGIA_EXPLORAR = 15;
+    private static final int SACIEDADE_EXPLORAR = 15;
+
+    private static final int SAUDE_BRINCAR = 20;
+    private static final int ENERGIA_BRINCAR = 50;
+    private static final int SACIEDADE_BRINCAR = 50;
+
+    private static final int SAUDE_DESCANSAR = 0;
+    private static final int ENERGIA_DESCANSAR = 90;
+
+    private static final int SAUDE_DESAFIAR = 40;
+    private static final int ENERGIA_DESAFIAR = 50;
+    private static final int SACIEDADE_DESAFIAR = 50;
+    private static final int NIVEL_MIN_DESAFIAR = 5;
+    private static final int NIVEL_DESAFIAR = 15;
+
+    private static final int SAUDE_ALIMENTAR = 0;
+    private static final int SACIEDADE_ALIMENTAR = 90;
+
+    private static final int MODIFICADOR = 10;
+    private static final int LIM_MODIFICADOR = 9;
+
+    private static final int MAX_EXPERIENCIA = 9;
+
+    private static final int ENERGIA_MORTA = 0;
+    private static final int SACIEDADE_MORTA = 0;
+    private static final int FELICIDADE_MORTA = 0;
+
     public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         this.nome = nome;
         this.especie = especie;
@@ -107,15 +148,15 @@ public abstract class Criatura {
 
     public EstadoSaude getEstadoSaude() {
 
-        if (this.saude == 0) {
+        if (this.saude == ESTADO_SAUDE_MORTA) {
             return EstadoSaude.MORTA;
         }
 
-        if (this.saude < 40) {
+        if (this.saude < ESTADO_SAUDE_DOENTE) {
             return EstadoSaude.DOENTE;
         }
 
-        if ((this.saude >= 40) && (this.saude <= 70)) {
+        if ((this.saude >= ESTADO_SAUDE_DOENTE) && (this.saude <= ESTADO_SAUDE_ATENCAO)) {
             return EstadoSaude.ATENCAO;
         }
 
@@ -124,7 +165,7 @@ public abstract class Criatura {
 
     public EstadoEnergia getEstadoEnergia() {
 
-        if (this.energia < 50) {
+        if (this.energia < ESTADO_ENERGIA_CANSADA) {
             return EstadoEnergia.CANSADA;
         }
 
@@ -133,7 +174,7 @@ public abstract class Criatura {
 
     public EstadoSaciedade getEstadoSaciedade() {
 
-        if (this.saciedade < 50) {
+        if (this.saciedade < ESTADO_SACIEDADE_FAMINTA) {
             return EstadoSaciedade.FAMINTA;
         }
 
@@ -142,7 +183,7 @@ public abstract class Criatura {
 
     public EstadoFelicidade getEstadoFelicidade() {
 
-        if (this.felicidade < 50) {
+        if (this.felicidade < ESTADO_FELICIDADE_TRISTE) {
             return EstadoFelicidade.TRISTE;
         }
 
@@ -159,8 +200,8 @@ public abstract class Criatura {
 
     private void atualizarSaude() {
 
-        if (this.energia <= 0 || this.saciedade <= 0 || this.felicidade <= 0) {
-            this.saude = 0;
+        if (this.energia <= ENERGIA_MORTA || this.saciedade <= SACIEDADE_MORTA || this.felicidade <= FELICIDADE_MORTA) {
+            this.saude = ESTADO_SAUDE_MORTA;
             this.vivo = false;
 
             return;
@@ -170,23 +211,23 @@ public abstract class Criatura {
     }
 
     protected boolean sePodeTreinar() {
-        return this.seViva() && this.saude > 40 && this.energia >= 20 && this.saciedade >= 20;
+        return this.seViva() && this.saude > SAUDE_TREINAR && this.energia >= ENERGIA_TREINAR && this.saciedade >= SACIEDADE_TREINAR;
     }
 
     protected boolean sePodeExplorar() {
-        return this.seViva() && this.saude > 20 && this.energia >= 15 && this.saciedade >= 15;
+        return this.seViva() && this.saude > SAUDE_EXPLORAR && this.energia >= ENERGIA_EXPLORAR && this.saciedade >= SACIEDADE_EXPLORAR;
     }
 
     protected boolean sePodeBrincar() {
-        return this.seViva() && this.saude > 20 && this.energia >= 50 && this.saciedade >= 50;
+        return this.seViva() && this.saude > SAUDE_BRINCAR && this.energia >= ENERGIA_BRINCAR && this.saciedade >= SACIEDADE_BRINCAR;
     }
 
     protected boolean sePodeDescansar() {
-        return this.seViva() && this.saude > 0 && this.energia < 90 && this.ultimaAtividade != Atividade.DESCANSAR;
+        return this.seViva() && this.saude > SAUDE_DESCANSAR && this.energia < ENERGIA_DESCANSAR && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
     protected boolean sePodeParticiparDesafio() {
-        return this.seViva() && this.saude > 40 && this.nivel >= 5 && this.nivel % 15 == 0 && this.energia >= 50 && this.saciedade >= 50 && !this.desafiosParticipados.contains(nivel);
+        return this.seViva() && this.saude > SAUDE_DESAFIAR && this.nivel >= NIVEL_MIN_DESAFIAR && this.nivel % NIVEL_DESAFIAR == 0 && this.energia >= ENERGIA_DESAFIAR && this.saciedade >= SACIEDADE_DESAFIAR && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean aceitaAlimento(TipoAlimento tipoAlimento) {
@@ -194,7 +235,7 @@ public abstract class Criatura {
     }
 
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.seViva() && this.saude > 0 && this.saciedade < 90 && aceitaAlimento(tipoAlimento);
+        return this.seViva() && this.saude > SAUDE_ALIMENTAR && this.saciedade < SACIEDADE_ALIMENTAR && aceitaAlimento(tipoAlimento);
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
@@ -219,7 +260,7 @@ public abstract class Criatura {
     }
 
     protected int calcularModificadorNivel() {
-        return Math.min(this.nivel / 10, 9);
+        return Math.min(this.nivel / MODIFICADOR, LIM_MODIFICADOR);
     }
 
     protected int calcularConsumoAtributo(int valorBase) {
@@ -263,8 +304,8 @@ public abstract class Criatura {
     protected void ganharExperiencia(int valorBase) {
         this.experiencia += calcularGanhoAtributo(valorBase);
 
-        while (this.experiencia >= 100) {
-            this.experiencia -= 100;
+        while (this.experiencia >= MAX_EXPERIENCIA) {
+            this.experiencia -= MAX_EXPERIENCIA;
             this.nivel++;
 
             this.evoluir();
@@ -291,7 +332,7 @@ public abstract class Criatura {
 
     public abstract void participarDesafio();
 
-	public abstract void executarHabilidadeEspecial();
+    public abstract void executarHabilidadeEspecial();
 
     protected abstract void evoluir();
 
