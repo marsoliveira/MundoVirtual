@@ -35,11 +35,11 @@ public class ListaCriaturas {
         this.criaturas.remove(criatura);
     }
 
-    public int getTotalCriaturas() {
+    public int getQteTotalCriaturas() {
         return criaturas.size();
     }
 
-    public int getCriaturasPorEspecie(String especie) {
+    public int getQteCriaturasPorEspecie(String especie) {
         int qteCriaturasPorEspecie = 0;
 
         for (Criatura criatura : criaturas) {
@@ -49,6 +49,20 @@ public class ListaCriaturas {
         }
 
         return qteCriaturasPorEspecie;
+    }
+
+    public List<Criatura> getCriaturasPorEspecie(Class<? extends Criatura> especie) {
+
+        List<Criatura> criaturasPorEspecie = new ArrayList<>();
+
+        for (Criatura criatura : criaturas) {
+
+            if (especie.isInstance(criatura)) {
+                criaturasPorEspecie.add(criatura);
+            }
+        }
+
+        return criaturasPorEspecie;
     }
 
     public Criatura getCriaturaMaiorNivel() {
