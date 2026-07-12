@@ -14,12 +14,12 @@ import br.ufjf.dcc.model.tempo.PassagemTempo;
 public class Estatistica {
 
     private ListaCriaturas listaCriaturas;
-    private PassagemTempo mundoVirtual;
+    private PassagemTempo tempo;
     private Estoque estoque;
 
-    public Estatistica(ListaCriaturas listaCriaturas, PassagemTempo mundoVirtual, Estoque estoque) {
+    public Estatistica(ListaCriaturas listaCriaturas, PassagemTempo tempo, Estoque estoque) {
         this.listaCriaturas = listaCriaturas;
-        this.mundoVirtual = mundoVirtual;
+        this.tempo = tempo;
         this.estoque = estoque;
     }
 
@@ -44,7 +44,7 @@ public class Estatistica {
     }
 
     public int getTurnoAtual() {
-        return mundoVirtual.getTurno();
+        return tempo.getTurno();
     }
 
     public Map<String, Integer> getQtePorEspecie() {
