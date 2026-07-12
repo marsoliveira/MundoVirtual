@@ -12,32 +12,33 @@ public class Alimento {
         this.quantidade = quantidade;
     }
 
-	public void setTipo(TipoAlimento tipo) {
-		this.tipo = tipo;
-	}
+    public void setTipo(TipoAlimento tipo) {
+        this.tipo = tipo;
+    }
 
-	public TipoAlimento getTipo() {
+    public TipoAlimento getTipo() {
         return tipo;
     }
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public int getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
 
-	@Override
+    public void adicionar(int quantidade) {
+        this.quantidade += quantidade;
+    }
+
+    public void consumir(int quantidadeConsumida) {
+        if (quantidadeConsumida <= quantidade) {
+            quantidade -= quantidadeConsumida;
+        } else {
+            System.out.println("Quantidade insuficiente de " + tipo.getDescricao() + " no estoque.");
+        }
+    }
+
+    @Override
     public String toString() {
         return tipo.getDescricao() + " (" + quantidade + ")";
     }
 
-	public void consumir(int quantidadeConsumida) {
-		if (quantidadeConsumida <= quantidade) {
-			quantidade -= quantidadeConsumida;
-		} else {
-			System.out.println("Quantidade insuficiente de " + tipo.getDescricao() + " no estoque.");
-		}
-	}
 }

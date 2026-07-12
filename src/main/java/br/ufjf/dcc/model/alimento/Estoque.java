@@ -44,4 +44,24 @@ public class Estoque {
         alimento.consumir(1);
     }
 
+    public void adicionar(TipoAlimento tipo, int quantidade) {
+
+        Alimento alimento = buscarAlimento(tipo);
+
+        if (alimento != null) {
+            alimento.adicionar(quantidade);
+        }
+    }
+
+	public int getQteDisponivelAlimento(TipoAlimento tipo) {
+
+        Alimento alimento = buscarAlimento(tipo);
+
+        if (alimento == null) {
+            return 0;
+        }
+
+        return alimento.getQuantidade();
+    }
+
 }
