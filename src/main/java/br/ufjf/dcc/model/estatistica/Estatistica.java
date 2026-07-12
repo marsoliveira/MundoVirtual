@@ -1,6 +1,8 @@
 package br.ufjf.dcc.model.estatistica;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.ufjf.dcc.model.alimento.Estoque;
@@ -103,4 +105,32 @@ public class Estatistica {
             System.out.println(entrada.getKey().getDescricao() + ": " + entrada.getValue());
         }
     }
+
+    public List<DadoEstatistico> gerarLinhasCSV() {
+
+        List<DadoEstatistico> dados = new ArrayList<>();
+
+        dados.add(new DadoEstatistico("Turno atual", String.valueOf(getTurnoAtual())));
+
+        dados.add(new DadoEstatistico("Total de criaturas", String.valueOf(getQteTotalCriaturas())));
+
+        dados.add(new DadoEstatistico("Criaturas vivas", String.valueOf(getQteCriaturasVivas())));
+
+        dados.add(new DadoEstatistico("Criaturas mortas", String.valueOf(getQteCriaturasMortas())));
+
+		dados.add(new DadoEstatistico("Criatura com maior nível", getCriaturaMaiorNivel().getNome() + " (nível " + getCriaturaMaiorNivel().getNivel() + ")"));
+
+		dados.add(new DadoEstatistico("Criatura com menor nível", getCriaturaMenorNivel().getNome() + " (nível " + getCriaturaMenorNivel().getNivel() + ")"));
+
+		for (Map.Entry<String, Integer> entrada : getQtePorEspecie().entrySet()) {
+			dados.add(new DadoEstatistico("Quantidade de " + entrada.getKey(), String.valueOf(entrada.getValue())));
+		}
+
+		for (Map.Entry<TipoAlimento, Integer> entrada : getEstoqueAlimentos().entrySet()) {
+			dados.add(new DadoEstatistico("Estoque de " + entrada.getKey().getDescricao(), String.valueOf(entrada.getValue())));
+		}
+
+        return dados;
+    }
+
 }

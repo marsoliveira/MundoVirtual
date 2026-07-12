@@ -1,11 +1,22 @@
 package br.ufjf.dcc.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.ufjf.dcc.model.alimento.Estoque;
+import br.ufjf.dcc.model.alimento.Reposicao;
+import br.ufjf.dcc.model.criatura.ConversorCriaturaJSON;
 import br.ufjf.dcc.model.criatura.Criatura;
+import br.ufjf.dcc.model.criatura.InsereCriaturas;
 import br.ufjf.dcc.model.criatura.ListaCriaturas;
+import br.ufjf.dcc.model.enums.TipoAlimento;
+import br.ufjf.dcc.model.estatistica.ConversorEstatisticaCSV;
+import br.ufjf.dcc.model.estatistica.Estatistica;
 import br.ufjf.dcc.model.tempo.PassagemTempo;
+import br.ufjf.dcc.util.csv.EscritorCSV;
+import br.ufjf.dcc.util.json.LeitorJSON;
 
 public class Sistema {
 
@@ -16,6 +27,7 @@ public class Sistema {
     private ListaCriaturas listaCriaturas;
     private PassagemTempo tempo;
     private Estoque estoque;
+    private Reposicao reposicao;
 
     public Sistema(ListaCriaturas listaCriaturas, Estoque estoque) {
 
@@ -24,8 +36,9 @@ public class Sistema {
         this.executando = true;
 
         this.listaCriaturas = listaCriaturas;
-		this.tempo = new PassagemTempo();
+        this.tempo = new PassagemTempo();
         this.estoque = estoque;
+        this.reposicao = new Reposicao(estoque, listaCriaturas);
     }
 
     public void iniciar() {
@@ -34,45 +47,62 @@ public class Sistema {
 
             exibirMenu();
 
-            System.out.print("Escolha uma opção: ");
+            System.out.println("Escolha uma opção: ");
 
             int acao = leitor.nextInt();
 
             switch (acao) {
 
-                case 1 -> criarCriatura();
+                case 1 ->
+                    criarCriatura();
 
-                case 2 -> exibirCriaturas();
+                case 2 ->
+                    exibirCriaturas();
 
-                case 3 -> removerCriatura();
+                case 3 ->
+                    removerCriatura();
 
-                case 4 -> exibirInfosCriatura();
+                case 4 ->
+                    exibirInfosCriatura();
 
-                case 5 -> exibirStatusCompleto();
+                case 5 ->
+                    exibirStatusCompleto();
 
-                case 6 -> alimentarCriatura();
+                case 6 ->
+                    alimentarCriatura();
 
-                case 7 -> brincarCriatura();
+                case 7 ->
+                    brincarCriatura();
 
-                case 8 -> dormirCriatura();
+                case 8 ->
+                    dormirCriatura();
 
-                case 9 -> treinarCriatura();
+                case 9 ->
+                    treinarCriatura();
 
-                case 10 -> participarDesafio();
+                case 10 ->
+                    participarDesafio();
 
-                case 11 -> habilidadeEspecial();
+                case 11 ->
+                    habilidadeEspecial();
 
-                case 12 -> imprimirEstatisticas();
+                case 12 ->
+                    imprimirEstatisticas();
 
-                case 13 -> exportarEstatisticas();
+                case 13 ->
+                    exportarEstatisticas();
 
-                case 14 -> importarPets();
+                case 14 ->
+                    importarCriaturas();
 
-                case 15 -> exportarPets();
+                case 15 ->
+                    exportarCriaturas();
 
-                case 16 -> encerrarSistema();
+                case 16 ->
+                    encerrarSistema();
 
-                default -> System.out.println("Opção inválida.");
+                default ->
+                    System.out.println("Opção inválida.");
             }
         }
     }
@@ -110,7 +140,7 @@ public class Sistema {
 
         listaCriaturas.exibeCriaturas();
 
-        System.out.print("Escolha uma criatura: ");
+        System.out.println("Escolha uma criatura: ");
 
         int acao = leitor.nextInt();
 
@@ -137,12 +167,12 @@ public class Sistema {
         String nome = leitor.nextLine();
 
         System.out.println("Escolha a espécie: ");
-		System.out.println("1 - Aquari");
-		System.out.println("2 - Draconis");
-		System.out.println("3 - Draconis Celestial");
-		System.out.println("4 - Fungari");
-		System.out.println("5 - Lumini");
-		System.out.println("6 - Mecanis");
+        System.out.println("1 - Aquari");
+        System.out.println("2 - Draconis");
+        System.out.println("3 - Draconis Celestial");
+        System.out.println("4 - Fungari");
+        System.out.println("5 - Lumini");
+        System.out.println("6 - Mecanis");
 
         int opcao = leitor.nextInt();
 
@@ -150,17 +180,23 @@ public class Sistema {
 
         switch (opcao) {
 
-            case 1 -> especie = "Aquari";
+            case 1 ->
+                especie = "Aquari";
 
-            case 2 -> especie = "Draconis";
+            case 2 ->
+                especie = "Draconis";
 
-            case 3 -> especie = "DraconisCelestial";
+            case 3 ->
+                especie = "DraconisCelestial";
 
-			case 4 -> especie = "Fungari";
+            case 4 ->
+                especie = "Fungari";
 
-			case 5 -> especie = "Lumini";
+            case 5 ->
+                especie = "Lumini";
 
-			case 6 -> especie = "Mecanis";
+            case 6 ->
+                especie = "Mecanis";
 
             default -> {
                 System.out.println("Espécie inválida.");
@@ -279,7 +315,7 @@ public class Sistema {
 
         criatura.alimentar(alimentoEscolhido, estoque);
 
-		reposicao.executar();
+        reposicao.executar();
 
         avancarTempo();
     }
@@ -356,7 +392,27 @@ public class Sistema {
 
     private void exportarEstatisticas() {
 
-        System.out.println("Implementar exportação CSV.");
+        System.out.print("Digite o caminho do arquivo CSV: ");
+
+        leitor.nextLine();
+        String caminho = leitor.nextLine();
+
+        Estatistica estatistica
+                = new Estatistica(listaCriaturas, tempo, estoque);
+
+        try {
+
+            EscritorCSV.salvar(caminho, estatistica.gerarLinhasCSV(), new ConversorEstatisticaCSV(), "nome;valor"
+            );
+
+            System.out.println("Estatísticas exportadas com sucesso.");
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    "Erro ao exportar estatísticas."
+            );
+        }
     }
 
     private void importarCriaturas() {
@@ -381,7 +437,7 @@ public class Sistema {
         }
     }
 
-    private void exportarPets() {
+    private void exportarCriaturas() {
 
         System.out.println("Implementar exportação JSON.");
     }
