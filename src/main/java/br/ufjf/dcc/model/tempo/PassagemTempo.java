@@ -32,7 +32,7 @@ public class PassagemTempo {
 
             for (Criatura criatura : criaturas) {
 
-                if (criatura.seViva()) {
+                if (criatura.estaViva()) {
                     criatura.aplicarDesgasteNatural();
                 }
             }

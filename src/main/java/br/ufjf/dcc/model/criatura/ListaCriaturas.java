@@ -118,7 +118,7 @@ public class ListaCriaturas {
         int qteCriaturasVivas = 0;
 
         for (Criatura criatura : criaturas) {
-            if (criatura.seViva()) {
+            if (criatura.estaViva()) {
                 qteCriaturasVivas++;
             }
         }
@@ -130,7 +130,7 @@ public class ListaCriaturas {
         int qteCriaturasMortas = 0;
 
         for (Criatura criatura : criaturas) {
-            if (!criatura.seViva()) {
+            if (!criatura.estaViva()) {
                 qteCriaturasMortas++;
             }
         }

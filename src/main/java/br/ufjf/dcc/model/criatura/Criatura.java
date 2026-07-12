@@ -129,7 +129,7 @@ public abstract class Criatura {
         return this.saude;
     }
 
-    public boolean seViva() {
+    public boolean estaViva() {
         return this.vivo;
     }
 
@@ -143,7 +143,7 @@ public abstract class Criatura {
         System.out.println("Saciedade: " + this.saciedade);
         System.out.println("Felicidade: " + this.felicidade);
         System.out.println("Saúde: " + this.saude);
-        System.out.println("Vivo: " + (this.seViva() ? "Sim" : "Não"));
+        System.out.println("Vivo: " + (this.estaViva() ? "Sim" : "Não"));
     }
 
     public EstadoSaude getEstadoSaude() {
@@ -156,7 +156,7 @@ public abstract class Criatura {
             return EstadoSaude.DOENTE;
         }
 
-        if ((this.saude >= ESTADO_SAUDE_DOENTE) && (this.saude <= ESTADO_SAUDE_ATENCAO)) {
+        if ((this.saude <= ESTADO_SAUDE_ATENCAO)) {
             return EstadoSaude.ATENCAO;
         }
 
@@ -211,23 +211,23 @@ public abstract class Criatura {
     }
 
     protected boolean sePodeTreinar() {
-        return this.seViva() && this.saude > SAUDE_TREINAR && this.energia >= ENERGIA_TREINAR && this.saciedade >= SACIEDADE_TREINAR;
+        return this.estaViva() && this.saude > SAUDE_TREINAR && this.energia >= ENERGIA_TREINAR && this.saciedade >= SACIEDADE_TREINAR;
     }
 
     protected boolean sePodeExplorar() {
-        return this.seViva() && this.saude > SAUDE_EXPLORAR && this.energia >= ENERGIA_EXPLORAR && this.saciedade >= SACIEDADE_EXPLORAR;
+        return this.estaViva() && this.saude > SAUDE_EXPLORAR && this.energia >= ENERGIA_EXPLORAR && this.saciedade >= SACIEDADE_EXPLORAR;
     }
 
     protected boolean sePodeBrincar() {
-        return this.seViva() && this.saude > SAUDE_BRINCAR && this.energia >= ENERGIA_BRINCAR && this.saciedade >= SACIEDADE_BRINCAR;
+        return this.estaViva() && this.saude > SAUDE_BRINCAR && this.energia >= ENERGIA_BRINCAR && this.saciedade >= SACIEDADE_BRINCAR;
     }
 
     protected boolean sePodeDescansar() {
-        return this.seViva() && this.saude > SAUDE_DESCANSAR && this.energia < ENERGIA_DESCANSAR && this.ultimaAtividade != Atividade.DESCANSAR;
+        return this.estaViva() && this.saude > SAUDE_DESCANSAR && this.energia < ENERGIA_DESCANSAR && this.ultimaAtividade != Atividade.DESCANSAR;
     }
 
     protected boolean sePodeParticiparDesafio() {
-        return this.seViva() && this.saude > SAUDE_DESAFIAR && this.nivel >= NIVEL_MIN_DESAFIAR && this.nivel % NIVEL_DESAFIAR == 0 && this.energia >= ENERGIA_DESAFIAR && this.saciedade >= SACIEDADE_DESAFIAR && !this.desafiosParticipados.contains(nivel);
+        return this.estaViva() && this.saude > SAUDE_DESAFIAR && this.nivel >= NIVEL_MIN_DESAFIAR && this.nivel % NIVEL_DESAFIAR == 0 && this.energia >= ENERGIA_DESAFIAR && this.saciedade >= SACIEDADE_DESAFIAR && !this.desafiosParticipados.contains(nivel);
     }
 
     protected boolean aceitaAlimento(TipoAlimento tipoAlimento) {
@@ -235,7 +235,7 @@ public abstract class Criatura {
     }
 
     protected boolean sePodeAlimentar(TipoAlimento tipoAlimento) {
-        return this.seViva() && this.saude > SAUDE_ALIMENTAR && this.saciedade < SACIEDADE_ALIMENTAR && aceitaAlimento(tipoAlimento);
+        return this.estaViva() && this.saude > SAUDE_ALIMENTAR && this.saciedade < SACIEDADE_ALIMENTAR && aceitaAlimento(tipoAlimento);
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
