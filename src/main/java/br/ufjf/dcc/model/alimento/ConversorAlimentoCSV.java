@@ -8,7 +8,7 @@ public class ConversorAlimentoCSV implements ConversorCSV<Alimento> {
     @Override
     public Alimento converter(String linha) {
 
-        String[] dados = linha.split("\t");
+        String[] dados = linha.split(",");
 
         TipoAlimento tipo = TipoAlimento.obterPorDescricao(dados[0]);
 

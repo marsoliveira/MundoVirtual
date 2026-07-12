@@ -2,7 +2,7 @@ package br.ufjf.dcc.model.enums;
 
 public enum TipoAlimento {
 
-    FRUTA("Fruta", 20),
+    FRUTAS("Frutas", 20),
     CARNE("Carne", 35),
     FOTONS("Fotons", 20),
     NECTAR_LUMINOSO("Nectar Luminoso", 35),

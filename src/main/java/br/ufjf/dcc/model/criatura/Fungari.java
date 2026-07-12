@@ -44,7 +44,7 @@ public class Fungari extends Criatura {
 
 	@Override
     public Set<TipoAlimento> getAlimentosCompativeis() {
-        return Set.of(TipoAlimento.FRUTA, TipoAlimento.COGUMELOS, TipoAlimento.BANQUETE_REAL);
+        return Set.of(TipoAlimento.FRUTAS, TipoAlimento.COGUMELOS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override

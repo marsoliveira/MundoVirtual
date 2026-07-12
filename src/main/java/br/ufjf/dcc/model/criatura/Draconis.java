@@ -45,7 +45,7 @@ public class Draconis extends Criatura implements Voador {
 
 	@Override
     public Set<TipoAlimento> getAlimentosCompativeis() {
-        return Set.of(TipoAlimento.FRUTA, TipoAlimento.CARNE, TipoAlimento.BANQUETE_REAL);
+        return Set.of(TipoAlimento.FRUTAS, TipoAlimento.CARNE, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override
