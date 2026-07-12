@@ -359,9 +359,26 @@ public class Sistema {
         System.out.println("Implementar exportação CSV.");
     }
 
-    private void importarPets() {
+    private void importarCriaturas() {
 
-        System.out.println("Implementar importação JSON.");
+        System.out.print("Digite o caminho do arquivo JSON: ");
+
+        leitor.nextLine();
+
+        String caminho = leitor.nextLine();
+
+        try {
+            List<Criatura> criaturasImportadas = LeitorJSON.carregar(caminho, new ConversorCriaturaJSON());
+
+            for (Criatura criatura : criaturasImportadas) {
+                listaCriaturas.criarCriatura(criatura);
+            }
+
+            System.out.println(criaturasImportadas.size() + " criaturas importadas.");
+
+        } catch (IOException e) {
+            System.out.println("Erro ao importar criaturas.");
+        }
     }
 
     private void exportarPets() {
