@@ -8,6 +8,34 @@ import br.ufjf.dcc.model.enums.TipoAlimento;
 
 public class Lumini extends Criatura implements Luminescente {
 
+    private static final int GANHO_EXP_TREINAR = 25;
+    private static final int CONSUMO_ENERGIA_TREINAR = 20;
+    private static final int CONSUMO_SACIEDADE_TREINAR = 10;
+
+    private static final int GANHO_EXP_EXPLORAR = 15;
+    private static final int CONSUMO_ENERGIA_EXPLORAR = 20;
+    private static final int CONSUMO_SACIEDADE_EXPLORAR = 5;
+    private static final int GANHO_FELICIDADE_EXPLORAR = 10;
+
+    private static final int GANHO_FELICIDADE_BRINCAR = 35;
+    private static final int CONSUMO_ENERGIA_BRINCAR = 5;
+    private static final int CONSUMO_SACIEDADE_BRINCAR = 5;
+
+    private static final int GANHO_ENERGIA_DESCANSAR = 40;
+
+    private static final int GANHO_EXP_DESAFIAR = 45;
+    private static final int CONSUMO_ENERGIA_DESAFIAR = 35;
+    private static final int CONSUMO_SACIEDADE_DESAFIAR = 15;
+    private static final int GANHO_FELICIDADE_DESAFIAR = 15;
+
+    private static final int GANHO_FELICIDADE_EVOLUIR = 2;
+
+    private static final int GANHO_FELICIDADE_EMITIR_LUZ = 10;
+
+    private static final int DESGASTE_ENERGIA = 8;
+    private static final int DESGASTE_SACIEDADE = 2;
+    private static final int DESGASTE_FELICIDADE = 3;
+
     public Lumini(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Lumini", idade, nivel, experiencia, energia, saciedade, felicidade);
     }
@@ -15,9 +43,9 @@ public class Lumini extends Criatura implements Luminescente {
     @Override
     public void treinar() {
         if (this.podeTreinar()) {
-            this.ganharExperiencia(25);
-            this.consumirEnergia(20);
-            this.consumirSaciedade(10);
+            this.ganharExperiencia(GANHO_EXP_TREINAR);
+            this.consumirEnergia(CONSUMO_ENERGIA_TREINAR);
+            this.consumirSaciedade(CONSUMO_SACIEDADE_TREINAR);
             this.ultimaAtividade = Atividade.TREINAR;
         }
     }
@@ -25,10 +53,10 @@ public class Lumini extends Criatura implements Luminescente {
     @Override
     public void explorar() {
         if (this.podeExplorar()) {
-            this.ganharExperiencia(15);
-            this.consumirEnergia(20);
-            this.consumirSaciedade(5);
-            this.ganharFelicidade(10);
+            this.ganharExperiencia(GANHO_EXP_EXPLORAR);
+            this.consumirEnergia(CONSUMO_ENERGIA_EXPLORAR);
+            this.consumirSaciedade(CONSUMO_SACIEDADE_EXPLORAR);
+            this.ganharFelicidade(GANHO_FELICIDADE_EXPLORAR);
             this.ultimaAtividade = Atividade.EXPLORAR;
         }
     }
@@ -36,14 +64,14 @@ public class Lumini extends Criatura implements Luminescente {
     @Override
     public void brincar() {
         if (this.podeBrincar()) {
-            this.ganharFelicidade(35);
-            this.consumirEnergia(5);
-            this.consumirSaciedade(5);
+            this.ganharFelicidade(GANHO_FELICIDADE_BRINCAR);
+            this.consumirEnergia(CONSUMO_ENERGIA_BRINCAR);
+            this.consumirSaciedade(CONSUMO_SACIEDADE_BRINCAR);
             this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
 
-	@Override
+    @Override
     public Set<TipoAlimento> getAlimentosCompativeis() {
         return Set.of(TipoAlimento.NECTAR_LUMINOSO, TipoAlimento.FOTONS, TipoAlimento.BANQUETE_REAL);
     }
@@ -51,7 +79,7 @@ public class Lumini extends Criatura implements Luminescente {
     @Override
     public void descansar() {
         if (this.podeDescansar()) {
-            this.ganharEnergia(40);
+            this.ganharEnergia(GANHO_ENERGIA_DESCANSAR);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
@@ -59,10 +87,10 @@ public class Lumini extends Criatura implements Luminescente {
     @Override
     public void participarDesafio() {
         if (this.podeParticiparDesafio()) {
-            this.ganharExperiencia(45);
-            this.consumirEnergia(35);
-            this.consumirSaciedade(15);
-            this.ganharFelicidade(15);
+            this.ganharExperiencia(GANHO_EXP_DESAFIAR);
+            this.consumirEnergia(CONSUMO_ENERGIA_DESAFIAR);
+            this.consumirSaciedade(CONSUMO_SACIEDADE_DESAFIAR);
+            this.ganharFelicidade(GANHO_FELICIDADE_DESAFIAR);
             this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
@@ -70,34 +98,33 @@ public class Lumini extends Criatura implements Luminescente {
 
     @Override
     protected void evoluir() {
-        this.felicidade += 2;
+        this.felicidade += GANHO_FELICIDADE_EVOLUIR;
         this.ultimaAtividade = Atividade.EVOLUIR;
     }
 
     @Override
     public void emitirLuz() {
-        this.felicidade += 10;
+        this.felicidade += GANHO_FELICIDADE_EMITIR_LUZ;
         System.out.println(this.nome + " emitiu luz e sua felicidade agora é " + this.felicidade);
     }
 
-	@Override
-	public void executarHabilidadeEspecial() {
-		this.emitirLuz();
-	}
+    @Override
+    public void executarHabilidadeEspecial() {
+        this.emitirLuz();
+    }
 
     @Override
     protected int desgasteEnergia() {
-        return 8;
+        return DESGASTE_ENERGIA;
     }
 
     @Override
     protected int desgasteSaciedade() {
-        return 2;
+        return DESGASTE_SACIEDADE;
     }
 
     @Override
     protected int desgasteFelicidade() {
-        return 3;
+        return DESGASTE_FELICIDADE;
     }
-
 }
