@@ -74,6 +74,11 @@ public class Fungari extends Criatura {
     }
 
 	@Override
+	public void executarHabilidadeEspecial() {
+		System.out.println(this.especie + " não possuem habilidade especial!");
+	}
+
+	@Override
     protected int desgasteEnergia() {
         return 3;
     }

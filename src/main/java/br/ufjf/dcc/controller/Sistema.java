@@ -344,7 +344,7 @@ public class Sistema {
             return;
         }
 
-        System.out.println("Implementar habilidade especial.");
+        criatura.executarHabilidadeEspecial();
 
         avancarTempo();
     }

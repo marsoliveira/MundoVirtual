@@ -291,6 +291,8 @@ public abstract class Criatura {
 
     public abstract void participarDesafio();
 
+	public abstract void executarHabilidadeEspecial();
+
     protected abstract void evoluir();
 
     protected abstract int desgasteEnergia();

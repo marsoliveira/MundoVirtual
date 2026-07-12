@@ -23,4 +23,10 @@ public class DraconisCelestial extends Draconis implements Autodidata {
         System.out.println(this.nome + " estudou e sua experiência agora é " + this.experiencia);
     }
 
+	@Override
+	public void executarHabilidadeEspecial() {
+		this.realizarVoo();
+		this.estudar();
+	}
+
 }

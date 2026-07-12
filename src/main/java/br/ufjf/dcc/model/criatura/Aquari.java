@@ -82,6 +82,11 @@ public class Aquari extends Criatura implements Aquatico {
         System.out.println(this.nome + " mergulhou e sua felicidade agora é " + this.felicidade);
     }
 
+	@Override
+	public void executarHabilidadeEspecial() {
+		this.mergulhar();
+	}
+
     @Override
     protected int desgasteEnergia() {
         return 4;

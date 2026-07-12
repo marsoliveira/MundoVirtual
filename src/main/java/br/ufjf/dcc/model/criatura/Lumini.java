@@ -81,6 +81,11 @@ public class Lumini extends Criatura implements Luminescente {
         System.out.println(this.nome + " emitiu luz e sua felicidade agora é " + this.felicidade);
     }
 
+	@Override
+	public void executarHabilidadeEspecial() {
+		this.emitirLuz();
+	}
+
     @Override
     protected int desgasteEnergia() {
         return 8;

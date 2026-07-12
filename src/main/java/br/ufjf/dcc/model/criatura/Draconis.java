@@ -80,6 +80,11 @@ public class Draconis extends Criatura implements Voador {
         System.out.println(this.nome + " voou e sua felicidade agora é " + this.felicidade);
     }
 
+	@Override
+	public void executarHabilidadeEspecial() {
+		this.realizarVoo();
+	}
+
     @Override
     protected int desgasteEnergia() {
         return 5;
