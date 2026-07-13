@@ -28,8 +28,8 @@ public abstract class Criatura {
 
     private static final int NIVEL_INICIAL = 0;
     private static final int EXPERIENCIA_INICIAL = 0;
-    private static final int ENERGIA_INICIAL = 100;
-    private static final int SACIEDADE_INICIAL = 100;
+    private static final int ENERGIA_INICIAL = 99;
+    private static final int SACIEDADE_INICIAL = 99;
     private static final int FELICIDADE_INICIAL = 1;
 
     private static final int ESTADO_SAUDE_MORTA = 0;
@@ -76,11 +76,11 @@ public abstract class Criatura {
         this.nome = nome;
         this.especie = especie;
         this.idade = idade;
-        this.nivel = nivel;
-        this.experiencia = experiencia;
-        this.energia = energia;
-        this.saciedade = saciedade;
-        this.felicidade = felicidade;
+        this.nivel = validarNivelExperiencia(nivel, "Nível");
+        this.experiencia = validarNivelExperiencia(experiencia, "Experiência");
+        this.energia = validarAtributo(energia, "Energia");
+        this.saciedade = validarAtributo(saciedade, "Saciedade");
+        this.felicidade = validarAtributo(felicidade, "Felicidade");
         this.vivo = true;
         this.atualizarSaude();
         this.desafiosParticipados = new HashSet<>();
@@ -147,6 +147,24 @@ public abstract class Criatura {
 
     public boolean estaViva() {
         return this.vivo;
+    }
+
+    private int validarAtributo(int valor, String nomeAtributo) {
+
+        if (valor < 1 || valor > 99) {
+            throw new IllegalArgumentException(nomeAtributo + " deve estar entre 1 e 99.");
+        }
+
+        return valor;
+    }
+
+    private int validarNivelExperiencia(int valor, String nomeAtributo) {
+
+        if (valor < 0 || valor > 99) {
+            throw new IllegalArgumentException(nomeAtributo + " deve estar entre 0 e 99.");
+        }
+
+        return valor;
     }
 
     public void exibirInformacoes() {
@@ -268,7 +286,7 @@ public abstract class Criatura {
 
         estoque.consumir(tipoAlimento);
 
-        this.ganharSaciedade(tipoAlimento.getSaciedade());
+        this.ganharSaciedadeModificador(tipoAlimento.getSaciedade());
 
         this.ultimaAtividade = Atividade.ALIMENTAR;
 
@@ -291,37 +309,63 @@ public abstract class Criatura {
         return Math.max(LIM_MIN_ATRIBUTO, Math.min(valor, LIM_MAX_ATRIBUTO));
     }
 
-    protected void consumirEnergia(int valorBase) {
-        this.energia = limitarAtributo(this.energia - calcularConsumoAtributo(valorBase));
+    protected void ganharEnergia(int valor) {
+        this.energia = limitarAtributo(this.energia + valor);
         this.atualizarSaude();
     }
 
-    protected void ganharEnergia(int valorBase) {
+    protected void ganharEnergiaModificador(int valorBase) {
         this.energia = limitarAtributo(this.energia + calcularGanhoAtributo(valorBase));
         this.atualizarSaude();
     }
 
-    protected void consumirSaciedade(int valorBase) {
-        this.saciedade = limitarAtributo(this.saciedade - calcularConsumoAtributo(valorBase));
+    protected void consumirEnergiaModificador(int valorBase) {
+        this.energia = limitarAtributo(this.energia - calcularConsumoAtributo(valorBase));
         this.atualizarSaude();
     }
 
     protected void ganharSaciedade(int valorBase) {
+        this.saciedade = limitarAtributo(this.saciedade + valorBase);
+        this.atualizarSaude();
+    }
+
+    protected void ganharSaciedadeModificador(int valorBase) {
         this.saciedade = limitarAtributo(this.saciedade + calcularGanhoAtributo(valorBase));
         this.atualizarSaude();
     }
 
-    protected void consumirFelicidade(int valorBase) {
-        this.felicidade = limitarAtributo(this.felicidade - calcularConsumoAtributo(valorBase));
+    protected void consumirSaciedadeModificador(int valorBase) {
+        this.saciedade = limitarAtributo(this.saciedade - calcularConsumoAtributo(valorBase));
         this.atualizarSaude();
     }
 
     protected void ganharFelicidade(int valorBase) {
+        this.felicidade = limitarAtributo(this.felicidade + valorBase);
+        this.atualizarSaude();
+    }
+
+    protected void ganharFelicidadeModificador(int valorBase) {
         this.felicidade = limitarAtributo(this.felicidade + calcularGanhoAtributo(valorBase));
         this.atualizarSaude();
     }
 
+    protected void consumirFelicidadeModificador(int valorBase) {
+        this.felicidade = limitarAtributo(this.felicidade - calcularConsumoAtributo(valorBase));
+        this.atualizarSaude();
+    }
+
     protected void ganharExperiencia(int valorBase) {
+        this.experiencia = limitarAtributo(this.experiencia + valorBase);
+
+        while (this.experiencia >= MAX_EXPERIENCIA) {
+            this.experiencia -= MAX_EXPERIENCIA;
+            this.nivel++;
+
+            this.evoluir();
+        }
+    }
+
+    protected void ganharExperienciaModificador(int valorBase) {
         this.experiencia += calcularGanhoAtributo(valorBase);
 
         while (this.experiencia >= MAX_EXPERIENCIA) {
@@ -330,6 +374,10 @@ public abstract class Criatura {
 
             this.evoluir();
         }
+    }
+
+    protected void ganharSaude(int valorBase) {
+        this.saude = limitarAtributo(this.saude + valorBase);
     }
 
     public void aplicarDesgasteNatural() {

@@ -47,9 +47,9 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void treinar() {
         if (this.podeTreinar()) {
-            this.ganharExperiencia(GANHO_EXP_TREINAR);
-            this.consumirEnergia(CONSUMO_ENERGIA_TREINAR);
-            this.consumirSaciedade(CONSUMO_SACIEDADE_TREINAR);
+            this.ganharExperienciaModificador(GANHO_EXP_TREINAR);
+            this.consumirEnergiaModificador(CONSUMO_ENERGIA_TREINAR);
+            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_TREINAR);
             this.ultimaAtividade = Atividade.TREINAR;
         }
     }
@@ -57,10 +57,10 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void explorar() {
         if (this.podeExplorar()) {
-            this.ganharExperiencia(GANHO_EXP_EXPLORAR);
-            this.consumirEnergia(CONSUMO_ENERGIA_EXPLORAR);
-            this.consumirSaciedade(CONSUMO_SACIEDADE_EXPLORAR);
-            this.ganharFelicidade(GANHO_FELICIDADE_EXPLORAR);
+            this.ganharExperienciaModificador(GANHO_EXP_EXPLORAR);
+            this.consumirEnergiaModificador(CONSUMO_ENERGIA_EXPLORAR);
+            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_EXPLORAR);
+            this.ganharFelicidadeModificador(GANHO_FELICIDADE_EXPLORAR);
             this.ultimaAtividade = Atividade.EXPLORAR;
         }
     }
@@ -68,9 +68,9 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void brincar() {
         if (this.podeBrincar()) {
-            this.ganharFelicidade(GANHO_FELICIDADE_BRINCAR);
-            this.consumirEnergia(CONSUMO_ENERGIA_BRINCAR);
-            this.consumirSaciedade(CONSUMO_SACIEDADE_BRINCAR);
+            this.ganharFelicidadeModificador(GANHO_FELICIDADE_BRINCAR);
+            this.consumirEnergiaModificador(CONSUMO_ENERGIA_BRINCAR);
+            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_BRINCAR);
             this.ultimaAtividade = Atividade.BRINCAR;
         }
     }
@@ -83,7 +83,7 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void descansar() {
         if (this.podeDescansar()) {
-            this.ganharEnergia(GANHO_ENERGIA_DESCANSAR);
+            this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
             this.ultimaAtividade = Atividade.DESCANSAR;
         }
     }
@@ -91,10 +91,10 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void participarDesafio() {
         if (this.podeParticiparDesafio()) {
-            this.ganharExperiencia(GANHO_EXP_DESAFIAR);
-            this.consumirEnergia(CONSUMO_ENERGIA_DESAFIAR);
-            this.consumirSaciedade(CONSUMO_SACIEDADE_DESAFIAR);
-            this.ganharFelicidade(GANHO_FELICIDADE_DESAFIAR);
+            this.ganharExperienciaModificador(GANHO_EXP_DESAFIAR);
+            this.consumirEnergiaModificador(CONSUMO_ENERGIA_DESAFIAR);
+            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_DESAFIAR);
+            this.ganharFelicidadeModificador(GANHO_FELICIDADE_DESAFIAR);
             this.desafiosParticipados.add(nivel);
             this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
         }
@@ -104,7 +104,7 @@ public class Draconis extends Criatura implements Voador {
     protected void evoluir() {
         int energiaAntes = this.energia;
 
-        this.energia += GANHO_ENERGIA_EVOLUIR;
+		this.ganharEnergia(GANHO_ENERGIA_EVOLUIR);
 
         this.ultimaAtividade = Atividade.EVOLUIR;
 
@@ -114,7 +114,7 @@ public class Draconis extends Criatura implements Voador {
     @Override
     public void realizarVoo() {
         int felicidadeAntes = this.felicidade;
-        this.felicidade += GANHO_FELICIDADE_VOAR;
+		this.ganharFelicidade(GANHO_FELICIDADE_VOAR);
         System.out.println(this.nome + " voou. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.felicidade);
     }
 
