@@ -73,9 +73,7 @@ public class Sistema {
 
             exibirMenu();
 
-            System.out.println("Escolha uma opção: ");
-
-            int acao = leitor.nextInt();
+            int acao = lerInteiro("Escolha uma opção: ");
 
             switch (acao) {
 
@@ -145,10 +143,9 @@ public class Sistema {
             return null;
         }
 
-        System.out.println("Escolha uma criatura: ");
         listaCriaturas.exibirCriaturas();
 
-        int opcao = leitor.nextInt();
+        int opcao = lerInteiro("Escolha uma opção: ");
 
         if (opcao == 0) {
             return null;
@@ -170,54 +167,94 @@ public class Sistema {
     }
 
     private int lerInteiro(String mensagem) {
-        System.out.print(mensagem);
-        int valor = leitor.nextInt();
-        leitor.nextLine();
 
-        return valor;
+        while (true) {
+
+            try {
+
+                System.out.print(mensagem);
+
+                int valor = leitor.nextInt();
+                leitor.nextLine();
+
+                return valor;
+
+            } catch (InputMismatchException e) {
+
+                System.out.println("Entrada inválida. Digite um número inteiro.");
+                leitor.nextLine();
+            }
+        }
     }
 
     private String lerTexto(String mensagem) {
-        System.out.print(mensagem);
-        return leitor.nextLine();
+
+        String texto;
+
+        do {
+
+            System.out.print(mensagem);
+
+            texto = leitor.nextLine().trim();
+
+            if (texto.isEmpty()) {
+                System.out.println("Texto inválido.");
+            }
+
+        } while (texto.isEmpty());
+
+        return texto;
     }
 
     private String lerEspecie() {
 
-        System.out.println("Escolha a espécie: ");
-        System.out.println("0. Voltar");
-        System.out.println("1. Aquari");
-        System.out.println("2. Draconis");
-        System.out.println("3. Draconis Celestial");
-        System.out.println("4. Fungari");
-        System.out.println("5. Lumini");
-        System.out.println("6. Mecanis");
+        while (true) {
 
-        int opcao = leitor.nextInt();
-        leitor.nextLine();
+            System.out.println("Escolha a espécie: ");
+            System.out.println("0. Voltar");
+            System.out.println("1. Aquari");
+            System.out.println("2. Draconis");
+            System.out.println("3. Draconis Celestial");
+            System.out.println("4. Fungari");
+            System.out.println("5. Lumini");
+            System.out.println("6. Mecanis");
 
-        if (opcao == 0) {
-            return null;
+            int opcao = lerInteiro("Escolha uma opção: ");
+
+            switch (opcao) {
+
+                case 0 -> {
+                    return null;
+                }
+
+                case 1 -> {
+                    return "Aquari";
+                }
+
+                case 2 -> {
+                    return "Draconis";
+                }
+
+                case 3 -> {
+                    return "DraconisCelestial";
+                }
+
+                case 4 -> {
+                    return "Fungari";
+                }
+
+                case 5 -> {
+                    return "Lumini";
+                }
+
+                case 6 -> {
+                    return "Mecanis";
+                }
+
+                default ->
+                    System.out.println("Espécie inválida.");
+            }
         }
-
-        return switch (opcao) {
-
-            case 1 ->
-                "Aquari";
-            case 2 ->
-                "Draconis";
-            case 3 ->
-                "DraconisCelestial";
-            case 4 ->
-                "Fungari";
-            case 5 ->
-                "Lumini";
-            case 6 ->
-                "Mecanis";
-
-            default ->
-                throw new IllegalArgumentException("Espécie inválida.");
-        };
     }
 
     private void criarCriatura() {
@@ -227,13 +264,19 @@ public class Sistema {
         System.out.println("1. Criatura com atributos pré-definidos");
         System.out.println("2. Informar atributos");
 
-        int opcao = leitor.nextInt();
-
-        leitor.nextLine();
+        int opcao = lerInteiro("Escolha uma opção: ");
 
         if (opcao == 0) {
             return;
         }
+
+        String especie = lerEspecie();
+        if (especie == null) {
+            return;
+        }
+
+        String nome = lerTexto("Nome: ");
+        int idade = lerInteiro("Idade: ");
 
         try {
 
@@ -242,27 +285,11 @@ public class Sistema {
             switch (opcao) {
                 case 1 -> {
 
-                    String nome = lerTexto("Nome: ");
-                    int idade = lerInteiro("Idade: ");
-                    String especie = lerEspecie();
-
-                    if (especie == null) {
-                        return;
-                    }
-
                     criatura = InsereCriaturas.criar(especie, nome, idade);
+
                 }
 
                 case 2 -> {
-
-                    String nome = lerTexto("Nome: ");
-                    int idade = lerInteiro("Idade: ");
-
-                    String especie = lerEspecie();
-
-                    if (especie == null) {
-                        return;
-                    }
 
                     int nivel = lerInteiro("Nível: ");
                     int experiencia = lerInteiro("Experiência: ");
@@ -280,6 +307,7 @@ public class Sistema {
                             saciedade,
                             felicidade
                     );
+
                 }
                 default -> {
                     System.out.println("Opção inválida.");
@@ -294,11 +322,6 @@ public class Sistema {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
-        } catch (InputMismatchException e) {
-
-            System.out.println("Valor inválido. Digite apenas números.");
-
-            leitor.nextLine();
         }
 
     }
@@ -316,58 +339,80 @@ public class Sistema {
     }
 
     private void editarCriatura() {
+
         Criatura criatura = selecionarCriatura();
-        if (criatura == null) {
-            return;
-        }
-        System.out.println("Escolha o atributo a ser editado:");
-        System.out.println("1. Nome");
-        System.out.println("2. Idade");
-        System.out.println("3. Nível");
-        System.out.println("4. Experiência");
-        System.out.println("5. Energia");
-        System.out.println("6. Saciedade");
-        System.out.println("7. Felicidade");
-        System.out.println("8. Todos os atributos");
-        int opcao = leitor.nextInt();
-        leitor.nextLine();
-        switch (opcao) {
-            case 1 ->
-                criatura.setNome(lerTexto("Nome: "));
 
-            case 2 ->
-                criatura.setIdade(lerInteiro("Idade: "));
+        if (criatura != null) {
+            System.out.println("Escolha o atributo a ser editado:");
+            System.out.println("1. Nome");
+            System.out.println("2. Idade");
+            System.out.println("3. Nível");
+            System.out.println("4. Experiência");
+            System.out.println("5. Energia");
+            System.out.println("6. Saciedade");
+            System.out.println("7. Felicidade");
+            System.out.println("8. Todos os atributos");
 
-            case 3 ->
-                criatura.setNivel(lerInteiro("Nível: "));
+            int opcao = lerInteiro("Escolha uma opção: ");
 
-            case 4 ->
-                criatura.setExperiencia(lerInteiro("Experiência: "));
+            try {
 
-            case 5 ->
-                criatura.setEnergia(lerInteiro("Energia: "));
+                switch (opcao) {
 
-            case 6 ->
-                criatura.setSaciedade(lerInteiro("Saciedade: "));
+                    case 1 ->
+                        criatura.setNome(lerTexto("Nome: "));
 
-            case 7 ->
-                criatura.setFelicidade(lerInteiro("Felicidade: "));
+                    case 2 ->
+                        criatura.setIdade(lerInteiro("Idade: "));
 
-            case 8 -> {
+                    case 3 ->
+                        criatura.setNivel(lerInteiro("Nível: "));
 
-                criatura.setNome(lerTexto("Nome: "));
-                criatura.setIdade(lerInteiro("Idade: "));
-                criatura.setNivel(lerInteiro("Nível: "));
-                criatura.setExperiencia(lerInteiro("Experiência: "));
-                criatura.setEnergia(lerInteiro("Energia: "));
-                criatura.setSaciedade(lerInteiro("Saciedade: "));
-                criatura.setFelicidade(lerInteiro("Felicidade: "));
+                    case 4 ->
+                        criatura.setExperiencia(lerInteiro("Experiência: "));
+
+                    case 5 ->
+                        criatura.setEnergia(lerInteiro("Energia: "));
+
+                    case 6 ->
+                        criatura.setSaciedade(lerInteiro("Saciedade: "));
+
+                    case 7 ->
+                        criatura.setFelicidade(lerInteiro("Felicidade: "));
+
+                    case 8 -> {
+
+                        String nome = lerTexto("Nome: ");
+                        int idade = lerInteiro("Idade: ");
+                        int nivel = lerInteiro("Nível: ");
+                        int experiencia = lerInteiro("Experiência: ");
+                        int energia = lerInteiro("Energia: ");
+                        int saciedade = lerInteiro("Saciedade: ");
+                        int felicidade = lerInteiro("Felicidade: ");
+
+                        criatura.setNome(nome);
+                        criatura.setIdade(idade);
+                        criatura.setNivel(nivel);
+                        criatura.setExperiencia(experiencia);
+                        criatura.setEnergia(energia);
+                        criatura.setSaciedade(saciedade);
+                        criatura.setFelicidade(felicidade);
+                    }
+
+                    default -> {
+                        System.out.println("Opção inválida.");
+                        return;
+                    }
+                }
+
+                System.out.println("Atributo atualizado com sucesso.");
+
+            } catch (IllegalArgumentException e) {
+
+                System.out.println(e.getMessage());
             }
-
-            default ->
-                System.out.println("Opção inválida.");
         }
-        System.out.println("Atributo atualizado com sucesso.");
+
     }
 
     private void exibirInfosCriatura() {
@@ -399,144 +444,182 @@ public class Sistema {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            List<TipoAlimento> alimentos = new ArrayList<>(criatura.getAlimentosCompativeis());
+
+            System.out.println("Alimentos disponíveis:");
+
+            for (int i = 0; i < alimentos.size(); i++) {
+                TipoAlimento alimento = alimentos.get(i);
+                System.out.println((i + 1) + ". " + alimento.getDescricao()
+                        + " (" + estoque.getQteDisponivelAlimento(alimento) + " unidades)");
+            }
+
+            int opcao = lerInteiro("Escolha um alimento: ");
+
+            if (opcao < 1 || opcao > alimentos.size()) {
+                System.out.println("Alimento inválido.");
+                return;
+            }
+
+            TipoAlimento alimentoEscolhido = alimentos.get(opcao - 1);
+
+            int saciedadeAntes = criatura.getSaciedade();
+
+            try {
+
+                criatura.alimentar(alimentoEscolhido, estoque);
+
+                System.out.println(criatura.getNome() + " foi alimentada com "
+                        + alimentoEscolhido.getDescricao()
+                        + ". Sua saciedade antes era " + saciedadeAntes
+                        + " e agora é " + criatura.getSaciedade() + ".");
+
+                reposicao.executar();
+                avancarTempo();
+
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        List<TipoAlimento> alimentos = new ArrayList<>(criatura.getAlimentosCompativeis());
-
-        System.out.println("Alimentos disponíveis:");
-
-        for (int i = 0; i < alimentos.size(); i++) {
-
-            TipoAlimento alimento = alimentos.get(i);
-
-            System.out.println((i + 1) + ". " + alimento.getDescricao() + " (" + estoque.getQteDisponivelAlimento(alimento) + " unidades)");
-        }
-
-        System.out.print("Escolha um alimento: ");
-
-        int opcao = leitor.nextInt();
-
-        if (opcao < 1 || opcao > alimentos.size()) {
-
-            System.out.println("Alimento inválido.");
-            return;
-        }
-
-        TipoAlimento alimentoEscolhido = alimentos.get(opcao - 1);
-
-        int saciedadeAntes = criatura.getSaciedade();
-
-        criatura.alimentar(alimentoEscolhido, estoque);
-
-        System.out.println(criatura.getNome() + " foi alimentada com " + alimentoEscolhido.getDescricao() + ". Sua saciedade antes era " + saciedadeAntes + " e agora é " + criatura.getSaciedade() + ".");
-
-        reposicao.executar();
-
-        avancarTempo();
     }
 
     private void brincarCriatura() {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            int felicidadeAntes = criatura.getFelicidade();
+            int energiaAntes = criatura.getEnergia();
+            int saciedadeAntes = criatura.getSaciedade();
+
+            try {
+
+                criatura.brincar();
+
+                System.out.println(criatura.getNome() + " brincou. Sua felicidade, energia e saciedade, antes eram "
+                        + felicidadeAntes + ", " + energiaAntes + " e " + saciedadeAntes
+                        + ", respectivamente, e agora são "
+                        + criatura.getFelicidade() + ", "
+                        + criatura.getEnergia() + " e "
+                        + criatura.getSaciedade() + ".");
+
+                avancarTempo();
+
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        int felicidadeAntes = criatura.getFelicidade();
-        int energiaAntes = criatura.getEnergia();
-        int saciedadeAntes = criatura.getSaciedade();
-
-        criatura.brincar();
-
-        System.out.println(criatura.getNome() + " brincou. Sua felicidade, energia e saciedade, antes eram " + felicidadeAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getFelicidade() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
-
-        avancarTempo();
     }
 
     private void dormirCriatura() {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            int energiaAntes = criatura.getEnergia();
+
+            try {
+                criatura.descansar();
+
+                System.out.println(criatura.getNome() + " dormiu. Sua energia antes era " + energiaAntes + " e agora é " + criatura.getEnergia() + ".");
+
+                avancarTempo();
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        int energiaAntes = criatura.getEnergia();
-
-        criatura.descansar();
-
-        System.out.println(criatura.getNome() + " dormiu. Sua energia antes era " + energiaAntes + " e agora é " + criatura.getEnergia() + ".");
-
-        avancarTempo();
     }
 
     private void treinarCriatura() {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            int experienciaAntes = criatura.getExperiencia();
+            int energiaAntes = criatura.getEnergia();
+            int saciedadeAntes = criatura.getSaciedade();
+
+            try {
+                criatura.treinar();
+
+                System.out.println(criatura.getNome() + " treinou. Sua expêriencia, energia e saciedade, antes eram " + experienciaAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
+
+                avancarTempo();
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        int experienciaAntes = criatura.getExperiencia();
-        int energiaAntes = criatura.getEnergia();
-        int saciedadeAntes = criatura.getSaciedade();
-
-        criatura.treinar();
-
-        System.out.println(criatura.getNome() + " treinou. Sua expêriencia, energia e saciedade, antes eram " + experienciaAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
-
-        avancarTempo();
     }
 
     private void participarDesafio() {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            int experienciaAntes = criatura.getExperiencia();
+            int energiaAntes = criatura.getEnergia();
+            int saciedadeAntes = criatura.getSaciedade();
+            int felicidadeAntes = criatura.getFelicidade();
+
+            try {
+                criatura.participarDesafio();
+
+                System.out.println(criatura.getNome() + " participou de um desafio. Sua expêriencia, energia, saciedade e felicidade, antes eram " + experienciaAntes + ", " + energiaAntes + ", " + saciedadeAntes + " e " + felicidadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + ", " + criatura.getSaciedade() + " e " + criatura.getFelicidade() + ".");
+
+                avancarTempo();
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        int experienciaAntes = criatura.getExperiencia();
-        int energiaAntes = criatura.getEnergia();
-        int saciedadeAntes = criatura.getSaciedade();
-        int felicidadeAntes = criatura.getFelicidade();
-
-        criatura.participarDesafio();
-
-        System.out.println(criatura.getNome() + " participou de um desafio. Sua expêriencia, energia, saciedade e felicidade, antes eram " + experienciaAntes + ", " + energiaAntes + ", " + saciedadeAntes + " e " + felicidadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + ", " + criatura.getSaciedade() + " e " + criatura.getFelicidade() + ".");
-
-        avancarTempo();
     }
 
     private void habilidadeEspecial() {
 
         Criatura criatura = selecionarCriatura();
 
-        if (criatura == null) {
-            return;
+        if (criatura != null) {
+            try {
+
+                if (criatura instanceof DraconisCelestial draconisCelestial) {
+
+                    System.out.println("Escolha a habilidade:");
+                    System.out.println("1. Realizar voo");
+                    System.out.println("2. Estudar");
+                    System.out.println("3. Ambas");
+
+                    int opcao = lerInteiro("Escolha uma opção: ");
+
+                    draconisCelestial.executarHabilidadeEspecial(opcao);
+
+                } else {
+
+                    criatura.executarHabilidadeEspecial();
+                }
+
+                avancarTempo();
+            } catch (IllegalStateException e) {
+
+                System.out.println(e.getMessage());
+
+            }
         }
 
-        if (criatura instanceof DraconisCelestial draconisCelestial) {
-
-            System.out.println("Escolha a habilidade:");
-            System.out.println("1. Realizar voo");
-            System.out.println("2. Estudar");
-            System.out.println("3. Ambas");
-
-            int opcao = leitor.nextInt();
-
-            draconisCelestial.executarHabilidadeEspecial(opcao);
-
-        } else {
-
-            criatura.executarHabilidadeEspecial();
-        }
-
-        avancarTempo();
     }
 
     private void imprimirEstatisticas() {
@@ -546,10 +629,7 @@ public class Sistema {
 
     private void exportarEstatisticas() {
 
-        System.out.print("Digite o caminho do arquivo CSV (0 para voltar): ");
-
-        leitor.nextLine();
-        String caminho = leitor.nextLine();
+        String caminho = lerTexto("Digite o caminho do arquivo CSV (0 para voltar): ");
 
         if (caminho.equals("0")) {
             return;
@@ -575,10 +655,7 @@ public class Sistema {
 
     private void importarCriaturas() {
 
-        System.out.print("Digite o caminho do arquivo JSON (0 para voltar): ");
-
-        leitor.nextLine();
-        String caminho = leitor.nextLine();
+        String caminho = lerTexto("Digite o caminho do arquivo JSON (0 para voltar): ");
 
         if (caminho.equals("0")) {
             return;
@@ -599,10 +676,7 @@ public class Sistema {
     }
 
     private void exportarCriaturas() {
-        System.out.print("Digite o caminho do arquivo JSON (0 para voltar): ");
-
-        leitor.nextLine();
-        String caminho = leitor.nextLine();
+        String caminho = lerTexto("Digite o caminho do arquivo CSV (0 para voltar): ");
 
         if (caminho.equals("0")) {
             return;

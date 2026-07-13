@@ -142,26 +142,26 @@ public abstract class Criatura {
         return this.experiencia;
     }
 
-	public void setEnergia(int energia) {
-		this.energia = validarAtributo(energia, "Energia");
-		this.atualizarSaude();
-	}
+    public void setEnergia(int energia) {
+        this.energia = validarAtributo(energia, "Energia");
+        this.atualizarSaude();
+    }
 
     public int getEnergia() {
         return this.energia;
     }
 
-	public void setSaciedade(int saciedade) {
-		this.saciedade = validarAtributo(saciedade, "Saciedade");
-	}
+    public void setSaciedade(int saciedade) {
+        this.saciedade = validarAtributo(saciedade, "Saciedade");
+    }
 
     public int getSaciedade() {
         return this.saciedade;
     }
 
-	public void setFelicidade(int felicidade) {
-		this.felicidade = validarAtributo(felicidade, "Felicidade");
-	}
+    public void setFelicidade(int felicidade) {
+        this.felicidade = validarAtributo(felicidade, "Felicidade");
+    }
 
     public int getFelicidade() {
         return this.felicidade;
@@ -301,13 +301,11 @@ public abstract class Criatura {
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
 
         if (!podeAlimentar(tipoAlimento)) {
-            System.out.println("A criatura não pode comer esse alimento.");
-            return;
+            throw new IllegalStateException("A criatura não pode comer esse alimento.");
         }
 
         if (!estoque.possui(tipoAlimento)) {
-            System.out.println("Não há esse alimento no estoque.");
-            return;
+            throw new IllegalStateException("Não há esse alimento no estoque.");
         }
 
         estoque.consumir(tipoAlimento);

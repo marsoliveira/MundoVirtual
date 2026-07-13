@@ -46,59 +46,69 @@ public class Aquari extends Criatura implements Aquatico {
     }
 
     @Override
-    public void treinar() {
-        if (this.podeTreinar()) {
-            this.ganharExperienciaModificador(GANHO_EXP_TREINAR);
-            this.consumirEnergiaModificador(CONSUMO_ENERGIA_TREINAR);
-            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_TREINAR);
-            this.ultimaAtividade = Atividade.TREINAR;
-        }
-    }
-
-    @Override
-    public void explorar() {
-        if (this.podeExplorar()) {
-            this.ganharExperienciaModificador(GANHO_EXP_EXPLORAR);
-            this.consumirEnergiaModificador(CONSUMO_ENERGIA_EXPLORAR);
-            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_EXPLORAR);
-            this.ganharFelicidadeModificador(GANHO_FELICIDADE_EXPLORAR);
-            this.ultimaAtividade = Atividade.EXPLORAR;
-        }
-    }
-
-    @Override
-    public void brincar() {
-        if (this.podeBrincar()) {
-            this.ganharFelicidadeModificador(GANHO_FELICIDADE_BRINCAR);
-            this.consumirEnergiaModificador(CONSUMO_ENERGIA_BRINCAR);
-            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_BRINCAR);
-            this.ultimaAtividade = Atividade.BRINCAR;
-        }
-    }
-
-    @Override
     public Set<TipoAlimento> getAlimentosCompativeis() {
         return Set.of(TipoAlimento.NECTAR_LUMINOSO, TipoAlimento.CRISTAIS_ENERGETICOS, TipoAlimento.BANQUETE_REAL);
     }
 
     @Override
-    public void descansar() {
-        if (this.podeDescansar()) {
-            this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
-            this.ultimaAtividade = Atividade.DESCANSAR;
+    public void treinar() {
+        if (!this.podeTreinar()) {
+            throw new IllegalStateException("A criatura não pode treinar agora.");
         }
+
+        this.ganharExperienciaModificador(GANHO_EXP_TREINAR);
+        this.consumirEnergiaModificador(CONSUMO_ENERGIA_TREINAR);
+        this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_TREINAR);
+        this.ultimaAtividade = Atividade.TREINAR;
+    }
+
+    @Override
+    public void explorar() {
+        if (!this.podeExplorar()) {
+            throw new IllegalStateException("A criatura não pode explorar agora.");
+        }
+
+        this.ganharExperienciaModificador(GANHO_EXP_EXPLORAR);
+        this.consumirEnergiaModificador(CONSUMO_ENERGIA_EXPLORAR);
+        this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_EXPLORAR);
+        this.ganharFelicidadeModificador(GANHO_FELICIDADE_EXPLORAR);
+        this.ultimaAtividade = Atividade.EXPLORAR;
+
+    }
+
+    @Override
+    public void brincar() {
+
+        if (!this.podeBrincar()) {
+            throw new IllegalStateException("A criatura não pode brincar agora.");
+        }
+
+        this.ganharFelicidadeModificador(GANHO_FELICIDADE_BRINCAR);
+        this.consumirEnergiaModificador(CONSUMO_ENERGIA_BRINCAR);
+        this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_BRINCAR);
+        this.ultimaAtividade = Atividade.BRINCAR;
+    }
+
+    @Override
+    public void descansar() {
+        if (!this.podeDescansar()) {
+            throw new IllegalStateException("A criatura não pode descansar agora.");
+        }
+        this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
+        this.ultimaAtividade = Atividade.DESCANSAR;
     }
 
     @Override
     public void participarDesafio() {
-        if (this.podeParticiparDesafio()) {
-            this.ganharExperienciaModificador(GANHO_EXP_DESAFIAR);
-            this.consumirEnergiaModificador(CONSUMO_ENERGIA_DESAFIAR);
-            this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_DESAFIAR);
-            this.ganharFelicidadeModificador(GANHO_FELICIDADE_DESAFIAR);
-            this.desafiosParticipados.add(nivel);
-            this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
+        if (!this.podeParticiparDesafio()) {
+            throw new IllegalStateException("A criatura não pode participar de um desafio agora.");
         }
+        this.ganharExperienciaModificador(GANHO_EXP_DESAFIAR);
+        this.consumirEnergiaModificador(CONSUMO_ENERGIA_DESAFIAR);
+        this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_DESAFIAR);
+        this.ganharFelicidadeModificador(GANHO_FELICIDADE_DESAFIAR);
+        this.desafiosParticipados.add(nivel);
+        this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
     }
 
     @Override
@@ -106,8 +116,8 @@ public class Aquari extends Criatura implements Aquatico {
         int energiaAntes = this.energia;
         int felicidadeAntes = this.felicidade;
 
-		this.ganharEnergia(GANHO_ENERGIA_EVOLUIR);
-		this.ganharFelicidade(GANHO_FELICIDADE_EVOLUIR);
+        this.ganharEnergia(GANHO_ENERGIA_EVOLUIR);
+        this.ganharFelicidade(GANHO_FELICIDADE_EVOLUIR);
 
         this.ultimaAtividade = Atividade.EVOLUIR;
 
@@ -117,7 +127,7 @@ public class Aquari extends Criatura implements Aquatico {
     @Override
     public void mergulhar() {
         int felicidadeAntes = this.felicidade;
-		this.ganharFelicidade(GANHO_FELICIDADE_MERGULHAR);
+        this.ganharFelicidade(GANHO_FELICIDADE_MERGULHAR);
         System.out.println(this.nome + " mergulhou. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.felicidade);
     }
 

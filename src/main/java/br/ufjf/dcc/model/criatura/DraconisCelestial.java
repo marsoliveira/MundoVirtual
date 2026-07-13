@@ -28,7 +28,7 @@ public class DraconisCelestial extends Draconis implements Autodidata {
     public void estudar() {
         int experienciaAntes = this.experiencia;
 
-		this.ganharExperiencia(GANHO_EXP_ESTUDAR);
+        this.ganharExperiencia(GANHO_EXP_ESTUDAR);
 
         System.out.println(this.nome + " estudou. Sua experiência antes era " + experienciaAntes + " e sua experiência agora é " + this.experiencia);
     }
@@ -55,7 +55,7 @@ public class DraconisCelestial extends Draconis implements Autodidata {
             }
 
             default ->
-                System.out.println("Opção inválida.");
+                throw new IllegalStateException("Opção inválida.");
         }
     }
 
