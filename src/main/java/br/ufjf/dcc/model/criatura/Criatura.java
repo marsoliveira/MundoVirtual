@@ -97,6 +97,9 @@ public abstract class Criatura {
         this.energia = ENERGIA_INICIAL;
         this.saciedade = SACIEDADE_INICIAL;
         this.felicidade = FELICIDADE_INICIAL;
+        this.vivo = true;
+        this.atualizarSaude();
+        this.desafiosParticipados = new HashSet<>();
     }
 
     public void setNome(String nome) {
@@ -236,7 +239,7 @@ public abstract class Criatura {
 
     private void atualizarSaude() {
 
-        if (this.energia <= 0 || this.saciedade <= 0 || this.felicidade <= 0) {
+        if (this.energia < LIM_MIN_ATRIBUTO || this.saciedade < LIM_MIN_ATRIBUTO || this.felicidade < LIM_MIN_ATRIBUTO) {
             this.saude = ESTADO_SAUDE_MORTA;
             this.vivo = false;
 
