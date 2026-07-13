@@ -111,22 +111,22 @@ public class Sistema {
     private void exibirMenu() {
 
         System.out.println("MENU");
-        System.out.println("1 - Criar Criatura");
-        System.out.println("2 - Exibir Criaturas Cadastrados");
-        System.out.println("3 - Remover Criatura");
-        System.out.println("4 - Exibir Informações do Criatura");
-        System.out.println("5 - Exibir Status Completo");
-        System.out.println("6 - Alimentar Criatura");
-        System.out.println("7 - Brincar com Criatura");
-        System.out.println("8 - Colocar Criatura para Dormir");
-        System.out.println("9 - Treinar Criatura");
-        System.out.println("10 - Participar de Desafio");
-        System.out.println("11 - Executar habilidade especial");
-        System.out.println("12 - Imprimir estatísticas");
-        System.out.println("13 - Exportar estatísticas (CSV)");
-        System.out.println("14 - Importar Criaturas (JSON)");
-        System.out.println("15 - Exportar Criaturas (JSON)");
-        System.out.println("16 - Encerrar Sistema");
+        System.out.println("1. Criar Criatura");
+        System.out.println("2. Exibir Criaturas Cadastrados");
+        System.out.println("3. Remover Criatura");
+        System.out.println("4. Exibir Informações do Criatura");
+        System.out.println("5. Exibir Status Completo");
+        System.out.println("6. Alimentar Criatura");
+        System.out.println("7. Brincar com Criatura");
+        System.out.println("8. Colocar Criatura para Dormir");
+        System.out.println("9. Treinar Criatura");
+        System.out.println("10. Participar de Desafio");
+        System.out.println("11. Executar habilidade especial");
+        System.out.println("12. Imprimir estatísticas");
+        System.out.println("13. Exportar estatísticas (CSV)");
+        System.out.println("14. Importar Criaturas (JSON)");
+        System.out.println("15. Exportar Criaturas (JSON)");
+        System.out.println("16. Encerrar Sistema");
 
     }
 
@@ -139,20 +139,23 @@ public class Sistema {
             return null;
         }
 
-        listaCriaturas.exibeCriaturas();
-
         System.out.println("Escolha uma criatura: ");
+        listaCriaturas.exibirCriaturas();
 
-        int acao = leitor.nextInt();
+        int opcao = leitor.nextInt();
 
-        if (acao < 1 || acao > listaCriaturas.getQteTotalCriaturas()) {
+        if (opcao == 0) {
+            return null;
+        }
+
+        if (opcao < 1 || opcao > listaCriaturas.getQteTotalCriaturas()) {
 
             System.out.println("Criatura inválida.");
 
             return null;
         }
 
-        return listaCriaturas.getCriaturas().get(acao - 1);
+        return listaCriaturas.getCriaturas().get(opcao - 1);
     }
 
     private void avancarTempo() {
@@ -163,14 +166,19 @@ public class Sistema {
     private String lerEspecie() {
 
         System.out.println("Escolha a espécie: ");
-        System.out.println("1 - Aquari");
-        System.out.println("2 - Draconis");
-        System.out.println("3 - Draconis Celestial");
-        System.out.println("4 - Fungari");
-        System.out.println("5 - Lumini");
-        System.out.println("6 - Mecanis");
+        System.out.println("0. Voltar");
+        System.out.println("1. Aquari");
+        System.out.println("2. Draconis");
+        System.out.println("3. Draconis Celestial");
+        System.out.println("4. Fungari");
+        System.out.println("5. Lumini");
+        System.out.println("6. Mecanis");
 
         int opcao = leitor.nextInt();
+
+        if (opcao == 0) {
+            return null;
+        }
 
         return switch (opcao) {
 
@@ -195,18 +203,23 @@ public class Sistema {
     private void criarCriatura() {
 
         System.out.println("Como deseja criar a criatura?");
-        System.out.println("1 - Criatura com atributos pré-definidos");
-        System.out.println("2 - Informar atributos");
+        System.out.println("0. Voltar");
+        System.out.println("1. Criatura com atributos pré-definidos");
+        System.out.println("2. Informar atributos");
 
-        int tipoCriacao = leitor.nextInt();
+        int opcao = leitor.nextInt();
 
         leitor.nextLine();
+
+        if (opcao == 0) {
+            return;
+        }
 
         try {
 
             Criatura criatura;
 
-            switch (tipoCriacao) {
+            switch (opcao) {
                 case 1 -> {
 
                     System.out.println("Nome: ");
@@ -277,7 +290,7 @@ public class Sistema {
 
     private void exibirCriaturas() {
 
-        listaCriaturas.exibeCriaturas();
+        listaCriaturas.exibirCriaturas();
     }
 
     private void removerCriatura() {
@@ -328,7 +341,7 @@ public class Sistema {
 
             TipoAlimento alimento = alimentos.get(i);
 
-            System.out.println((i + 1) + " - " + alimento.getDescricao() + " (" + estoque.getQteDisponivelAlimento(alimento) + " unidades)");
+            System.out.println((i + 1) + ". " + alimento.getDescricao() + " (" + estoque.getQteDisponivelAlimento(alimento) + " unidades)");
         }
 
         System.out.print("Escolha um alimento: ");
@@ -381,12 +394,11 @@ public class Sistema {
             return;
         }
 
-		int energiaAntes = criatura.getEnergia();
+        int energiaAntes = criatura.getEnergia();
 
         criatura.descansar();
 
         System.out.println(criatura.getNome() + " dormiu. Sua energia antes era " + energiaAntes + " e agora é " + criatura.getEnergia() + ".");
-
 
         avancarTempo();
     }
@@ -399,12 +411,11 @@ public class Sistema {
             return;
         }
 
-		int experienciaAntes = criatura.getExperiencia();
+        int experienciaAntes = criatura.getExperiencia();
         int energiaAntes = criatura.getEnergia();
         int saciedadeAntes = criatura.getSaciedade();
 
         criatura.treinar();
-
 
         System.out.println(criatura.getNome() + " treinou. Sua expêriencia, energia e saciedade, antes eram " + experienciaAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
 
@@ -419,7 +430,7 @@ public class Sistema {
             return;
         }
 
-		int experienciaAntes = criatura.getExperiencia();
+        int experienciaAntes = criatura.getExperiencia();
         int energiaAntes = criatura.getEnergia();
         int saciedadeAntes = criatura.getSaciedade();
         int felicidadeAntes = criatura.getFelicidade();
@@ -451,10 +462,14 @@ public class Sistema {
 
     private void exportarEstatisticas() {
 
-        System.out.print("Digite o caminho do arquivo CSV: ");
+        System.out.print("Digite o caminho do arquivo CSV (0 para voltar): ");
 
         leitor.nextLine();
         String caminho = leitor.nextLine();
+
+        if (caminho.equals("0")) {
+            return;
+        }
 
         Estatistica estatistica
                 = new Estatistica(listaCriaturas, tempo, estoque);
@@ -476,11 +491,14 @@ public class Sistema {
 
     private void importarCriaturas() {
 
-        System.out.print("Digite o caminho do arquivo JSON: ");
+        System.out.print("Digite o caminho do arquivo JSON (0 para voltar): ");
 
         leitor.nextLine();
-
         String caminho = leitor.nextLine();
+
+        if (caminho.equals("0")) {
+            return;
+        }
 
         try {
             List<Criatura> criaturasImportadas = LeitorJSON.carregar(caminho, new ConversorCriaturaJSON());
@@ -497,11 +515,14 @@ public class Sistema {
     }
 
     private void exportarCriaturas() {
-        System.out.print("Digite o caminho do arquivo JSON: ");
+        System.out.print("Digite o caminho do arquivo JSON (0 para voltar): ");
 
         leitor.nextLine();
-
         String caminho = leitor.nextLine();
+
+        if (caminho.equals("0")) {
+            return;
+        }
 
         try {
 

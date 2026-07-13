@@ -22,11 +22,12 @@ public class ListaCriaturas {
         return this.criaturas;
     }
 
-    public void exibeCriaturas() {
+    public void exibirCriaturas() {
         if (criaturas.isEmpty()) {
             System.out.println("Nenhuma criatura cadastrada.");
         } else {
             System.out.println("Criaturas cadastradas:");
+            System.out.println("0. Voltar");
             for (int i = 0; i < criaturas.size(); i++) {
                 Criatura criatura = criaturas.get(i);
                 System.out.println((i + 1) + ". " + criatura.getNome() + " - " + criatura.getEspecie());
