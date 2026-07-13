@@ -44,6 +44,29 @@ public class Sistema {
         this.reposicao = new Reposicao(estoque, listaCriaturas);
     }
 
+    private void exibirMenu() {
+
+        System.out.println("MENU");
+        System.out.println("1. Criar Criatura");
+        System.out.println("2. Remover Criatura");
+        //System.out.println("3. Editar Criatura");
+        System.out.println("4. Exibir Informações da Criatura");
+        System.out.println("5. Exibir Status Completo");
+        System.out.println("6. Exibir Criaturas Cadastrados");
+        System.out.println("7. Alimentar Criatura");
+        System.out.println("8. Brincar com Criatura");
+        System.out.println("9. Colocar Criatura para Dormir");
+        System.out.println("10. Treinar Criatura");
+        System.out.println("11. Participar de Desafio");
+        System.out.println("12. Executar habilidade especial");
+        System.out.println("13. Imprimir estatísticas");
+        System.out.println("14. Exportar estatísticas (CSV)");
+        System.out.println("15. Importar Criaturas (JSON)");
+        System.out.println("16. Exportar Criaturas (JSON)");
+        System.out.println("17. Encerrar Sistema");
+
+    }
+
     public void iniciar() {
 
         while (executando) {
@@ -60,9 +83,6 @@ public class Sistema {
                     criarCriatura();
 
                 case 2 ->
-                    exibirCriaturas();
-
-                case 3 ->
                     removerCriatura();
 
                 case 4 ->
@@ -72,64 +92,45 @@ public class Sistema {
                     exibirStatusCompleto();
 
                 case 6 ->
-                    alimentarCriatura();
+                    exibirCriaturas();
 
                 case 7 ->
-                    brincarCriatura();
+                    alimentarCriatura();
 
                 case 8 ->
-                    dormirCriatura();
+                    brincarCriatura();
 
                 case 9 ->
-                    treinarCriatura();
+                    dormirCriatura();
 
                 case 10 ->
-                    participarDesafio();
+                    treinarCriatura();
 
                 case 11 ->
-                    habilidadeEspecial();
+                    participarDesafio();
 
                 case 12 ->
-                    imprimirEstatisticas();
+                    habilidadeEspecial();
 
                 case 13 ->
-                    exportarEstatisticas();
+                    imprimirEstatisticas();
 
                 case 14 ->
-                    importarCriaturas();
+                    exportarEstatisticas();
 
                 case 15 ->
-                    exportarCriaturas();
+                    importarCriaturas();
 
                 case 16 ->
+                    exportarCriaturas();
+
+                case 17 ->
                     encerrarSistema();
 
                 default ->
                     System.out.println("Opção inválida.");
             }
         }
-    }
-
-    private void exibirMenu() {
-
-        System.out.println("MENU");
-        System.out.println("1. Criar Criatura");
-        System.out.println("2. Exibir Criaturas Cadastrados");
-        System.out.println("3. Remover Criatura");
-        System.out.println("4. Exibir Informações do Criatura");
-        System.out.println("5. Exibir Status Completo");
-        System.out.println("6. Alimentar Criatura");
-        System.out.println("7. Brincar com Criatura");
-        System.out.println("8. Colocar Criatura para Dormir");
-        System.out.println("9. Treinar Criatura");
-        System.out.println("10. Participar de Desafio");
-        System.out.println("11. Executar habilidade especial");
-        System.out.println("12. Imprimir estatísticas");
-        System.out.println("13. Exportar estatísticas (CSV)");
-        System.out.println("14. Importar Criaturas (JSON)");
-        System.out.println("15. Exportar Criaturas (JSON)");
-        System.out.println("16. Encerrar Sistema");
-
     }
 
     private Criatura selecionarCriatura() {
@@ -302,11 +303,6 @@ public class Sistema {
 
     }
 
-    private void exibirCriaturas() {
-
-        listaCriaturas.exibirCriaturas();
-    }
-
     private void removerCriatura() {
 
         Criatura criatura = selecionarCriatura();
@@ -337,6 +333,11 @@ public class Sistema {
 
             criatura.exibirEstadoAtual();
         }
+    }
+
+    private void exibirCriaturas() {
+
+        listaCriaturas.exibirCriaturas();
     }
 
     private void alimentarCriatura() {
