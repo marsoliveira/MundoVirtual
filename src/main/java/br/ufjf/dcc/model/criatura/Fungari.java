@@ -33,7 +33,7 @@ public class Fungari extends Criatura {
     private static final int DESGASTE_SACIEDADE = 2;
     private static final int DESGASTE_FELICIDADE = 2;
 
-	public Fungari(String nome, int idade) {
+    public Fungari(String nome, int idade) {
         super(nome, "Fungari", idade);
     }
 
@@ -99,13 +99,18 @@ public class Fungari extends Criatura {
 
     @Override
     protected void evoluir() {
+        int saciedadeAntes = this.saciedade;
+
         this.saciedade += GANHO_SACIEDADE_EVOLUIR;
+
         this.ultimaAtividade = Atividade.EVOLUIR;
+
+        System.out.println(this.getNome() + " evoluiu. Sua saciedade antes era " + saciedadeAntes + " e agora é " + this.getSaciedade() + ".");
     }
 
     @Override
     public void executarHabilidadeEspecial() {
-        System.out.println(this.especie + " não possuem habilidade especial!");
+        System.out.println(this.especie + " não possui habilidade especial!");
     }
 
     @Override
@@ -122,5 +127,5 @@ public class Fungari extends Criatura {
     protected int desgasteFelicidade() {
         return DESGASTE_FELICIDADE;
     }
-	
+
 }

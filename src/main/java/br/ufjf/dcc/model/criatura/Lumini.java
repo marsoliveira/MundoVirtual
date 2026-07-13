@@ -36,7 +36,7 @@ public class Lumini extends Criatura implements Luminescente {
     private static final int DESGASTE_SACIEDADE = 2;
     private static final int DESGASTE_FELICIDADE = 3;
 
-	public Lumini(String nome, int idade) {
+    public Lumini(String nome, int idade) {
         super(nome, "Lumini", idade);
     }
 
@@ -102,14 +102,20 @@ public class Lumini extends Criatura implements Luminescente {
 
     @Override
     protected void evoluir() {
+        int felicidadeAntes = this.felicidade;
+
         this.felicidade += GANHO_FELICIDADE_EVOLUIR;
+
         this.ultimaAtividade = Atividade.EVOLUIR;
+
+        System.out.println(this.getNome() + " evoluiu. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.getFelicidade() + ".");
     }
 
     @Override
     public void emitirLuz() {
+        int felicidadeAntes = this.felicidade;
         this.felicidade += GANHO_FELICIDADE_EMITIR_LUZ;
-        System.out.println(this.nome + " emitiu luz e sua felicidade agora é " + this.felicidade);
+        System.out.println(this.nome + " emitiu luz. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.felicidade);
     }
 
     @Override

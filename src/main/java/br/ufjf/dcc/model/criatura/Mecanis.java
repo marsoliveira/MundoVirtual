@@ -36,7 +36,7 @@ public class Mecanis extends Criatura implements Mecanico {
     private static final int DESGASTE_SACIEDADE = 5;
     private static final int DESGASTE_FELICIDADE = 1;
 
-	public Mecanis(String nome, int idade) {
+    public Mecanis(String nome, int idade) {
         super(nome, "Mecanis", idade);
     }
 
@@ -102,14 +102,20 @@ public class Mecanis extends Criatura implements Mecanico {
 
     @Override
     protected void evoluir() {
+        int energiaAntes = this.energia;
+
         this.energia += GANHO_ENERGIA_EVOLUIR;
+
         this.ultimaAtividade = Atividade.EVOLUIR;
+
+        System.out.println(this.getNome() + " evoluiu. Sua energia antes era " + energiaAntes + " e agora é " + this.getEnergia() + ".");
     }
 
     @Override
     public void realizarManutencao() {
+        int saudeAntes = this.saude;
         this.saude += GANHO_SAUDE_MANUTENCAO;
-        System.out.println(this.nome + " realizou manutenção e sua saúde agora é " + this.saude);
+        System.out.println(this.nome + " realizou manutenção. Sua saúde antes era " + saudeAntes + " e agora é " + this.saude);
     }
 
     @Override

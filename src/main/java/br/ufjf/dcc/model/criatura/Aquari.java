@@ -103,15 +103,22 @@ public class Aquari extends Criatura implements Aquatico {
 
     @Override
     protected void evoluir() {
+        int energiaAntes = this.energia;
+        int felicidadeAntes = this.felicidade;
+
         this.energia += GANHO_ENERGIA_EVOLUIR;
         this.felicidade += GANHO_FELICIDADE_EVOLUIR;
+
         this.ultimaAtividade = Atividade.EVOLUIR;
+
+        System.out.println(this.getNome() + " evoluiu. Sua energia e felicidade antes eram " + energiaAntes + " e " + felicidadeAntes + ", respectivamente, e agora são " + this.getEnergia() + " e " + this.getFelicidade() + ".");
     }
 
     @Override
     public void mergulhar() {
+        int felicidadeAntes = this.felicidade;
         this.felicidade += GANHO_FELICIDADE_MERGULHAR;
-        System.out.println(this.nome + " mergulhou e sua felicidade agora é " + this.felicidade);
+        System.out.println(this.nome + " mergulhou. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.felicidade);
     }
 
     @Override

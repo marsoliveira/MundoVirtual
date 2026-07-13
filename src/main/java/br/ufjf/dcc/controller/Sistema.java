@@ -343,7 +343,11 @@ public class Sistema {
 
         TipoAlimento alimentoEscolhido = alimentos.get(opcao - 1);
 
+        int saciedadeAntes = criatura.getSaciedade();
+
         criatura.alimentar(alimentoEscolhido, estoque);
+
+        System.out.println(criatura.getNome() + " foi alimentada com " + alimentoEscolhido.getDescricao() + ". Sua saciedade antes era " + saciedadeAntes + " e agora é " + criatura.getSaciedade() + ".");
 
         reposicao.executar();
 
@@ -358,7 +362,13 @@ public class Sistema {
             return;
         }
 
+        int felicidadeAntes = criatura.getFelicidade();
+        int energiaAntes = criatura.getEnergia();
+        int saciedadeAntes = criatura.getSaciedade();
+
         criatura.brincar();
+
+        System.out.println(criatura.getNome() + " brincou. Sua felicidade, energia e saciedade, antes eram " + felicidadeAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getFelicidade() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
 
         avancarTempo();
     }
@@ -371,7 +381,12 @@ public class Sistema {
             return;
         }
 
+		int energiaAntes = criatura.getEnergia();
+
         criatura.descansar();
+
+        System.out.println(criatura.getNome() + " dormiu. Sua energia antes era " + energiaAntes + " e agora é " + criatura.getEnergia() + ".");
+
 
         avancarTempo();
     }
@@ -384,7 +399,14 @@ public class Sistema {
             return;
         }
 
+		int experienciaAntes = criatura.getExperiencia();
+        int energiaAntes = criatura.getEnergia();
+        int saciedadeAntes = criatura.getSaciedade();
+
         criatura.treinar();
+
+
+        System.out.println(criatura.getNome() + " treinou. Sua expêriencia, energia e saciedade, antes eram " + experienciaAntes + ", " + energiaAntes + " e " + saciedadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + " e " + criatura.getSaciedade() + ".");
 
         avancarTempo();
     }
@@ -397,7 +419,14 @@ public class Sistema {
             return;
         }
 
+		int experienciaAntes = criatura.getExperiencia();
+        int energiaAntes = criatura.getEnergia();
+        int saciedadeAntes = criatura.getSaciedade();
+        int felicidadeAntes = criatura.getFelicidade();
+
         criatura.participarDesafio();
+
+        System.out.println(criatura.getNome() + " participou de um desafio. Sua expêriencia, energia, saciedade e felicidade, antes eram " + experienciaAntes + ", " + energiaAntes + ", " + saciedadeAntes + " e " + felicidadeAntes + ", respectivamente, e agora são " + criatura.getExperiencia() + ", " + criatura.getEnergia() + ", " + criatura.getSaciedade() + " e " + criatura.getFelicidade() + ".");
 
         avancarTempo();
     }

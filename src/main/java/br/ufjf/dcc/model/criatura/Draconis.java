@@ -102,14 +102,20 @@ public class Draconis extends Criatura implements Voador {
 
     @Override
     protected void evoluir() {
+        int energiaAntes = this.energia;
+
         this.energia += GANHO_ENERGIA_EVOLUIR;
+
         this.ultimaAtividade = Atividade.EVOLUIR;
+
+        System.out.println(this.getNome() + " evoluiu. Sua energia antes era " + energiaAntes + " e agora é " + this.getEnergia() + ".");
     }
 
     @Override
     public void realizarVoo() {
+        int felicidadeAntes = this.felicidade;
         this.felicidade += GANHO_FELICIDADE_VOAR;
-        System.out.println(this.nome + " voou e sua felicidade agora é " + this.felicidade);
+        System.out.println(this.nome + " voou. Sua felicidade antes era " + felicidadeAntes + " e agora é " + this.felicidade);
     }
 
     @Override
