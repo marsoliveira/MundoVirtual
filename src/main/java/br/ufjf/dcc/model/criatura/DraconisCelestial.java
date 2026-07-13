@@ -11,7 +11,7 @@ public class DraconisCelestial extends Draconis implements Autodidata {
 
     public DraconisCelestial(String nome, int idade) {
         super(nome, idade);
-		this.especie = "Draconis Celestial";
+        this.especie = "Draconis Celestial";
     }
 
     public DraconisCelestial(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
@@ -26,14 +26,37 @@ public class DraconisCelestial extends Draconis implements Autodidata {
 
     @Override
     public void estudar() {
+        int experienciaAntes = this.experiencia;
+
         this.experiencia += GANHO_EXP_ESTUDAR;
-        System.out.println(this.nome + " estudou e sua experiência agora é " + this.experiencia);
+
+        System.out.println(this.nome + " estudou. Sua experiência antes era " + experienciaAntes + " e sua experiência agora é " + this.experiencia);
     }
 
     @Override
     public void executarHabilidadeEspecial() {
         this.realizarVoo();
         this.estudar();
+    }
+
+    public void executarHabilidadeEspecial(int opcao) {
+
+        switch (opcao) {
+
+            case 1 ->
+                realizarVoo();
+
+            case 2 ->
+                estudar();
+
+            case 3 -> {
+                realizarVoo();
+                estudar();
+            }
+
+            default ->
+                System.out.println("Opção inválida.");
+        }
     }
 
 }

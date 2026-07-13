@@ -9,6 +9,7 @@ import br.ufjf.dcc.model.alimento.Estoque;
 import br.ufjf.dcc.model.alimento.Reposicao;
 import br.ufjf.dcc.model.criatura.ConversorCriaturaJSON;
 import br.ufjf.dcc.model.criatura.Criatura;
+import br.ufjf.dcc.model.criatura.DraconisCelestial;
 import br.ufjf.dcc.model.criatura.InsereCriaturas;
 import br.ufjf.dcc.model.criatura.ListaCriaturas;
 import br.ufjf.dcc.model.enums.TipoAlimento;
@@ -450,7 +451,21 @@ public class Sistema {
             return;
         }
 
-        criatura.executarHabilidadeEspecial();
+        if (criatura instanceof DraconisCelestial draconisCelestial) {
+
+            System.out.println("Escolha a habilidade:");
+            System.out.println("1. Realizar voo");
+            System.out.println("2. Estudar");
+            System.out.println("3. Ambas");
+
+            int opcao = leitor.nextInt();
+
+            draconisCelestial.executarHabilidadeEspecial(opcao);
+
+        } else {
+
+            criatura.executarHabilidadeEspecial();
+        }
 
         avancarTempo();
     }
