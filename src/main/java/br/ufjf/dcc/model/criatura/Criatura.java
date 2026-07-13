@@ -69,7 +69,9 @@ public abstract class Criatura {
 
     private static final int MAX_EXPERIENCIA = 100;
 
-    private static final int LIM_MIN_ATRIBUTO = 0;
+    private static final int LIM_MIN_NIVEL_EXP = 0;
+    private static final int LIM_MAX_NIVEL_EXP = 99;
+    private static final int LIM_MIN_ATRIBUTO = 1;
     private static final int LIM_MAX_ATRIBUTO = 99;
 
     public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
@@ -151,7 +153,7 @@ public abstract class Criatura {
 
     private int validarAtributo(int valor, String nomeAtributo) {
 
-        if (valor < 1 || valor > 99) {
+        if (valor < LIM_MIN_ATRIBUTO || valor > LIM_MAX_ATRIBUTO) {
             throw new IllegalArgumentException(nomeAtributo + " deve estar entre 1 e 99.");
         }
 
@@ -160,7 +162,7 @@ public abstract class Criatura {
 
     private int validarNivelExperiencia(int valor, String nomeAtributo) {
 
-        if (valor < 0 || valor > 99) {
+        if (valor < LIM_MIN_NIVEL_EXP || valor > LIM_MAX_NIVEL_EXP) {
             throw new IllegalArgumentException(nomeAtributo + " deve estar entre 0 e 99.");
         }
 

@@ -2,6 +2,7 @@ package br.ufjf.dcc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -176,6 +177,7 @@ public class Sistema {
         System.out.println("6. Mecanis");
 
         int opcao = leitor.nextInt();
+        leitor.nextLine();
 
         if (opcao == 0) {
             return null;
@@ -231,6 +233,10 @@ public class Sistema {
 
                     String especie = lerEspecie();
 
+                    if (especie == null) {
+                        return;
+                    }
+
                     criatura = InsereCriaturas.criar(especie, nome, idade);
                 }
 
@@ -244,7 +250,9 @@ public class Sistema {
 
                     String especie = lerEspecie();
 
-                    leitor.nextLine();
+                    if (especie == null) {
+                        return;
+                    }
 
                     System.out.println("Nível: ");
                     int nivel = leitor.nextInt();
@@ -283,8 +291,13 @@ public class Sistema {
             System.out.println("Criatura criada com sucesso.");
 
         } catch (IllegalArgumentException e) {
-
             System.out.println(e.getMessage());
+
+        } catch (InputMismatchException e) {
+
+            System.out.println("Valor inválido. Digite apenas números.");
+
+            leitor.nextLine();
         }
 
     }
