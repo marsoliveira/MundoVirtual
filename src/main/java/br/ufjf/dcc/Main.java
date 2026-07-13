@@ -10,7 +10,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ListaCriaturas listaCriaturas = new ListaCriaturas("src/main/resources/criaturas.json");
+        //ListaCriaturas listaCriaturas = new ListaCriaturas("src/main/resources/criaturas.json");
+
+		ListaCriaturas listaCriaturas = new ListaCriaturas();
 
         Estoque estoque = new Estoque("src/main/resources/alimentos.csv");
 
