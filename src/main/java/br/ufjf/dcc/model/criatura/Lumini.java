@@ -36,6 +36,10 @@ public class Lumini extends Criatura implements Luminescente {
     private static final int DESGASTE_SACIEDADE = 2;
     private static final int DESGASTE_FELICIDADE = 3;
 
+	public Lumini(String nome, int idade) {
+        super(nome, "Lumini", idade);
+    }
+
     public Lumini(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Lumini", idade, nivel, experiencia, energia, saciedade, felicidade);
     }

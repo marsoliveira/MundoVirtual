@@ -36,6 +36,10 @@ public class Draconis extends Criatura implements Voador {
     private static final int DESGASTE_SACIEDADE = 4;
     private static final int DESGASTE_FELICIDADE = 2;
 
+    public Draconis(String nome, int idade) {
+        super(nome, "Draconis", idade);
+    }
+
     public Draconis(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Draconis", idade, nivel, experiencia, energia, saciedade, felicidade);
     }
@@ -127,5 +131,5 @@ public class Draconis extends Criatura implements Voador {
     protected int desgasteFelicidade() {
         return DESGASTE_FELICIDADE;
     }
-	
+
 }

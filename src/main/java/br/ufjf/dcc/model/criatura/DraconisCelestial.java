@@ -7,14 +7,19 @@ import br.ufjf.dcc.model.enums.TipoAlimento;
 
 public class DraconisCelestial extends Draconis implements Autodidata {
 
-	private static final int GANHO_EXP_ESTUDAR = 30;
+    private static final int GANHO_EXP_ESTUDAR = 30;
+
+    public DraconisCelestial(String nome, int idade) {
+        super(nome, idade);
+		this.especie = "Draconis Celestial";
+    }
 
     public DraconisCelestial(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, idade, nivel, experiencia, energia, saciedade, felicidade);
         this.especie = "Draconis Celestial";
     }
 
-	@Override
+    @Override
     public Set<TipoAlimento> getAlimentosCompativeis() {
         return Set.of(TipoAlimento.FOTONS, TipoAlimento.CARNE, TipoAlimento.BANQUETE_REAL);
     }
@@ -25,10 +30,10 @@ public class DraconisCelestial extends Draconis implements Autodidata {
         System.out.println(this.nome + " estudou e sua experiência agora é " + this.experiencia);
     }
 
-	@Override
-	public void executarHabilidadeEspecial() {
-		this.realizarVoo();
-		this.estudar();
-	}
+    @Override
+    public void executarHabilidadeEspecial() {
+        this.realizarVoo();
+        this.estudar();
+    }
 
 }

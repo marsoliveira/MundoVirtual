@@ -27,15 +27,19 @@ public class Aquari extends Criatura implements Aquatico {
     private static final int CONSUMO_ENERGIA_DESAFIAR = 20;
     private static final int CONSUMO_SACIEDADE_DESAFIAR = 20;
     private static final int GANHO_FELICIDADE_DESAFIAR = 10;
-	
-	private static final int GANHO_ENERGIA_EVOLUIR = 1;
+
+    private static final int GANHO_ENERGIA_EVOLUIR = 1;
     private static final int GANHO_FELICIDADE_EVOLUIR = 1;
 
     private static final int GANHO_FELICIDADE_MERGULHAR = 10;
 
-	private static final int DESGASTE_ENERGIA = 4;
-	private static final int DESGASTE_SACIEDADE = 3;
-	private static final int DESGASTE_FELICIDADE = 2;
+    private static final int DESGASTE_ENERGIA = 4;
+    private static final int DESGASTE_SACIEDADE = 3;
+    private static final int DESGASTE_FELICIDADE = 2;
+
+    public Aquari(String nome, int idade) {
+        super(nome, "Aquari", idade);
+    }
 
     public Aquari(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Aquari", idade, nivel, experiencia, energia, saciedade, felicidade);

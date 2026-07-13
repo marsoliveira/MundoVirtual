@@ -36,6 +36,10 @@ public class Mecanis extends Criatura implements Mecanico {
     private static final int DESGASTE_SACIEDADE = 5;
     private static final int DESGASTE_FELICIDADE = 1;
 
+	public Mecanis(String nome, int idade) {
+        super(nome, "Mecanis", idade);
+    }
+
     public Mecanis(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Mecanis", idade, nivel, experiencia, energia, saciedade, felicidade);
     }

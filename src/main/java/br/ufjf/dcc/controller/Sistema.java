@@ -160,12 +160,7 @@ public class Sistema {
         tempo.registrarAtividade(listaCriaturas.getCriaturas());
     }
 
-    private void criarCriatura() {
-
-        leitor.nextLine();
-
-        System.out.println("Nome: ");
-        String nome = leitor.nextLine();
+    private String lerEspecie() {
 
         System.out.println("Escolha a espécie: ");
         System.out.println("1 - Aquari");
@@ -177,64 +172,97 @@ public class Sistema {
 
         int opcao = leitor.nextInt();
 
-        String especie;
-
-        switch (opcao) {
+        return switch (opcao) {
 
             case 1 ->
-                especie = "Aquari";
-
+                "Aquari";
             case 2 ->
-                especie = "Draconis";
-
+                "Draconis";
             case 3 ->
-                especie = "DraconisCelestial";
-
+                "DraconisCelestial";
             case 4 ->
-                especie = "Fungari";
-
+                "Fungari";
             case 5 ->
-                especie = "Lumini";
-
+                "Lumini";
             case 6 ->
-                especie = "Mecanis";
+                "Mecanis";
 
-            default -> {
-                System.out.println("Espécie inválida.");
-                return;
-            }
-        }
+            default ->
+                throw new IllegalArgumentException("Espécie inválida.");
+        };
+    }
 
-        System.out.println("Idade: ");
-        int idade = leitor.nextInt();
+    private void criarCriatura() {
 
-        System.out.println("Nível: ");
-        int nivel = leitor.nextInt();
+        System.out.println("Como deseja criar a criatura?");
+        System.out.println("1 - Criatura com atributos pré-definidos");
+        System.out.println("2 - Informar atributos");
 
-        System.out.println("Experiência: ");
-        int experiencia = leitor.nextInt();
+        int tipoCriacao = leitor.nextInt();
 
-        System.out.println("Energia: ");
-        int energia = leitor.nextInt();
-
-        System.out.println("Saciedade: ");
-        int saciedade = leitor.nextInt();
-
-        System.out.println("Felicidade: ");
-        int felicidade = leitor.nextInt();
+        leitor.nextLine();
 
         try {
 
-            Criatura criatura = InsereCriaturas.criar(
-                    especie,
-                    nome,
-                    idade,
-                    nivel,
-                    experiencia,
-                    energia,
-                    saciedade,
-                    felicidade
-            );
+            Criatura criatura;
+
+            switch (tipoCriacao) {
+                case 1 -> {
+
+                    System.out.println("Nome: ");
+                    String nome = leitor.nextLine();
+
+                    System.out.println("Idade: ");
+                    int idade = leitor.nextInt();
+
+                    String especie = lerEspecie();
+
+                    criatura = InsereCriaturas.criar(especie, nome, idade);
+                }
+
+                case 2 -> {
+
+                    System.out.println("Nome: ");
+                    String nome = leitor.nextLine();
+
+                    System.out.println("Idade: ");
+                    int idade = leitor.nextInt();
+
+                    String especie = lerEspecie();
+
+                    leitor.nextLine();
+
+                    System.out.println("Nível: ");
+                    int nivel = leitor.nextInt();
+
+                    System.out.println("Experiência: ");
+                    int experiencia = leitor.nextInt();
+
+                    System.out.println("Energia: ");
+                    int energia = leitor.nextInt();
+
+                    System.out.println("Saciedade: ");
+                    int saciedade = leitor.nextInt();
+
+                    System.out.println("Felicidade: ");
+                    int felicidade = leitor.nextInt();
+
+                    criatura = InsereCriaturas.criar(
+                            especie,
+                            nome,
+                            idade,
+                            nivel,
+                            experiencia,
+                            energia,
+                            saciedade,
+                            felicidade
+                    );
+                }
+                default -> {
+                    System.out.println("Opção inválida.");
+                    return;
+                }
+            }
 
             listaCriaturas.criarCriatura(criatura);
 
@@ -244,6 +272,7 @@ public class Sistema {
 
             System.out.println(e.getMessage());
         }
+
     }
 
     private void exibirCriaturas() {

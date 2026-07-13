@@ -26,6 +26,12 @@ public abstract class Criatura {
     protected Atividade ultimaAtividade;
     protected Set<Integer> desafiosParticipados;
 
+    private static final int NIVEL_INICIAL = 0;
+    private static final int EXPERIENCIA_INICIAL = 0;
+    private static final int ENERGIA_INICIAL = 100;
+    private static final int SACIEDADE_INICIAL = 100;
+    private static final int FELICIDADE_INICIAL = 1;
+
     private static final int ESTADO_SAUDE_MORTA = 0;
     private static final int ESTADO_SAUDE_DOENTE = 40;
     private static final int ESTADO_SAUDE_ATENCAO = 70;
@@ -63,6 +69,9 @@ public abstract class Criatura {
 
     private static final int MAX_EXPERIENCIA = 100;
 
+    private static final int LIM_MIN_ATRIBUTO = 0;
+    private static final int LIM_MAX_ATRIBUTO = 99;
+
     public Criatura(String nome, String especie, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         this.nome = nome;
         this.especie = especie;
@@ -75,6 +84,17 @@ public abstract class Criatura {
         this.vivo = true;
         this.atualizarSaude();
         this.desafiosParticipados = new HashSet<>();
+    }
+
+    public Criatura(String nome, String especie, int idade) {
+        this.nome = nome;
+        this.especie = especie;
+        this.idade = idade;
+        this.nivel = NIVEL_INICIAL;
+        this.experiencia = EXPERIENCIA_INICIAL;
+        this.energia = ENERGIA_INICIAL;
+        this.saciedade = SACIEDADE_INICIAL;
+        this.felicidade = FELICIDADE_INICIAL;
     }
 
     public void setNome(String nome) {
@@ -268,7 +288,7 @@ public abstract class Criatura {
     }
 
     private int limitarAtributo(int valor) {
-        return Math.max(0, Math.min(valor, 100));
+        return Math.max(LIM_MIN_ATRIBUTO, Math.min(valor, LIM_MAX_ATRIBUTO));
     }
 
     protected void consumirEnergia(int valorBase) {

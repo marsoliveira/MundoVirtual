@@ -33,6 +33,10 @@ public class Fungari extends Criatura {
     private static final int DESGASTE_SACIEDADE = 2;
     private static final int DESGASTE_FELICIDADE = 2;
 
+	public Fungari(String nome, int idade) {
+        super(nome, "Fungari", idade);
+    }
+
     public Fungari(String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
         super(nome, "Fungari", idade, nivel, experiencia, energia, saciedade, felicidade);
     }
