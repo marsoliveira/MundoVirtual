@@ -49,7 +49,7 @@ public class Sistema {
         System.out.println("MENU");
         System.out.println("1. Criar Criatura");
         System.out.println("2. Remover Criatura");
-        //System.out.println("3. Editar Criatura");
+        System.out.println("3. Editar Criatura");
         System.out.println("4. Exibir Informações da Criatura");
         System.out.println("5. Exibir Status Completo");
         System.out.println("6. Exibir Criaturas Cadastrados");
@@ -84,6 +84,9 @@ public class Sistema {
 
                 case 2 ->
                     removerCriatura();
+
+                case 3 ->
+                    editarCriatura();
 
                 case 4 ->
                     exibirInfosCriatura();
@@ -166,6 +169,19 @@ public class Sistema {
         tempo.registrarAtividade(listaCriaturas.getCriaturas());
     }
 
+    private int lerInteiro(String mensagem) {
+        System.out.print(mensagem);
+        int valor = leitor.nextInt();
+        leitor.nextLine();
+
+        return valor;
+    }
+
+    private String lerTexto(String mensagem) {
+        System.out.print(mensagem);
+        return leitor.nextLine();
+    }
+
     private String lerEspecie() {
 
         System.out.println("Escolha a espécie: ");
@@ -226,12 +242,8 @@ public class Sistema {
             switch (opcao) {
                 case 1 -> {
 
-                    System.out.println("Nome: ");
-                    String nome = leitor.nextLine();
-
-                    System.out.println("Idade: ");
-                    int idade = leitor.nextInt();
-
+                    String nome = lerTexto("Nome: ");
+                    int idade = lerInteiro("Idade: ");
                     String especie = lerEspecie();
 
                     if (especie == null) {
@@ -243,11 +255,8 @@ public class Sistema {
 
                 case 2 -> {
 
-                    System.out.println("Nome: ");
-                    String nome = leitor.nextLine();
-
-                    System.out.println("Idade: ");
-                    int idade = leitor.nextInt();
+                    String nome = lerTexto("Nome: ");
+                    int idade = lerInteiro("Idade: ");
 
                     String especie = lerEspecie();
 
@@ -255,20 +264,11 @@ public class Sistema {
                         return;
                     }
 
-                    System.out.println("Nível: ");
-                    int nivel = leitor.nextInt();
-
-                    System.out.println("Experiência: ");
-                    int experiencia = leitor.nextInt();
-
-                    System.out.println("Energia: ");
-                    int energia = leitor.nextInt();
-
-                    System.out.println("Saciedade: ");
-                    int saciedade = leitor.nextInt();
-
-                    System.out.println("Felicidade: ");
-                    int felicidade = leitor.nextInt();
+                    int nivel = lerInteiro("Nível: ");
+                    int experiencia = lerInteiro("Experiência: ");
+                    int energia = lerInteiro("Energia: ");
+                    int saciedade = lerInteiro("Saciedade: ");
+                    int felicidade = lerInteiro("Felicidade: ");
 
                     criatura = InsereCriaturas.criar(
                             especie,
@@ -313,6 +313,61 @@ public class Sistema {
 
             System.out.println("Criatura removida.");
         }
+    }
+
+    private void editarCriatura() {
+        Criatura criatura = selecionarCriatura();
+        if (criatura == null) {
+            return;
+        }
+        System.out.println("Escolha o atributo a ser editado:");
+        System.out.println("1. Nome");
+        System.out.println("2. Idade");
+        System.out.println("3. Nível");
+        System.out.println("4. Experiência");
+        System.out.println("5. Energia");
+        System.out.println("6. Saciedade");
+        System.out.println("7. Felicidade");
+        System.out.println("8. Todos os atributos");
+        int opcao = leitor.nextInt();
+        leitor.nextLine();
+        switch (opcao) {
+            case 1 ->
+                criatura.setNome(lerTexto("Nome: "));
+
+            case 2 ->
+                criatura.setIdade(lerInteiro("Idade: "));
+
+            case 3 ->
+                criatura.setNivel(lerInteiro("Nível: "));
+
+            case 4 ->
+                criatura.setExperiencia(lerInteiro("Experiência: "));
+
+            case 5 ->
+                criatura.setEnergia(lerInteiro("Energia: "));
+
+            case 6 ->
+                criatura.setSaciedade(lerInteiro("Saciedade: "));
+
+            case 7 ->
+                criatura.setFelicidade(lerInteiro("Felicidade: "));
+
+            case 8 -> {
+
+                criatura.setNome(lerTexto("Nome: "));
+                criatura.setIdade(lerInteiro("Idade: "));
+                criatura.setNivel(lerInteiro("Nível: "));
+                criatura.setExperiencia(lerInteiro("Experiência: "));
+                criatura.setEnergia(lerInteiro("Energia: "));
+                criatura.setSaciedade(lerInteiro("Saciedade: "));
+                criatura.setFelicidade(lerInteiro("Felicidade: "));
+            }
+
+            default ->
+                System.out.println("Opção inválida.");
+        }
+        System.out.println("Atributo atualizado com sucesso.");
     }
 
     private void exibirInfosCriatura() {
