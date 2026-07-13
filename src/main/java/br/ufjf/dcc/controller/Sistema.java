@@ -24,16 +24,13 @@ import br.ufjf.dcc.util.json.LeitorJSON;
 public class Sistema {
 
     private Scanner leitor;
-
     private boolean executando;
-
     private ListaCriaturas listaCriaturas;
     private PassagemTempo tempo;
     private Estoque estoque;
     private Reposicao reposicao;
 
     public Sistema(ListaCriaturas listaCriaturas, Estoque estoque) {
-
         this.leitor = new Scanner(System.in);
 
         this.executando = true;
@@ -45,7 +42,6 @@ public class Sistema {
     }
 
     private void exibirMenu() {
-
         System.out.println("MENU");
         System.out.println("1. Criar Criatura");
         System.out.println("2. Remover Criatura");
@@ -64,11 +60,9 @@ public class Sistema {
         System.out.println("15. Importar Criaturas (JSON)");
         System.out.println("16. Exportar Criaturas (JSON)");
         System.out.println("17. Encerrar Sistema");
-
     }
 
     public void iniciar() {
-
         while (executando) {
 
             exibirMenu();
@@ -135,7 +129,6 @@ public class Sistema {
     }
 
     private Criatura selecionarCriatura() {
-
         if (listaCriaturas.getQteTotalCriaturas() == 0) {
 
             System.out.println("Nenhuma criatura cadastrada.");
@@ -162,12 +155,10 @@ public class Sistema {
     }
 
     private void avancarTempo() {
-
         tempo.registrarAtividade(listaCriaturas.getCriaturas());
     }
 
     private int lerInteiro(String mensagem) {
-
         while (true) {
 
             try {
@@ -188,7 +179,6 @@ public class Sistema {
     }
 
     private String lerTexto(String mensagem) {
-
         String texto;
 
         do {
@@ -207,7 +197,6 @@ public class Sistema {
     }
 
     private String lerEspecie() {
-
         while (true) {
 
             System.out.println("Escolha a espécie: ");
@@ -258,7 +247,6 @@ public class Sistema {
     }
 
     private void criarCriatura() {
-
         System.out.println("Como deseja criar a criatura?");
         System.out.println("0. Voltar");
         System.out.println("1. Criatura com atributos pré-definidos");
@@ -323,11 +311,9 @@ public class Sistema {
             System.out.println(e.getMessage());
 
         }
-
     }
 
     private void removerCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -339,7 +325,6 @@ public class Sistema {
     }
 
     private void editarCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -412,11 +397,9 @@ public class Sistema {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     private void exibirInfosCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -426,7 +409,6 @@ public class Sistema {
     }
 
     private void exibirStatusCompleto() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -436,12 +418,10 @@ public class Sistema {
     }
 
     private void exibirCriaturas() {
-
         listaCriaturas.exibirCriaturas();
     }
 
     private void alimentarCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -484,11 +464,9 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void brincarCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -515,11 +493,9 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void dormirCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -537,11 +513,9 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void treinarCriatura() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -561,11 +535,9 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void participarDesafio() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -586,11 +558,9 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void habilidadeEspecial() {
-
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
@@ -619,7 +589,6 @@ public class Sistema {
 
             }
         }
-
     }
 
     private void imprimirEstatisticas() {
@@ -628,7 +597,6 @@ public class Sistema {
     }
 
     private void exportarEstatisticas() {
-
         String caminho = lerTexto("Digite o caminho do arquivo CSV (0 para voltar): ");
 
         if (caminho.equals("0")) {
@@ -654,7 +622,6 @@ public class Sistema {
     }
 
     private void importarCriaturas() {
-
         String caminho = lerTexto("Digite o caminho do arquivo JSON (0 para voltar): ");
 
         if (caminho.equals("0")) {
@@ -695,7 +662,6 @@ public class Sistema {
     }
 
     private void encerrarSistema() {
-
         System.out.println("Encerrando sistema...");
 
         executando = false;

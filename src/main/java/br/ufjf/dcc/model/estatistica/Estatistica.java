@@ -48,7 +48,6 @@ public class Estatistica {
     }
 
     public Map<String, Integer> getQtePorEspecie() {
-
         Map<String, Integer> quantidades = new HashMap<>();
 
         for (Criatura criatura : listaCriaturas.getCriaturas()) {
@@ -62,7 +61,6 @@ public class Estatistica {
     }
 
     public Map<TipoAlimento, Integer> getEstoqueAlimentos() {
-
         Map<TipoAlimento, Integer> alimentos = new HashMap<>();
 
         for (TipoAlimento tipo : TipoAlimento.values()) {
@@ -74,7 +72,6 @@ public class Estatistica {
     }
 
     public void imprimirEstatisticas() {
-
         System.out.println("ESTATÍSTICAS");
 
         System.out.println("Turno atual: " + getTurnoAtual());
@@ -107,7 +104,6 @@ public class Estatistica {
     }
 
     public List<DadoEstatistico> gerarLinhasCSV() {
-
         List<DadoEstatistico> dados = new ArrayList<>();
 
         dados.add(new DadoEstatistico("Turno atual", String.valueOf(getTurnoAtual())));

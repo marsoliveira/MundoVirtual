@@ -3,7 +3,6 @@ package br.ufjf.dcc.model.criatura;
 public class InsereCriaturas {
 
     public static Criatura criar(String especie, String nome, int idade, int nivel, int experiencia, int energia, int saciedade, int felicidade) {
-
         return switch (especie) {
 
             case "Aquari" ->
@@ -29,8 +28,7 @@ public class InsereCriaturas {
         };
     }
 
-	public static Criatura criar(String especie, String nome, int idade) {
-
+    public static Criatura criar(String especie, String nome, int idade) {
         return switch (especie) {
 
             case "Aquari" ->

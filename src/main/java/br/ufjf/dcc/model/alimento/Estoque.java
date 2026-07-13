@@ -24,7 +24,6 @@ public class Estoque {
     }
 
     public Alimento buscarAlimento(TipoAlimento tipo) {
-
         for (Alimento alimento : alimentos) {
 
             if (alimento.getTipo() == tipo) {
@@ -36,21 +35,18 @@ public class Estoque {
     }
 
     public boolean possui(TipoAlimento tipoAlimento) {
-
         Alimento alimento = buscarAlimento(tipoAlimento);
 
         return alimento != null && alimento.getQuantidade() > 0;
     }
 
     public void consumir(TipoAlimento tipoAlimento) {
-
         Alimento alimento = buscarAlimento(tipoAlimento);
 
         alimento.consumir(1);
     }
 
     public void adicionar(TipoAlimento tipo, int quantidade) {
-
         Alimento alimento = buscarAlimento(tipo);
 
         if (alimento != null) {
@@ -59,7 +55,6 @@ public class Estoque {
     }
 
     public int getQteDisponivelAlimento(TipoAlimento tipo) {
-
         Alimento alimento = buscarAlimento(tipo);
 
         if (alimento == null) {

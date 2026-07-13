@@ -33,7 +33,6 @@ public class Reposicao {
     }
 
     private void verificarEspecie(Class<? extends Criatura> especie) {
-
         List<Criatura> criaturas = listaCriaturas.getCriaturasPorEspecie(especie);
 
         int quantidadeCriaturas = criaturas.size();
@@ -58,7 +57,6 @@ public class Reposicao {
     }
 
     private void repor(Set<TipoAlimento> alimentos) {
-
         int quantidade = 10 / alimentos.size();
         int resto = 10 % alimentos.size();
 

@@ -55,6 +55,7 @@ public class Fungari extends Criatura {
         this.ganharExperienciaModificador(GANHO_EXP_TREINAR);
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_TREINAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_TREINAR);
+
         this.ultimaAtividade = Atividade.TREINAR;
     }
 
@@ -68,13 +69,12 @@ public class Fungari extends Criatura {
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_EXPLORAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_EXPLORAR);
         this.ganharFelicidadeModificador(GANHO_FELICIDADE_EXPLORAR);
-        this.ultimaAtividade = Atividade.EXPLORAR;
 
+        this.ultimaAtividade = Atividade.EXPLORAR;
     }
 
     @Override
     public void brincar() {
-
         if (!this.podeBrincar()) {
             throw new IllegalStateException("A criatura não pode brincar agora.");
         }
@@ -82,6 +82,7 @@ public class Fungari extends Criatura {
         this.ganharFelicidadeModificador(GANHO_FELICIDADE_BRINCAR);
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_BRINCAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_BRINCAR);
+
         this.ultimaAtividade = Atividade.BRINCAR;
     }
 
@@ -90,7 +91,9 @@ public class Fungari extends Criatura {
         if (!this.podeDescansar()) {
             throw new IllegalStateException("A criatura não pode descansar agora.");
         }
+
         this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
+
         this.ultimaAtividade = Atividade.DESCANSAR;
     }
 
@@ -99,11 +102,14 @@ public class Fungari extends Criatura {
         if (!this.podeParticiparDesafio()) {
             throw new IllegalStateException("A criatura não pode participar de um desafio agora.");
         }
+		
         this.ganharExperienciaModificador(GANHO_EXP_DESAFIAR);
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_DESAFIAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_DESAFIAR);
         this.ganharFelicidadeModificador(GANHO_FELICIDADE_DESAFIAR);
+
         this.desafiosParticipados.add(nivel);
+
         this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
     }
 

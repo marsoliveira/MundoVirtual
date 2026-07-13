@@ -40,7 +40,6 @@ public class DraconisCelestial extends Draconis implements Autodidata {
     }
 
     public void executarHabilidadeEspecial(int opcao) {
-
         switch (opcao) {
 
             case 1 ->

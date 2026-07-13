@@ -60,7 +60,6 @@ public class ListaCriaturas {
     }
 
     public List<Criatura> getCriaturasPorEspecie(Class<? extends Criatura> especie) {
-
         List<Criatura> criaturasPorEspecie = new ArrayList<>();
 
         for (Criatura criatura : criaturas) {
@@ -74,7 +73,6 @@ public class ListaCriaturas {
     }
 
     public Criatura getCriaturaMaiorNivel() {
-
         if (criaturas.isEmpty()) {
             return null;
         }
@@ -95,7 +93,6 @@ public class ListaCriaturas {
     }
 
     public Criatura getCriaturaMenorNivel() {
-
         if (criaturas.isEmpty()) {
             return null;
         }

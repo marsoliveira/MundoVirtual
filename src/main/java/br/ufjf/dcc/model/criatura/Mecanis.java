@@ -54,9 +54,11 @@ public class Mecanis extends Criatura implements Mecanico {
         if (!this.podeTreinar()) {
             throw new IllegalStateException("A criatura não pode treinar agora.");
         }
+
         this.ganharExperienciaModificador(GANHO_EXP_TREINAR);
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_TREINAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_TREINAR);
+
         this.ultimaAtividade = Atividade.TREINAR;
     }
 
@@ -69,6 +71,7 @@ public class Mecanis extends Criatura implements Mecanico {
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_EXPLORAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_EXPLORAR);
         this.consumirFelicidadeModificador(CONSUMO_FELICIDADE_EXPLORAR);
+
         this.ultimaAtividade = Atividade.EXPLORAR;
     }
 
@@ -82,6 +85,7 @@ public class Mecanis extends Criatura implements Mecanico {
         this.ganharFelicidadeModificador(GANHO_FELICIDADE_BRINCAR);
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_BRINCAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_BRINCAR);
+
         this.ultimaAtividade = Atividade.BRINCAR;
     }
 
@@ -90,9 +94,10 @@ public class Mecanis extends Criatura implements Mecanico {
         if (!this.podeDescansar()) {
             throw new IllegalStateException("A criatura não pode descansar agora.");
         }
-        this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
-        this.ultimaAtividade = Atividade.DESCANSAR;
 
+        this.ganharEnergiaModificador(GANHO_ENERGIA_DESCANSAR);
+
+        this.ultimaAtividade = Atividade.DESCANSAR;
     }
 
     @Override
@@ -104,7 +109,9 @@ public class Mecanis extends Criatura implements Mecanico {
         this.consumirEnergiaModificador(CONSUMO_ENERGIA_DESAFIAR);
         this.consumirSaciedadeModificador(CONSUMO_SACIEDADE_DESAFIAR);
         this.consumirFelicidadeModificador(CONSUMO_FELICIDADE_DESAFIAR);
+
         this.desafiosParticipados.add(nivel);
+
         this.ultimaAtividade = Atividade.PARTICIPAR_DESAFIO;
     }
 
@@ -122,7 +129,9 @@ public class Mecanis extends Criatura implements Mecanico {
     @Override
     public void realizarManutencao() {
         int saudeAntes = this.saude;
+
         this.ganharSaude(GANHO_SAUDE_MANUTENCAO);
+		
         System.out.println(this.nome + " realizou manutenção. Sua saúde antes era " + saudeAntes + " e agora é " + this.saude);
     }
 

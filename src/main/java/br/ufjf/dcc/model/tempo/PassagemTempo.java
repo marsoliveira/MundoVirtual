@@ -23,7 +23,6 @@ public class PassagemTempo {
     }
 
     public void registrarAtividade(List<Criatura> criaturas) {
-
         this.unidadesTempo++;
 
         if (this.unidadesTempo == 5) {

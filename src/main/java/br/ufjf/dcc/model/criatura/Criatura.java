@@ -78,13 +78,16 @@ public abstract class Criatura {
         this.nome = nome;
         this.especie = especie;
         this.idade = idade;
+
         this.nivel = validarNivelExperiencia(nivel, "Nível");
         this.experiencia = validarNivelExperiencia(experiencia, "Experiência");
         this.energia = validarAtributo(energia, "Energia");
         this.saciedade = validarAtributo(saciedade, "Saciedade");
         this.felicidade = validarAtributo(felicidade, "Felicidade");
+
         this.vivo = true;
         this.atualizarSaude();
+
         this.desafiosParticipados = new HashSet<>();
     }
 
@@ -92,13 +95,16 @@ public abstract class Criatura {
         this.nome = nome;
         this.especie = especie;
         this.idade = idade;
+
         this.nivel = NIVEL_INICIAL;
         this.experiencia = EXPERIENCIA_INICIAL;
         this.energia = ENERGIA_INICIAL;
         this.saciedade = SACIEDADE_INICIAL;
         this.felicidade = FELICIDADE_INICIAL;
+
         this.vivo = true;
         this.atualizarSaude();
+		
         this.desafiosParticipados = new HashSet<>();
     }
 
@@ -176,7 +182,6 @@ public abstract class Criatura {
     }
 
     private int validarAtributo(int valor, String nomeAtributo) {
-
         if (valor < LIM_MIN_ATRIBUTO || valor > LIM_MAX_ATRIBUTO) {
             throw new IllegalArgumentException(nomeAtributo + " deve estar entre 1 e 99.");
         }
@@ -185,7 +190,6 @@ public abstract class Criatura {
     }
 
     private int validarNivelExperiencia(int valor, String nomeAtributo) {
-
         if (valor < LIM_MIN_NIVEL_EXP || valor > LIM_MAX_NIVEL_EXP) {
             throw new IllegalArgumentException(nomeAtributo + " deve estar entre 0 e 99.");
         }
@@ -207,7 +211,6 @@ public abstract class Criatura {
     }
 
     public EstadoSaude getEstadoSaude() {
-
         if (this.saude == ESTADO_SAUDE_MORTA) {
             return EstadoSaude.MORTA;
         }
@@ -224,7 +227,6 @@ public abstract class Criatura {
     }
 
     public EstadoEnergia getEstadoEnergia() {
-
         if (this.energia < ESTADO_ENERGIA_CANSADA) {
             return EstadoEnergia.CANSADA;
         }
@@ -233,7 +235,6 @@ public abstract class Criatura {
     }
 
     public EstadoSaciedade getEstadoSaciedade() {
-
         if (this.saciedade < ESTADO_SACIEDADE_FAMINTA) {
             return EstadoSaciedade.FAMINTA;
         }
@@ -242,7 +243,6 @@ public abstract class Criatura {
     }
 
     public EstadoFelicidade getEstadoFelicidade() {
-
         if (this.felicidade < ESTADO_FELICIDADE_TRISTE) {
             return EstadoFelicidade.TRISTE;
         }
@@ -259,7 +259,6 @@ public abstract class Criatura {
     }
 
     private void atualizarSaude() {
-
         if (this.energia < LIM_MIN_ATRIBUTO || this.saciedade < LIM_MIN_ATRIBUTO || this.felicidade < LIM_MIN_ATRIBUTO) {
             this.saude = ESTADO_SAUDE_MORTA;
             this.vivo = false;
@@ -299,7 +298,6 @@ public abstract class Criatura {
     }
 
     public void alimentar(TipoAlimento tipoAlimento, Estoque estoque) {
-
         if (!podeAlimentar(tipoAlimento)) {
             throw new IllegalStateException("A criatura não pode comer esse alimento.");
         }
