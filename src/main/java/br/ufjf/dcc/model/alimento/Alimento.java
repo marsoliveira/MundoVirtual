@@ -35,10 +35,4 @@ public class Alimento {
             System.out.println("Quantidade insuficiente de " + tipo.getDescricao() + " no estoque.");
         }
     }
-
-    @Override
-    public String toString() {
-        return tipo.getDescricao() + " (" + quantidade + ")";
-    }
-
 }
