@@ -2,9 +2,9 @@ package br.ufjf.dcc;
 
 import java.io.IOException;
 
-import br.ufjf.dcc.controller.Sistema;
 import br.ufjf.dcc.model.alimento.Estoque;
 import br.ufjf.dcc.model.criatura.ListaCriaturas;
+import br.ufjf.dcc.service.Sistema;
 
 public class Main {
 

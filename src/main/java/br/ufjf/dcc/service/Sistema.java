@@ -1,4 +1,4 @@
-package br.ufjf.dcc.controller;
+package br.ufjf.dcc.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
