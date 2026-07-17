@@ -160,18 +160,14 @@ public class Sistema {
 
     private int lerInteiro(String mensagem) {
         while (true) {
-
             try {
-
                 System.out.print(mensagem);
 
                 int valor = leitor.nextInt();
                 leitor.nextLine();
 
                 return valor;
-
             } catch (InputMismatchException e) {
-
                 System.out.println("Entrada inválida. Digite um número inteiro.");
                 leitor.nextLine();
             }
@@ -182,7 +178,6 @@ public class Sistema {
         String texto;
 
         do {
-
             System.out.print(mensagem);
 
             texto = leitor.nextLine().trim();
@@ -190,15 +185,12 @@ public class Sistema {
             if (texto.isEmpty()) {
                 System.out.println("Texto inválido.");
             }
-
         } while (texto.isEmpty());
-
         return texto;
     }
 
     private String lerEspecie() {
         while (true) {
-
             System.out.println("Escolha a espécie: ");
             System.out.println("0. Voltar");
             System.out.println("1. Aquari");
@@ -267,7 +259,6 @@ public class Sistema {
         int idade = lerInteiro("Idade: ");
 
         try {
-
             Criatura criatura;
 
             switch (opcao) {
@@ -302,14 +293,11 @@ public class Sistema {
                     return;
                 }
             }
-
             listaCriaturas.criarCriatura(criatura);
 
             System.out.println("Criatura criada com sucesso.");
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-
         }
     }
 
@@ -317,7 +305,6 @@ public class Sistema {
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
-
             listaCriaturas.removerCriatura(criatura);
 
             System.out.println("Criatura removida.");
@@ -341,7 +328,6 @@ public class Sistema {
             int opcao = lerInteiro("Escolha uma opção: ");
 
             try {
-
                 switch (opcao) {
 
                     case 1 ->
@@ -403,7 +389,6 @@ public class Sistema {
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
-
             criatura.exibirInformacoes();
         }
     }
@@ -412,7 +397,6 @@ public class Sistema {
         Criatura criatura = selecionarCriatura();
 
         if (criatura != null) {
-
             criatura.exibirEstadoAtual();
         }
     }
@@ -447,7 +431,6 @@ public class Sistema {
             int saciedadeAntes = criatura.getSaciedade();
 
             try {
-
                 criatura.alimentar(alimentoEscolhido, estoque);
 
                 System.out.println(criatura.getNome() + " foi alimentada com "
@@ -459,9 +442,7 @@ public class Sistema {
                 avancarTempo();
 
             } catch (IllegalStateException e) {
-
                 System.out.println(e.getMessage());
-
             }
         }
     }
@@ -475,7 +456,6 @@ public class Sistema {
             int saciedadeAntes = criatura.getSaciedade();
 
             try {
-
                 criatura.brincar();
 
                 System.out.println(criatura.getNome() + " brincou. Sua felicidade, energia e saciedade, antes eram "
@@ -486,11 +466,8 @@ public class Sistema {
                         + criatura.getSaciedade() + ".");
 
                 avancarTempo();
-
             } catch (IllegalStateException e) {
-
                 System.out.println(e.getMessage());
-
             }
         }
     }
@@ -500,7 +477,6 @@ public class Sistema {
 
         if (criatura != null) {
             int energiaAntes = criatura.getEnergia();
-
             try {
                 criatura.descansar();
 
@@ -530,7 +506,6 @@ public class Sistema {
 
                 avancarTempo();
             } catch (IllegalStateException e) {
-
                 System.out.println(e.getMessage());
 
             }
@@ -553,9 +528,7 @@ public class Sistema {
 
                 avancarTempo();
             } catch (IllegalStateException e) {
-
                 System.out.println(e.getMessage());
-
             }
         }
     }
@@ -565,7 +538,6 @@ public class Sistema {
 
         if (criatura != null) {
             try {
-
                 if (criatura instanceof DraconisCelestial draconisCelestial) {
 
                     System.out.println("Escolha a habilidade:");
@@ -584,9 +556,7 @@ public class Sistema {
 
                 avancarTempo();
             } catch (IllegalStateException e) {
-
                 System.out.println(e.getMessage());
-
             }
         }
     }
@@ -603,21 +573,15 @@ public class Sistema {
             return;
         }
 
-        Estatistica estatistica
-                = new Estatistica(listaCriaturas, tempo, estoque);
+        Estatistica estatistica = new Estatistica(listaCriaturas, tempo, estoque);
 
         try {
-
             EscritorCSV.salvar(caminho, estatistica.gerarLinhasCSV(), new ConversorEstatisticaCSV(), "nome;valor"
             );
 
             System.out.println("Estatísticas exportadas com sucesso.");
-
         } catch (IOException e) {
-
-            System.out.println(
-                    "Erro ao exportar estatísticas."
-            );
+            System.out.println("Erro ao exportar estatísticas.");
         }
     }
 
@@ -650,13 +614,10 @@ public class Sistema {
         }
 
         try {
-
             EscritorJSON.salvar(caminho, listaCriaturas.getCriaturas(), new ConversorCriaturaJSON());
 
             System.out.println("Criaturas exportadas com sucesso.");
-
         } catch (IOException e) {
-
             System.out.println("Erro ao exportar criaturas.");
         }
     }
