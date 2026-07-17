@@ -37,22 +37,20 @@ public class Reposicao {
 
         int quantidadeCriaturas = criaturas.size();
 
-        if (quantidadeCriaturas == 0) {
-            return;
-        }
+        if (quantidadeCriaturas != 0) {
+            int estoqueMinimo = quantidadeCriaturas * 3;
 
-        int estoqueMinimo = quantidadeCriaturas * 3;
+            Set<TipoAlimento> alimentosCompativeis = criaturas.get(0).getAlimentosCompativeis();
 
-        Set<TipoAlimento> alimentosCompativeis = criaturas.get(0).getAlimentosCompativeis();
+            int estoqueDisponivel = 0;
 
-        int estoqueDisponivel = 0;
+            for (TipoAlimento tipo : alimentosCompativeis) {
+                estoqueDisponivel += estoque.getQteDisponivelAlimento(tipo);
+            }
 
-        for (TipoAlimento tipo : alimentosCompativeis) {
-            estoqueDisponivel += estoque.getQteDisponivelAlimento(tipo);
-        }
-
-        if (estoqueDisponivel < estoqueMinimo) {
-            repor(alimentosCompativeis);
+            if (estoqueDisponivel < estoqueMinimo) {
+                repor(alimentosCompativeis);
+            }
         }
     }
 

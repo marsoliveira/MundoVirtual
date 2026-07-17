@@ -246,58 +246,55 @@ public class Sistema {
 
         int opcao = lerInteiro("Escolha uma opção: ");
 
-        if (opcao == 0) {
-            return;
-        }
+        if (opcao != 0) {
+            String especie = lerEspecie();
 
-        String especie = lerEspecie();
-        if (especie == null) {
-            return;
-        }
+            if (especie != null) {
+                String nome = lerTexto("Nome: ");
+                int idade = lerInteiro("Idade: ");
 
-        String nome = lerTexto("Nome: ");
-        int idade = lerInteiro("Idade: ");
+                try {
+                    Criatura criatura;
 
-        try {
-            Criatura criatura;
+                    switch (opcao) {
+                        case 1 -> {
 
-            switch (opcao) {
-                case 1 -> {
+                            criatura = InsereCriaturas.criar(especie, nome, idade);
 
-                    criatura = InsereCriaturas.criar(especie, nome, idade);
+                        }
 
-                }
+                        case 2 -> {
 
-                case 2 -> {
+                            int nivel = lerInteiro("Nível: ");
+                            int experiencia = lerInteiro("Experiência: ");
+                            int energia = lerInteiro("Energia: ");
+                            int saciedade = lerInteiro("Saciedade: ");
+                            int felicidade = lerInteiro("Felicidade: ");
 
-                    int nivel = lerInteiro("Nível: ");
-                    int experiencia = lerInteiro("Experiência: ");
-                    int energia = lerInteiro("Energia: ");
-                    int saciedade = lerInteiro("Saciedade: ");
-                    int felicidade = lerInteiro("Felicidade: ");
+                            criatura = InsereCriaturas.criar(
+                                    especie,
+                                    nome,
+                                    idade,
+                                    nivel,
+                                    experiencia,
+                                    energia,
+                                    saciedade,
+                                    felicidade
+                            );
 
-                    criatura = InsereCriaturas.criar(
-                            especie,
-                            nome,
-                            idade,
-                            nivel,
-                            experiencia,
-                            energia,
-                            saciedade,
-                            felicidade
-                    );
+                        }
+                        default -> {
+                            System.out.println("Opção inválida.");
+                            return;
+                        }
+                    }
+                    listaCriaturas.criarCriatura(criatura);
 
-                }
-                default -> {
-                    System.out.println("Opção inválida.");
-                    return;
+                    System.out.println("Criatura criada com sucesso.");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
-            listaCriaturas.criarCriatura(criatura);
-
-            System.out.println("Criatura criada com sucesso.");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
         }
     }
 
