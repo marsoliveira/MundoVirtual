@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 import br.ufjf.dcc.model.alimento.Estoque;
 import br.ufjf.dcc.model.alimento.Reposicao;
-import br.ufjf.dcc.model.criatura.ConversorCriaturaJSON;
 import br.ufjf.dcc.model.criatura.Criatura;
 import br.ufjf.dcc.model.criatura.DraconisCelestial;
 import br.ufjf.dcc.model.criatura.InsereCriaturas;
 import br.ufjf.dcc.model.criatura.ListaCriaturas;
 import br.ufjf.dcc.model.enums.TipoAlimento;
-import br.ufjf.dcc.model.estatistica.ConversorEstatisticaCSV;
 import br.ufjf.dcc.model.estatistica.Estatistica;
 import br.ufjf.dcc.model.tempo.PassagemTempo;
+import br.ufjf.dcc.util.csv.ConversorEstatisticaCSV;
 import br.ufjf.dcc.util.csv.EscritorCSV;
+import br.ufjf.dcc.util.json.ConversorCriaturaJSON;
 import br.ufjf.dcc.util.json.EscritorJSON;
 import br.ufjf.dcc.util.json.LeitorJSON;
 

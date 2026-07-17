@@ -1,8 +1,9 @@
-package br.ufjf.dcc.model.criatura;
+package br.ufjf.dcc.util.json;
 
 import org.json.JSONObject;
 
-import br.ufjf.dcc.util.json.ConversorJSON;
+import br.ufjf.dcc.model.criatura.Criatura;
+import br.ufjf.dcc.model.criatura.InsereCriaturas;
 
 public class ConversorCriaturaJSON implements ConversorJSON<Criatura> {
 

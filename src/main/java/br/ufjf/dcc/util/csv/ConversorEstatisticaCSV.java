@@ -1,6 +1,6 @@
-package br.ufjf.dcc.model.estatistica;
+package br.ufjf.dcc.util.csv;
 
-import br.ufjf.dcc.util.csv.ConversorCSV;
+import br.ufjf.dcc.model.estatistica.DadoEstatistico;
 
 public class ConversorEstatisticaCSV implements ConversorCSV<DadoEstatistico> {
 

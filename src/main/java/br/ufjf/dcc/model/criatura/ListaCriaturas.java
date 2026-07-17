@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufjf.dcc.util.json.ConversorCriaturaJSON;
 import br.ufjf.dcc.util.json.LeitorJSON;
 
 public class ListaCriaturas {

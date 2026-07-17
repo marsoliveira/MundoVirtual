@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufjf.dcc.model.enums.TipoAlimento;
+import br.ufjf.dcc.util.csv.ConversorAlimentoCSV;
 import br.ufjf.dcc.util.csv.LeitorCSV;
 
 public class Estoque {
