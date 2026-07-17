@@ -48,7 +48,7 @@ public class Sistema {
         System.out.println("3. Editar Criatura");
         System.out.println("4. Exibir Informações da Criatura");
         System.out.println("5. Exibir Status Completo");
-        System.out.println("6. Exibir Criaturas Cadastrados");
+        System.out.println("6. Exibir Criaturas Cadastradas");
         System.out.println("7. Alimentar Criatura");
         System.out.println("8. Brincar com Criatura");
         System.out.println("9. Colocar Criatura para Dormir");
